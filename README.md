@@ -58,6 +58,8 @@ there are ways to make some functions like setreadonly in luau, most executors d
 
 Executor owners get angry at sUNC due to them believing their half-ass functions fully work, though It is pretty common now to see that nobody truly understands how most of the functions listed in the Unified Naming Convention actually work.
 
+_______________________________________________________________
+
 Conclusion:
 - Do as best as you can to not make your functions in luau
 - Do not fake your functions, i dont know how this benefits you unless you are ratting or exit scamming
