@@ -4,7 +4,6 @@ ______________________________________________
 
 
 ```lua
--- Your Lua code here
 local circle = Drawing.new("Circle")
 circle.Radius = 50
 circle.Color = Color3.fromRGB(255, 0, 0)
