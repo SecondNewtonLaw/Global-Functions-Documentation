@@ -32,3 +32,5 @@ circle.Visible = true
 task.wait(1)
 circle:Destroy()
 ```
+
+- *Make sure your drawing can be indexed with Remove & Destroy*
