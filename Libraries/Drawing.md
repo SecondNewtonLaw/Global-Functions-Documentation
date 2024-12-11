@@ -9,6 +9,7 @@ The Drawing library provides an interface for rendering shapes and text onto the
 ## Drawing.new
 
 - Drawing.new creates a new drawing object based on the type you specify in its 1st parameter.
+- The drawing types are 'Line', 'Text', 'Image', 'Circle', 'Square', 'Quad', and 'Triangle'.
 
 ```lua
 function Drawing.new(type: string): Drawing
