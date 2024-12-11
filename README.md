@@ -18,14 +18,6 @@ sUNC is still being developed, some tests can have issues & are actively being f
 
 Most Executors tend to spoof their functions of course to fake results on the regular UNC test, and refuse to show any results on sUNC because they label it as Faulty or Non-Functional or Messed Up & Want to promote their external xeno paste as the best.
 
-Prime Examples:
-- Blitz: Past Developer of ignite, repeatedly talks about how sUNC isnt made to test for externals
-| Answer: It does not matter if you are external or internal, if you fail you fail
-- RoHook: they advertised with a UNC of 86%, when sUNC was ran they were at 63% & they made numerous excuses on why they were at 63%
-- Krucus: advertised at 100% UNC, was exposed for being around 60% with sUNC in which they too called sUNC faulty
-- dna: has claimed sUNC to not be able to test external executors functions correctly
-| Answer: Same as I said for blitz, It does not matter if you are external or internal, if you fail you fail
-
 In my prime examples I called out people & executors for their opinions in which have been debunked or I debunked above, they are wrong & do not understand there are no differences between how a function should work on an executor if its external or not.
 
 that is like saying getgenv().meow on an internal does not work the same on an external, make it make sense.
