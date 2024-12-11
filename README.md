@@ -62,7 +62,8 @@ Executor owners get angry at sUNC due to them believing their half-ass functions
 
 _______________________________________________________________
 
-Conclusion:
+# Conclusion
+
 - Do as best as you can to not make your functions in luau
 - Do not fake your functions, i dont know how this benefits you unless you are ratting or exit scamming
 - If you cant fully implement a function, do not add it
