@@ -4,6 +4,8 @@ _______________________________________________________________
 
 sUNC is a tester for a executors capability to use functions under the Unified Naming Convention, people fail to realize how there is no difference in how certain functions should operate if a executor is external or internal, there is absolutely no difference and sUNC tests functions based on full functionality & not if they are half-assed or anything.
 
+# sUNC is a testing script NOT a naming convention
+
 Functions like getcustomasset are barely talked about much, almost forgotten, but over 90% of executors fail to understand its functionality & usually spoof if via a string & dont care to implement it.
 
 the only executors that ive seen that has the correct implementation of getcustomasset is Synapse Z, Wave, & Solara ( i could be wrong there could be more out there that actually have a working one )
