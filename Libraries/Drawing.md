@@ -17,6 +17,8 @@ The Drawing library provides an interface for rendering shapes and text onto the
 function Drawing.new(type: string): Drawing
 ```
 
+## Usage Example
+
 ```lua
 local circle = Drawing.new("Circle")
 circle.Radius = 50
