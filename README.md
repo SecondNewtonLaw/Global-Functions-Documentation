@@ -2,7 +2,7 @@
 
 _______________________________________________________________
 
-sUNC is a tester for a executors capability to use functions under [the Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard), people fail to realize how there is no difference in how certain functions should operate if a executor is external or internal, there is absolutely no difference and sUNC tests functions based on full functionality & not if they are half-assed or anything.
+sUNC is a tester for a executors capability to use functions under the [Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard), people fail to realize how there is no difference in how certain functions should operate if a executor is external or internal, there is absolutely no difference and sUNC tests functions based on full functionality & not if they are half-assed or anything.
 
 # sUNC is a testing script NOT a naming convention
 
