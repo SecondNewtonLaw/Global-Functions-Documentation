@@ -48,9 +48,7 @@ same goes for getthreadidentity, usually executors just return the number of the
 
 Most executors utilize coroutines to make things like newcclosure in lua, this is also not a actual correctly written function inside your executor, self-explanatory, its in luau, more like its a bad implementation as listed by sUNC.
 
-there are ways to make some functions like setreadonly in luau, most executors do this by rewriting the entirety of the table library in order to setup a custom system to unfreeze tables, some even make an entirely new environment & a spoofed datamodel to recreate metamethods to implement a form of hookmetamethod.
-
-Executor owners get angry at sUNC due to them believing their half-ass functions fully work, though It is pretty common now to see that nobody truly understands how most of the functions listed in the Unified Naming Convention actually work.
+Executor owners often express frustration with sUNC, as they believe their partially implemented functions are fully functional. However, it has become increasingly apparent that many lack a comprehensive understanding of how most functions outlined in the Unified Naming Convention actually operate.
 
 _______________________________________________________________
 
