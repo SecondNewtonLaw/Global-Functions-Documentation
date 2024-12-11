@@ -5,6 +5,8 @@ The Drawing library provides an interface for rendering shapes and text onto the
 - Most executors that utilize external drawing libraries utilize **__OBJECT_EXISTS** for support on checking if a drawing instance exists
 - **LuaU** drawing libraries face issues of moderate to high lag on the client
 
+  
+
 
 ## Drawing.new
 
