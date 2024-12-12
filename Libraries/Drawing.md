@@ -9,6 +9,10 @@ The Drawing library provides an interface for rendering shapes and text onto the
 | Identifier | Type | Description |
 | -------- | ---- | ----------- |
 | `_EXISTS` | boolean | Whether the drawing exists. |
+
+-
+
+
 - **LuaU** drawing libraries face issues of moderate to high lag on the client
 
 ---
