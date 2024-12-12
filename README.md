@@ -1,6 +1,6 @@
 # sUNC Introduction
 
-If you're interested in senS' (Owner's) monologue, you can view it here README [here](./README-condensed.md).
+If you're interested in senS' (Owner's) monologue, you can view it [here](./README-condensed.md).
 
 ## What is sUNC? 
 
