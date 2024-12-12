@@ -64,7 +64,7 @@ print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having 
 >
 > For capabilities, make sure to check if the script/module is a RobloxScript and set identity and capabilities accordingly.
 
-This function creates a new closure (function) from the module/script's bytecode, the function you will get, is NOT used by the game, this function should be mainly used for getting constants.
+This function creates a new closure (function) from the module/script's bytecode, the function you will get is NOT used by the game, this function should be mainly used for getting constants.
 
 This should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
 ```luau
@@ -72,7 +72,7 @@ getscriptclosure(script: LocalScript | ModuleScript | Script): function
 ```
 
 ### Parameters
-- `script` - The module/script the function should create closure of.
+- `script` - The module/script the function should create closure out of.
 
 ### Examples
 ```luau
