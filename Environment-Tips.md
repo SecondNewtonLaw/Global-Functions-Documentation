@@ -5,3 +5,4 @@ For your executor, people expect reliable functions and a stable environment, wh
 ---
 
 # 1. Type-Checking
+- Your environmental functions should have proper type-checking implemented, this is to prevent any type of errors or misconceptions when passing something through the parameters of a function.
