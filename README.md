@@ -4,8 +4,6 @@ _______________________________________________________________
 
 sUNC is a testing script for an executors' capability, utilizing the original [Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard). People fail to realize how there is no difference.
 
-# sUNC is a testing script NOT a naming convention.
-
 A lot of executor owners get mad at sUNC due to their executor's functions failing to pass certain checks. What the developers fail to realize, is that, for example, `getgc` doesn't mean a useless table, which is maybe sprinkled with some `game:GetDescendants()`. This is just one example out of many bad implementations which get flagged by the script. 
 
 Now that the times have changed, UNC, for some reason, is now standardly used to check how good an executor is, which is not what it was made for. That's where sUNC comes in. 
