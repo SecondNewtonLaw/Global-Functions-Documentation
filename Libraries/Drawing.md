@@ -35,6 +35,8 @@ circle:Destroy()
 
 - *Make sure your drawing can be indexed with Remove & Destroy*
 
+---
+
 ## Drawing
 
 ```lua
