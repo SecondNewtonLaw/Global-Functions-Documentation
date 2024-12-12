@@ -4,7 +4,7 @@ If you're interested in senS' (Owner's) monologue, you can view it [here](./READ
 
 ## What is sUNC? 
 
-**sUNC**, short for **senS' Unified Naming Convention**. It's a testing tool designed to validate an executor's ability to implement necessary global functions under the already existing [Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard/tree/main). Unlike the original UNC, which is now deprecated and prone to spoofing, sUNC rigorously evaluates function implementations to ensure full functionality and authenticity.
+**sUNC** stands for **senS' Unified Naming Convention**. It's a testing tool designed to validate an executor's ability to implement necessary global functions under the already existing [Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard/tree/main). Unlike the original UNC, which is now deprecated and prone to spoofing, sUNC rigorously evaluates function implementations to ensure full functionality and authenticity.
 
 ### Key Features
 
