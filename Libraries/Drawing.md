@@ -6,6 +6,8 @@ The Drawing library provides an interface for rendering shapes and text onto the
 
 ## __OBJECT List
 
+`🔎 Needs Investigation`
+
 | Identifier | Type | Description |
 | -------- | ---- | ----------- |
 | `_EXISTS` | boolean | Whether the drawing exists. |
