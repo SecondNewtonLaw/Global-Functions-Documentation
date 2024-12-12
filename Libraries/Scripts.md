@@ -10,10 +10,9 @@ The **Script** library provides functions that access to script environments and
 > 
 > Please hash the compressed and encrypted bytecode, do not decrypt and decompress bytecode and then hash it, you will fail our tests!
 
-
-Returns an base64 encoded string of the hashed script bytecode using `SHA384`, this function should support all inheritants of `BaseScript` class
+Returns a `SHA384` hash of the script bytecode encoded in base64. This function should work with all classes that inherit from `BaseScript`.
 ```luau
-getscripthash(script: BaseScript): (string)
+getscripthash(script: BaseScript): string
 ```
 
 ### Parameters
