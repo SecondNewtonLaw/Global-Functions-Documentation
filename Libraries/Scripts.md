@@ -113,3 +113,25 @@ print(scriptEnv) -- Should return a table
 ```luau
 print(getsenv(Instance.new("LocalScript"))) -- Should error with "This script isn't running"
 ```
+---
+
+## getscripts
+
+> [!NOTE]
+> This is an implementation detail; as a regular scripter, you may ignore this!
+>
+> This function should be implemented by using the `RBX::Lua::InstanceBridge::Push` function; any other implementation will fail our tests.
+
+Returns a list of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
+This list should also include scripts or modules that are parented to nil.
+```luau
+getscripts(): { LocalScript | ModuleScript | Script }
+```
+
+### Examples
+```luau
+local allScriptsAndModules = getscripts()
+for _,v in next, allScriptsAndModules do
+  print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
+end
+```
