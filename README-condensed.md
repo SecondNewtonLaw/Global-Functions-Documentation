@@ -24,7 +24,3 @@ _______________________________________________________________
 - Normalize/spread sUNC. UNC does not thoroughly test functions & it is easily spoofable.
 
 ---
-
-# Credits
-
-- [Original UNC Documentation](https://github.com/unified-naming-convention/NamingStandard/tree/main)
