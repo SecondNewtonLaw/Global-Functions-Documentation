@@ -6,7 +6,7 @@ The Drawing library provides an interface for rendering shapes and text onto the
 
 ---
 
-## __OBJECT List
+## __OBJECT
 
 `🔎 Needs Investigation`
 
