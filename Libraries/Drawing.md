@@ -5,7 +5,7 @@ The Drawing library provides an interface for rendering shapes and text onto the
 - External drawing libraries are preferred to have `__OBJECT` properties, for easier access. An example for this would be `__OBJECT_EXISTS`, which allows the user to easily determine whether a drawing element still exists or not.
 - **LuaU** drawing libraries face issues of moderate to high lag on the client
 
-## __OBJECT INFORMATION
+## __OBJECT List
 
 | Identifier | Type | Description |
 | -------- | ---- | ----------- |
