@@ -4,7 +4,7 @@ A lot of executor owners get mad at sUNC due to their executor's functions faili
 
 Now that the times have changed, UNC, for some reason, is now standardly used to check how good an executor is, which is not what it was made for. That's where sUNC comes in. 
 
-sUNC has came a long way already. It is still being maintained. There were lots of bug fixes, new checks, and new tests added to the suggestion of the public, already widely existing or heavily wanted functions.
+sUNC has came a long way already. It is still being maintained. There were lots of bug fixes, new checks, and new tests added to the suggestion of the public, or already widely existing or heavily wanted functions.
 
 A lot of external executor owners misunderstand how the functions should behave. I have seen countless developers complain that their `cache` library is being failed. But when I ask them if they know what the roblox registry is, or how the cache library interacts with it, they freeze.
 
