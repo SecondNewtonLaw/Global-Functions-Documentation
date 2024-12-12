@@ -48,5 +48,5 @@ print(scriptHash) -- Should return an non-changing SHA384 hash
 ```
 
 ```luau
-print(getscriptbytecode(Instance.new("LocalScript"))) -- Should error due to having no bytecode
+print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having no bytecode
 ```
