@@ -15,3 +15,13 @@ Returns an base64 encoded string of the hashed script bytecode using `SHA384`, t
 ```luau
 getscripthash(script: BaseScript): (string)
 ```
+
+### Parameters
+- `script` - The script the function should obtain hash of.
+
+### Examples
+
+```luau
+local scriptHash = getscripthash(game.Players.LocalPlayer.Character.Animate)
+print(scriptHash) -- Should return an non-changing SHA384 hash
+```
