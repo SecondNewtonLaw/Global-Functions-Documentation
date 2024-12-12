@@ -12,7 +12,7 @@ The Drawing library provides an interface for rendering shapes and text onto the
 - The drawing types are **'Line', 'Text', 'Image', 'Circle', 'Square', 'Quad', and 'Triangle'**.
 
 > [!NOTE]
-> Drawing objects should be able to be indexed with Remove & Destroy
+> Drawing objects should be able to be indexed with Remove & Destroy.
 
 ```lua
 function Drawing.new(type: string): Drawing
