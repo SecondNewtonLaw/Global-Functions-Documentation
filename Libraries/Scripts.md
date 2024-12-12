@@ -23,6 +23,7 @@ print(scriptBytecode) -- Should return a string with the bytecode
 -- Should error due to having no bytecode or being unable to decompress the bytecode
 print(getscriptbytecode(Instance.new("LocalScript")))
 ```
+---
 
 ## getscripthash
 
@@ -49,4 +50,37 @@ print(scriptHash) -- Should return an non-changing SHA384 hash in hex
 
 ```luau
 print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having no bytecode
+```
+---
+
+## getscriptclosure
+
+> [!NOTE]
+> This is an implementation detail, as a regular scripter you may ignore this!
+>
+> The closure you return needs to callable (meaning it can be called without erroring) or you will fail our tests! This means the closure needs to have properly set capabilites and identity, and proper enviroment with the script global!
+> 
+> For the enviroment make a new table having __index set to table from L->global->mainthread->gt and for the script global just push the script instance and set it on the table.
+>
+> For capabilities, make sure to check if the script/module is a RobloxScript and set identity and capabilities accordingly.
+
+This function creates a new closure (function) from the module/script's bytecode, the function you will get, is NOT used by the game, this function should be mainly used for getting constants.
+
+This should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
+```luau
+getscriptclosure(script: LocalScript | ModuleScript | Script): function
+```
+
+### Parameters
+- `script` - The module/script the function should create closure of.
+
+### Examples
+```luau
+local testScript = game.Players.LocalPlayer.Character.Animate
+print(getscriptclosure(testScript)) -- Returns an function
+getscriptclosure(testScript)() -- Shouldn't error
+```
+
+```luau
+print(getscriptclosure(Instance.new("LocalScript"))) -- Should error for not having any bytecode
 ```
