@@ -20,7 +20,8 @@ print(scriptBytecode) -- Should return an string with the bytecode
 ```
 
 ```luau
-print(getscriptbytecode(Instance.new("LocalScript"))) -- Should error due to having no bytecode or being unable to decompress the bytecode
+-- Should error due to having no bytecode or being unable to decompress the bytecode
+print(getscriptbytecode(Instance.new("LocalScript")))
 ```
 
 ## getscripthash
