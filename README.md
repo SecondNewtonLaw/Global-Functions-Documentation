@@ -26,3 +26,9 @@ _______________________________________________________________
 - Do as best as you can to not make your functions in luau.
 - Do not fake your functions, this will ultimately not benefit your userbase.
 - Normalize/spread sUNC. UNC does not thoroughly test functions & it is easily spoofable.
+
+---
+
+# Credits
+
+- https://github.com/unified-naming-convention/NamingStandard/tree/main
