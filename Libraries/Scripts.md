@@ -16,7 +16,7 @@ getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ### Examples
 ```luau
 local scriptBytecode = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
-print(scriptBytecode) -- Should return an string with the bytecode
+print(scriptBytecode) -- Should return a string with the bytecode
 ```
 
 ```luau
