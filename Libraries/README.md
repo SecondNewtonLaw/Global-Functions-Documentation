@@ -15,6 +15,7 @@
 - [Scripts](./Scripts.md)
 - [WebSocket](./WebSocket.md)
 - [Network](./Network.md)
+- [Reflection](./Reflection.md)
 
 > [!NOTE]
 > This table of contents is still being worked on. Will be alphabetised later.
