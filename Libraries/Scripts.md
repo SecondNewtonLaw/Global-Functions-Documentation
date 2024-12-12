@@ -32,7 +32,7 @@ print(getscriptbytecode(Instance.new("LocalScript")))
 > Please hash the compressed and encrypted bytecode, do not decrypt and decompress bytecode and then hash it, you will fail our tests!
 > Additionally, this will ensure compability between executors who do practice sUNC.
 >
-> To people who ask, why the hash should be encoded with base64, is simple, it ensures the result doesn't contain any special character, meaning it's safe to use in another functions.
+> To people who ask, why the hash should be encoded with base64, is simple, it ensures the result doesn't contain any special characters, meaning it's safe to use in another functions.
 
 Returns a `SHA384` hash of the module/script bytecode encoded in base64. This function should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
 ```luau
