@@ -60,7 +60,7 @@ print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having 
 >
 > The closure you return needs to be callable (meaning it can be called without erroring), or you will fail our tests! This means the closure needs to have properly set capabilities and identity and a proper environment with the script global!
 > 
-> For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the global script, just push the script instance and set it on the table.
+> For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the script global, just push the script instance and set it on the table.
 >
 > For capabilities, make sure to check if the script/module is a RobloxScript and set identity and capabilities accordingly.
 
