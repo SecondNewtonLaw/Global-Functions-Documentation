@@ -141,7 +141,7 @@ Draws a triangle connecting to each of the three points.
 
 ### __OBJECT
 
-`🔎 Needs Investigation`
+`🔎 Needs Investigation` `📌 External Drawing`
 
 | Identifier | Type | Description |
 | -------- | ---- | ----------- |
