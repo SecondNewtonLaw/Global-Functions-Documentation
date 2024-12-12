@@ -11,6 +11,9 @@ The Drawing library provides an interface for rendering shapes and text onto the
 - Drawing.new creates a new drawing object based on the type you specify in its 1st parameter.
 - The drawing types are **'Line', 'Text', 'Image', 'Circle', 'Square', 'Quad', and 'Triangle'**.
 
+> [!NOTE]
+> Drawing objects should be able to be indexed with Remove & Destroy
+
 ```lua
 function Drawing.new(type: string): Drawing
 ```
@@ -30,8 +33,6 @@ circle.Visible = true
 task.wait(1)
 circle:Destroy()
 ```
-
-- *Make sure your drawing can be indexed with Remove & Destroy*
 
 ---
 
