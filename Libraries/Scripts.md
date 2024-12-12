@@ -122,8 +122,8 @@ print(getsenv(Instance.new("LocalScript"))) -- Should error with "This script is
 >
 > This function should be implemented by using the `RBX::Lua::InstanceBridge::Push` function; any other implementation will fail our tests.
 
-Returns a list of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
-This list should also include scripts or modules that are parented to nil.
+Returns a table of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
+This table should also include scripts or modules that are parented to nil.
 ```luau
 getscripts(): { LocalScript | ModuleScript | Script }
 ```
@@ -132,6 +132,28 @@ getscripts(): { LocalScript | ModuleScript | Script }
 ```luau
 local allScriptsAndModules = getscripts()
 for _, v in next, allScriptsAndModules do
+  print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
+end
+```
+---
+
+## getrunningscripts
+
+> [!NOTE]
+> This is an implementation detail; as a regular scripter, you may ignore this!
+>
+> To check whether a module/script is running, you would use the same method you use for getting the script/module's Lua state in `getsenv`.
+
+Returns a table of all instances like `getscripts` does but only returns modules and scripts that are currently running. 
+Should also include all `Script` instances with RunContext set to Client that are running.
+```luau
+getrunningscripts(): { LocalScript | ModuleScript | Script }
+```
+
+### Examples
+```luau
+local allRunningScriptsAndModules = getrunningscripts()
+for _, v in next, allRunningScriptsAndModules do
   print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
 end
 ```
