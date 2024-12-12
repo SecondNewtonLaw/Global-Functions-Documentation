@@ -131,7 +131,7 @@ getscripts(): { LocalScript | ModuleScript | Script }
 ### Examples
 ```luau
 local allScriptsAndModules = getscripts()
-for _,v in next, allScriptsAndModules do
+for _, v in next, allScriptsAndModules do
   print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
 end
 ```
