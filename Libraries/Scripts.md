@@ -84,3 +84,32 @@ getscriptclosure(testScript)() -- Shouldn't error
 ```luau
 print(getscriptclosure(Instance.new("LocalScript"))) -- Should error for not having any bytecode
 ```
+---
+
+## getsenv
+
+> [!NOTE]
+> This is an implementation detail, as a regular scripter you may ignore this!
+>
+> To implement this function, you should be finding the script's lua state and return it's L->gt table, any other approach will result in our tests failing.
+> 
+> The reason it should be implemented this way, is because game devs can set their `script` global to `nil` and break other approaches.
+
+Gives you the globals table of a running module/script (meaing all variables not defined as local in the script)
+This should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
+```luau
+getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
+```
+
+### Parameters
+- `script` - The module/script the function gets the globals table of.
+
+### Examples
+```luau
+local scriptEnv = getsenv(game.Players.LocalPlayer.Character.Animate)
+print(scriptEnv) -- Should return a table
+```
+
+```luau
+print(getsenv(Instance.new("LocalScript"))) -- Should error with "This script isn't running"
+```
