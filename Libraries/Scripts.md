@@ -31,10 +31,8 @@ print(getscriptbytecode(Instance.new("LocalScript")))
 > 
 > Please hash the compressed and encrypted bytecode, do not decrypt and decompress bytecode and then hash it!
 > Additionally, this will ensure compability between executors who do practice sUNC.
->
-> The hash should also be encoded with base64, because it ensures the result doesn't contain any special characters, which might interfere with other functions.
 
-Returns a `SHA384` hash of the module/script bytecode encoded in base64. This function should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
+Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
 ```luau
 getscripthash(script: LocalScript | ModuleScript | Script): string
 ```
@@ -46,7 +44,7 @@ getscripthash(script: LocalScript | ModuleScript | Script): string
 
 ```luau
 local scriptHash = getscripthash(game.Players.LocalPlayer.Character.Animate)
-print(scriptHash) -- Should return an non-changing SHA384 hash
+print(scriptHash) -- Should return an non-changing SHA384 hash in hex
 ```
 
 ```luau
