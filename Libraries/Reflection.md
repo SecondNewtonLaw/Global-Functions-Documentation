@@ -39,7 +39,7 @@ print(gethiddenproperty(part, "DataCost")) -- Returns 20, true [Hidden]
 
 > [!WARNING]
 > It appears that many executors fail to implement some or all property types, Mainly `SharedString` and `SystemAddress`
->
+
 > [!NOTE]
 > Developers should not rely on just `setscriptable` to make this function work
 
