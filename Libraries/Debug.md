@@ -1,4 +1,5 @@
 # Debug
+
 Functions that allow us to get **more control** over Luau functions.
 
 ---
@@ -6,14 +7,17 @@ Functions that allow us to get **more control** over Luau functions.
 ## debug.getconstants
 
 Returns the constants of the specified Lua function. Should error on C closure (functions) because they have no constants.
+
 ```luau
 debug.getconstants(func: (...any) -> (...any)): { [number]: number | string | nil }
 ```
 
 ### Parameters
+
 - `func` - The Lua function the constants would be obtained from.
 
 ### Examples
+
 ```luau
 local function DummyFunction()
     local dummyString = "foo bar"
@@ -36,6 +40,7 @@ end
 ```luau
 print(debug.getconstants(print)) -- Should error due to being a C closure (function)
 ```
+
 ---
 
 ## debug.getconstant
@@ -47,10 +52,12 @@ debug.getconstant(func: (...any) -> (...any), index: number): number | string | 
 ```
 
 ### Parameters
+
 - `func` - The Lua function the constant would be obtained from.
 - `index` - Position of the wanted constant.
 
 ### Examples
+
 ```luau
 local function DummyFunction()
     local dummyString = "foo bar"
