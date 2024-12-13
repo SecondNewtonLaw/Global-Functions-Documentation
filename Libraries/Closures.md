@@ -15,11 +15,12 @@ This function takes in a Lua closure (function) and wraps it into a C closure (f
 
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure (function), and then the original closure (function) returned arguments are passed to the caller of the C closure (function).
 ```luau
-newcclosure(functionToWrap: function): function
+newcclosure(functionToWrap: function, wrappedFunctionName: string?): function
 ```
 
 ### Parameters
 - `functionToWrap` - A Lua closure (function) to be wrapped.
+- `wrappedFunctionName` (optional) - A custom name for the wrapped function. If not provided, the name will be blank.
 
 ### Examples
 ```luau
@@ -29,12 +30,14 @@ end
 
 print(iscclosure(originalFunction)) -- Prints false
 
-local wrappedFunction = newcclosure(originalFunction)
+local wrappedFunction = newcclosure(originalFunction, "sUNC")
 
 print(iscclosure(wrappedFunction)) -- Prints true
 
 local functionResults = wrappedFunction("hello world")
 print(functionResults) -- Prints "hello world"
+
+print(debug.info(wrappedFunction, "n")) -- Prints "sUNC"
 ```
 
 ```luau
