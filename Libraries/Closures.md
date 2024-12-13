@@ -9,7 +9,7 @@ Functions that allow **modification/creation** of Luau closures (functions)
 > [!WARNING]
 > Many executors are implementing this function using `coroutine` functions in Lua; these implementations won't pass sUNC checks.
 >
-> Also the wrapped function should be yieldable (meaning the function can call `task.wait` for example)
+> The wrapped function should be yieldable (meaning the function can call `task.wait` for example)
 
 This function takes in a Lua closure (function) and wraps it into a C closure (function). 
 
