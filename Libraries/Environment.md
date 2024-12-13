@@ -28,7 +28,7 @@ getrenv(): { [any]: any }
 
 ### Examples
 ```luau
-getrenv().game = nil -- Now no game script cannot access game
+getrenv().game = nil -- Now no game script can access game
 ```
 ---
 
