@@ -165,3 +165,11 @@ Returns a table of all ModuleScripts that are currently running.
 ```luau
 getloadedmodules(): { ModuleScript }
 ```
+
+### Examples
+```luau
+local allLoadedModules = getloadedmodules()
+for _, v in next, allRunningScriptsAndModules do
+  print(v.ClassName) -- Should print ModuleScript
+end
+```
