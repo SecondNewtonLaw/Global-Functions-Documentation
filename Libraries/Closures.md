@@ -1,6 +1,6 @@
 # Closures
 
-Functions that allow **modification/creation** of Luau closures (functions)
+Functions that allow **modification/creation** of Luau closures
 
 ---
 
@@ -11,9 +11,9 @@ Functions that allow **modification/creation** of Luau closures (functions)
 >
 > The wrapped function should be yieldable (meaning the function can call `task.wait` for example)
 
-This function takes in a Lua closure (function) and wraps it into a C closure (function).
+This function takes in a Lua closure and wraps it into a C closure.
 
-When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure (function), and then the original closure (function) returned arguments are passed to the caller of the C closure (function).
+When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure, and then the original closure returned arguments are passed to the caller of the C closure.
 
 ```luau
 newcclosure(functionToWrap: function, wrappedFunctionName: string?): function
