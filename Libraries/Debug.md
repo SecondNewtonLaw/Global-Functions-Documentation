@@ -43,7 +43,7 @@ print(debug.getconstants(print)) -- Should error due to being a C closure (funct
 Returns the constant at the specified index. If there is no constant at the specified index, `nil` will be returned instead.
 
 ```luau
-debug.getconstant(func: function, index: number): any
+debug.getconstant(func: function, index: number): number | string
 ```
 
 ### Parameters
