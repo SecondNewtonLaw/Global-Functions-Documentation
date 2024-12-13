@@ -47,9 +47,9 @@ getgc(includeTables?: boolean): { [number]: userdata | table | function }
 ### Examples
 ```luau
 -- Prints all tables with 'Speed' key
-for _,v in next, getgc(true) do
-  if type(v) == "table" and rawget(v, "Speed") ~= nil then
-    print(v)
-  end
+for _, tbl in next, getgc(true) do
+	if type(tbl) == "table" and rawget(tbl, "Speed") ~= nil then
+		print(tbl)
+	end
 end
 ```
