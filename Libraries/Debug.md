@@ -1,18 +1,19 @@
 # Debug
+Functions that allow us to get **more control** over Luau functions.
+
 ---
 
 ## debug.getconstants
-> [!Warning]
-> C Functions shouldn't be allowed to be passed through this function for security purposes. 
 
-Returns the constants of the specified function.
+Returns the constants of the specified lua function. Should error on C closure (functions) because they have no constants.
 ```luau
-debug.getconstants(func: (...any) -> (...any)): { [number]: any }
+debug.getconstants(func: function): { [number]: number | string }
 ```
 
-### Parameter
-- `func` - Wanted function the constants would be obtained from.
-### Example
+### Parameters
+- `func` - The Lua function the constants would be obtained from.
+
+### Examples
 ```luau
 local function DummyFunction()
     local dummyString = "foo bar"
@@ -30,4 +31,55 @@ end
 -- [2]: "split"
 -- [4]: "foo bar"
 -- [5]: " "
+```
+
+```luau
+print(debug.getconstants(print)) -- Should error due to being a C closure (function)
+```
+---
+
+## debug.getconstant
+
+Returns the constant at the specified index. If there is no constant at the specified index, `nil` will be returned instead.
+
+```luau
+debug.getconstant(func: function, index: number): any
+```
+
+### Parameters
+- `func` - The Lua function the constant would be obtained from.
+- `index` - Position of the wanted constant.
+
+### Examples
+```luau
+local function DummyFunction()
+    local dummyString = "foo bar"
+    string.split(dummyString, " ")
+end
+
+local result = debug.getconstant(DummyFunction, 2)
+print(result)
+
+-- Optimization Level: 1, Debug Level: 1
+-- Output:
+-- string
+```
+
+```luau
+local function DummyFunction()
+    local dummyString = "foo bar"
+    string.split(dummyString, " ")
+end
+
+local result = debug.getconstant(DummyFunction, 3)
+print(result)
+
+-- Optimization Level: 1, Debug Level: 1
+-- Output:
+-- nil
+```
+
+
+```luau
+print(debug.getconstant(print)) -- Should error due to being a C closure (function)
 ```
