@@ -157,3 +157,11 @@ for _, v in next, allRunningScriptsAndModules do
   print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
 end
 ```
+---
+
+## getloadedmodules
+
+Returns a table of all ModuleScripts that are currently running.
+```luau
+getloadedmodules(): { ModuleScript }
+```
