@@ -66,7 +66,7 @@ This function checks if a given function is a C closure (implemented in C/C++) o
 iscclosure(func: (...any) -> (...any)): boolean
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The function to check.
 
@@ -75,7 +75,7 @@ iscclosure(func: (...any) -> (...any)): boolean
 - `true` if the function is a C closure.
 - `false` if the function is a Lua closure.
 
-### Examples
+### Example
 
 ```luau
 local luaFunction = function()
