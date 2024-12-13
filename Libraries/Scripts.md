@@ -5,7 +5,7 @@ The **Script** library provides functions that access to script environments and
 
 ## getscriptbytecode
 
-Returns the module/script's decompressed and decrypted bytecode to be used for decompiling. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
+Returns the module/script's decompressed and decrypted bytecode to be used for decompiling. This function should work with `LocalScript`, `ModuleScript` and `Script` instances that have RunContext set to Client.
 ```luau
 getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ```
@@ -30,7 +30,7 @@ print(getscriptbytecode(Instance.new("LocalScript")))
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 > 
-> Please hash the compressed and encrypted bytecode; do not decrypt and decompress the bytecode and then hash it!
+> Please hash the compressed and encrypted bytecode. Do not decrypt and decompress the bytecode and then hash it!
 > Additionally, this will ensure compatibility between executors who do practice sUNC.
 
 Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
@@ -58,13 +58,13 @@ print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having 
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 >
-> The closure you return needs to be callable (meaning it can be called without erroring), or you will fail our tests! This means the closure needs to have properly set capabilities and identity and a proper environment with the script global!
+> The closure you return needs to be callable (meaning it can be called without erroring), or you will fail our tests! This means the closure needs to have properly set capabilities, identity, and a proper environment with the script global!
 > 
 > For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the script global, just push the script instance and set it on the table.
 >
-> For capabilities, make sure to check if the script/module is a RobloxScript and set identity and capabilities accordingly.
+> For capabilities, make sure to check if the script/module is a RobloxScript, and set identity and capabilities accordingly.
 
-This function creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get; you should primarily use it to retrieve constants.
+This function creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get. You should primarily use it to retrieve constants.
 
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 ```luau
@@ -91,7 +91,7 @@ print(getscriptclosure(Instance.new("LocalScript"))) -- Should error for not hav
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 >
-> To implement this function, you should be finding the script's Lua state and returning its L->gt table; any other approach will result in our tests failing.
+> To implement this function, you should be finding the script's Lua state and returning its L->gt table. Any other approach will result in our tests failing.
 > 
 > The reason it should be implemented this way is because game devs can set their `script` global to `nil` and break other approaches.
 
@@ -120,7 +120,7 @@ print(getsenv(Instance.new("LocalScript"))) -- Should error with "This script is
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 >
-> This function should be implemented by using the `RBX::Lua::InstanceBridge::Push` function; any other implementation will fail our tests.
+> This function should be implemented by using the `RBX::Lua::InstanceBridge::Push` function. Any other implementation will fail our tests.
 
 Returns a table of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
 This table should also include scripts or modules that are parented to nil.
