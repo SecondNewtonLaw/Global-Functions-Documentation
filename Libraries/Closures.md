@@ -16,7 +16,7 @@ This function takes in a Lua closure (function) and wraps it into a C closure (f
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure (function), and then the original closure (function) returned arguments are passed to the caller of the C closure (function).
 
 ```luau
-newcclosure(functionToWrap: (...any) -> (...any), wrappedFunctionName: string?): (...any) -> (...any)
+newcclosure(functionToWrap: function, wrappedFunctionName: string?): function
 ```
 
 ### Parameters
@@ -60,10 +60,10 @@ newcclosure(print) -- Should error because print is already C closure (function)
 
 ## iscclosure
 
-This function checks if a given function is a C closure (implemented in C/C++) or a Lua closure (implemented in Lua).
+This function checks if a given function is a C closure (implemented in C/C++).
 
 ```luau
-iscclosure(func: (...any) -> (...any)): boolean
+iscclosure(func: function): boolean
 ```
 
 ### Parameter
