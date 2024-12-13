@@ -15,7 +15,7 @@ This function takes in a Lua closure (function) and wraps it into a C closure (f
 
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure (function), and then the original closure (function) returned arguments are passed to the caller of the C closure (function).
 ```luau
-newcclosure(functionToWrap: function, wrappedFunctionName: string?): function
+newcclosure(functionToWrap: (...any) -> (...any), wrappedFunctionName: string?): (...any) -> (...any)
 ```
 
 ### Parameters

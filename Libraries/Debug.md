@@ -7,7 +7,7 @@ Functions that allow us to get **more control** over Luau functions.
 
 Returns the constants of the specified Lua function. Should error on C closure (functions) because they have no constants.
 ```luau
-debug.getconstants(func: function): { [number]: number | string | nil }
+debug.getconstants(func: (...any) -> (...any)): { [number]: number | string | nil }
 ```
 
 ### Parameters
@@ -43,7 +43,7 @@ print(debug.getconstants(print)) -- Should error due to being a C closure (funct
 Returns the constant at the specified index. If there is no constant at the specified index, `nil` will be returned instead.
 
 ```luau
-debug.getconstant(func: function, index: number): number | string | nil
+debug.getconstant(func: (...any) -> (...any), index: number): number | string | nil
 ```
 
 ### Parameters

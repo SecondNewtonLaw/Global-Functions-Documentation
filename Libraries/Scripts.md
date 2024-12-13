@@ -68,7 +68,7 @@ This function creates a new closure (function) from the module/script's bytecode
 
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 ```luau
-getscriptclosure(script: LocalScript | ModuleScript | Script): function
+getscriptclosure(script: LocalScript | ModuleScript | Script): (...any) -> (...any)
 ```
 
 ### Parameters
