@@ -55,3 +55,51 @@ functionThatYields() -- Should print "hello world" after 5 seconds
 ```luau
 newcclosure(print) -- Should error because print is already C closure (function)
 ```
+
+---
+
+## iscclosure
+
+This function checks if a given function is a C closure (implemented in C/C++) or a Lua closure (implemented in Lua).
+
+```luau
+iscclosure(func: (...any) -> (...any)): boolean
+```
+
+### Parameters
+
+- `func` - The function to check.
+
+### Returns
+
+- `true` if the function is a C closure.
+- `false` if the function is a Lua closure.
+
+### Examples
+
+```luau
+local luaFunction = function()
+    print("This is a Lua function")
+end
+
+local cFunction = print
+
+print(iscclosure(luaFunction)) -- Output: false
+print(iscclosure(cFunction)) -- Output: true
+```
+
+### Use Cases
+
+A primary use case for `iscclosure` is when working with functions like `hookfunction`. You might want to create a hook with the same closure type as the original function:
+
+```luau
+local function hookFunction(functionToHook, hook)
+    if iscclosure(functionToHook) then
+        hook = newcclosure(hook, debug.info(hook, "n"))
+    end
+    
+    return hookfunction(functionToHook, hook)
+end
+```
+
+In this example, `iscclosure` helps determine whether to wrap the `hook` function as a C closure using `newcclosure` to match the original function's type. This can be important for maintaining consistency and avoiding unexpected behavior when hooking functions.
