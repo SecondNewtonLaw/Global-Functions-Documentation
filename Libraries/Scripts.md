@@ -62,7 +62,7 @@ print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having 
 > 
 > For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the script global, just push the script instance and set it on the table.
 >
-> For capabilities, make sure to check if the script/module is a RobloxScript and set identity and capabilities accordingly.
+> For capabilities, make sure to check if the script/module is a RobloxScript, and set identity and capabilities accordingly.
 
 This function creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get; you should primarily use it to retrieve constants.
 
