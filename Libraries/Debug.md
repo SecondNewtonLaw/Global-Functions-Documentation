@@ -5,7 +5,7 @@ Functions that allow us to get **more control** over Luau functions.
 
 ## debug.getconstants
 
-Returns the constants of the specified lua function. Should error on C closure (functions) because they have no constants.
+Returns the constants of the specified Lua function. Should error on C closure (functions) because they have no constants.
 ```luau
 debug.getconstants(func: function): { [number]: number | string | nil }
 ```
