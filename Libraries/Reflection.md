@@ -1,6 +1,6 @@
 # Reflection
 
-Functions that allow to **modify/access** hidden properties of Instances.
+Functions that allow to **modify/access** hidden/non-scriptable properties of Instances.
 
 ---
 
