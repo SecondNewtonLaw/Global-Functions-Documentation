@@ -192,7 +192,7 @@ getloadedmodules(): { ModuleScript }
 
 ```luau
 local allLoadedModules = getloadedmodules()
-for _, v in next, allRunningScriptsAndModules do
+for _, v in next, allLoadedModules do
   print(v.ClassName) -- Should print ModuleScript
 end
 ```
