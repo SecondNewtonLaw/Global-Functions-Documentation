@@ -1,6 +1,6 @@
 # Closures
 
-Functions that allow **modification/creation** of Luau closures
+Functions that allow **inspection/modification/creation** of Luau closures
 
 ---
 
