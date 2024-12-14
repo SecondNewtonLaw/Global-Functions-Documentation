@@ -22,7 +22,7 @@ newcclosure(functionToWrap: function, wrappedFunctionName: string?): function
 ### Parameters
 
 - `functionToWrap` - A Lua closure (function) to be wrapped.
-- `wrappedFunctionName` (optional) - A custom name for the wrapped function. If not provided, the name will be blank.
+- `wrappedFunctionName` - (Optional) A custom name for the wrapped function. If not provided, the name will be blank.
 
 ### Examples
 
