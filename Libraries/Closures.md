@@ -70,11 +70,6 @@ iscclosure(func: function): boolean
 
 - `func` - The function to check.
 
-### Returns
-
-- `true` if the function is a C closure.
-- `false` if the function is a Lua closure.
-
 ### Example
 
 ```luau
