@@ -60,7 +60,7 @@ newcclosure(print) -- Should error because print is already C closure (function)
 
 ## iscclosure
 
-This function checks if a given function is a C closure (implemented in C/C++).
+Checks if a given function is a C closure (implemented in C/C++).
 
 ```luau
 iscclosure(func: function): boolean
@@ -70,7 +70,7 @@ iscclosure(func: function): boolean
 
 - `func` - The function to check.
 
-### Example
+### Examples
 
 ```luau
 local luaFunction = function()
@@ -81,4 +81,30 @@ local cFunction = print
 
 print(iscclosure(luaFunction)) -- Output: false
 print(iscclosure(cFunction)) -- Output: true
+```
+---
+
+## islclosure
+
+Checks if a given function is a L closure (implemented in Lua).
+
+```luau
+islclosure(func: function): boolean
+```
+
+### Parameters
+
+- `func` - The function to check.
+
+### Examples
+
+```luau
+local luaFunction = function()
+    print("This is a Lua function")
+end
+
+local cFunction = print
+
+print(islclosure(luaFunction)) -- Output: true
+print(islclosure(cFunction)) -- Output: false
 ```
