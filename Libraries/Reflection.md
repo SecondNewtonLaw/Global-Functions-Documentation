@@ -1,6 +1,6 @@
 # Reflection
 
-TODO: Description for reflection
+Functions that allow to **modify/access** hidden properties of Instances.
 
 ---
 
