@@ -66,7 +66,7 @@ This function checks if a given function is a C closure (implemented in C/C++).
 iscclosure(func: function): boolean
 ```
 
-### Parameter
+### Parameters
 
 - `func` - The function to check.
 
