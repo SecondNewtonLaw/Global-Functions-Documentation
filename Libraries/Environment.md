@@ -54,10 +54,29 @@ getgc(includeTables?: boolean): { [number]: userdata | table | function }
 ### Examples
 
 ```luau
--- Prints all tables with 'Speed' key
-for _, tbl in next, getgc(true) do
-    if type(tbl) == "table" and rawget(tbl, "Speed") ~= nil then
-        print(tbl)
+local DummyTable = {}
+local function DummyFunction() end
+task.wait(0.05) -- Step a bit
+
+for garbageIndex, garbageValue in pairs(getgc()) do
+    if garbageValue == DummyFunction then
+        print(`Found function: {DummyFunction}`)
+    elseif garbageValue == DummyTable then
+        print(`Found table?: {DummyTable}`) --This shouldn't print
+    end
+end
+```
+
+```luau
+local DummyTable = {}
+local function DummyFunction() end
+task.wait(0.05) -- Step a bit
+
+for garbageIndex, garbageValue in pairs(getgc(true)) do
+    if garbageValue == DummyFunction then
+        print(`Found function: {DummyFunction}`) -- Both should print
+    elseif garbageValue == DummyTable then
+        print(`Found table: {DummyTable}`) -- Both should print
     end
 end
 ```
