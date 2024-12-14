@@ -109,3 +109,33 @@ local cFunction = print
 print(islclosure(luaFunction)) -- Output: true
 print(islclosure(cFunction)) -- Output: false
 ```
+
+---
+S
+## isexecutorclosure
+
+Checks if a given function is the executor's closure.
+
+```luau
+isexecutorclosure(func: function): boolean
+```
+
+### Parameters
+
+- `func` - The function to check.
+
+### Examples
+
+```luau
+local executorClosure = function()
+    print("This is a Lua function")
+end
+
+local standardLuauClosure = print
+
+local executorClosure2 = iscclosure
+
+print(isexecutorclosure(executorClosure)) -- Output: true
+print(isexecutorclosure(standardLuauClosure)) -- Output: false
+print(isexecutorclosure(executorClosure2)) -- Output: true
+```
