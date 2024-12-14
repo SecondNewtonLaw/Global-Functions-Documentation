@@ -12,7 +12,7 @@ Returns the module/script's decompressed and decrypted bytecode to be used for d
 getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ```
 
-### Parameter
+### Parameters
 
 - `script` - The module/script the bytecode should be obtained from.
 
