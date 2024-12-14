@@ -111,7 +111,7 @@ print(islclosure(cFunction)) -- Output: false
 ```
 
 ---
-S
+
 ## isexecutorclosure
 
 Checks if a given function is the executor's closure.
