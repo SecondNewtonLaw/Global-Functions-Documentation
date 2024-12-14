@@ -82,6 +82,7 @@ local cFunction = print
 print(iscclosure(luaFunction)) -- Output: false
 print(iscclosure(cFunction)) -- Output: true
 ```
+
 ---
 
 ## islclosure

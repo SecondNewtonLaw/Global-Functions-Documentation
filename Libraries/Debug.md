@@ -86,7 +86,6 @@ print(result)
 -- nil
 ```
 
-
 ```luau
 print(debug.getconstant(print)) -- Should error due to being a C closure (function)
 ```

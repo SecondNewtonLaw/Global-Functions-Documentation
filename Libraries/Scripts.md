@@ -87,6 +87,7 @@ getscriptclosure(script: LocalScript | ModuleScript | Script): (...any) -> (...a
 
 ```luau
 local testScript = game.Players.LocalPlayer.Character.Animate
+
 print(getscriptclosure(testScript)) -- Returns an function
 getscriptclosure(testScript)() -- Shouldn't error
 ```
@@ -148,6 +149,7 @@ getscripts(): { LocalScript | ModuleScript | Script }
 
 ```luau
 local allScriptsAndModules = getscripts()
+
 for _, v in next, allScriptsAndModules do
     print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
 end
@@ -173,6 +175,7 @@ getrunningscripts(): { LocalScript | ModuleScript | Script }
 
 ```luau
 local allRunningScriptsAndModules = getrunningscripts()
+
 for _, v in next, allRunningScriptsAndModules do
     print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
 end
@@ -192,7 +195,8 @@ getloadedmodules(): { ModuleScript }
 
 ```luau
 local allLoadedModules = getloadedmodules()
+
 for _, v in next, allLoadedModules do
-  print(v.ClassName) -- Should print ModuleScript
+    print(v.ClassName) -- Should print ModuleScript
 end
 ```
