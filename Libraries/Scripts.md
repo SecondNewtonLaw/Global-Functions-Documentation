@@ -12,7 +12,7 @@ Returns the module/script's decompressed and decrypted bytecode to be used for d
 getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ```
 
-### Parameter
+### Parameters
 
 - `script` - The module/script the bytecode should be obtained from.
 
@@ -192,7 +192,7 @@ getloadedmodules(): { ModuleScript }
 
 ```luau
 local allLoadedModules = getloadedmodules()
-for _, v in next, allRunningScriptsAndModules do
+for _, v in next, allLoadedModules do
   print(v.ClassName) -- Should print ModuleScript
 end
 ```

@@ -1,6 +1,6 @@
 # Closures
 
-Functions that allow **modification/creation** of Luau closures (functions)
+Functions that allow **inspection/modification/creation** of Luau closures
 
 ---
 
@@ -11,18 +11,18 @@ Functions that allow **modification/creation** of Luau closures (functions)
 >
 > The wrapped function should be yieldable (meaning the function can call `task.wait` for example)
 
-This function takes in a Lua closure (function) and wraps it into a C closure (function).
+This function takes in a Lua closure and wraps it into a C closure.
 
-When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure (function), and then the original closure (function) returned arguments are passed to the caller of the C closure (function).
+When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure, and then the original closure returned arguments are passed to the caller of the C closure.
 
 ```luau
-newcclosure(functionToWrap: (...any) -> (...any), wrappedFunctionName: string?): (...any) -> (...any)
+newcclosure(functionToWrap: function, debugName: string?): function
 ```
 
 ### Parameters
 
 - `functionToWrap` - A Lua closure (function) to be wrapped.
-- `wrappedFunctionName` (optional) - A custom name for the wrapped function. If not provided, the name will be blank.
+- `debugName` - (Optional) A debug name for the wrapped function. If not provided, the name will be blank.
 
 ### Examples
 
@@ -60,22 +60,17 @@ newcclosure(print) -- Should error because print is already C closure (function)
 
 ## iscclosure
 
-This function checks if a given function is a C closure (implemented in C/C++) or a Lua closure (implemented in Lua).
+Checks if a given function is a C closure (implemented in C/C++).
 
 ```luau
-iscclosure(func: (...any) -> (...any)): boolean
+iscclosure(func: function): boolean
 ```
 
-### Parameter
+### Parameters
 
 - `func` - The function to check.
 
-### Returns
-
-- `true` if the function is a C closure.
-- `false` if the function is a Lua closure.
-
-### Example
+### Examples
 
 ```luau
 local luaFunction = function()
@@ -86,4 +81,30 @@ local cFunction = print
 
 print(iscclosure(luaFunction)) -- Output: false
 print(iscclosure(cFunction)) -- Output: true
+```
+---
+
+## islclosure
+
+Checks if a given function is a L closure (implemented in Lua).
+
+```luau
+islclosure(func: function): boolean
+```
+
+### Parameters
+
+- `func` - The function to check.
+
+### Examples
+
+```luau
+local luaFunction = function()
+    print("This is a Lua function")
+end
+
+local cFunction = print
+
+print(islclosure(luaFunction)) -- Output: true
+print(islclosure(cFunction)) -- Output: false
 ```
