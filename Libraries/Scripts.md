@@ -200,3 +200,39 @@ for _, v in next, allLoadedModules do
     print(v.ClassName) -- Should print ModuleScript
 end
 ```
+
+---
+
+## getcallingscript
+
+Returns the script associated with the current thread. This function is useful for determining which script is currently executing the Luau code.
+
+```luau
+getcallingscript(): (LocalScript | ModuleScript | Script)
+```
+
+### Examples
+
+```luau
+game.Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
+    local callingScript = getcallingscript()
+
+    warn(`{callingScript:GetFullName()} changed the Ambient!`)
+end)
+```
+
+```luau
+local original__index; original__index = hookmetamethod(game, "__index", function(t, k)
+    local callingScript = getcallingscript()
+
+    warn("__index called from script:", callingScript:GetFullName())
+
+    return original__index(t, k)
+end)
+```
+
+```luau
+-- Called from the executor's thread
+local currentScript = getcallingscript()
+print(currentScript.Name) -- Prints the name of the script
+```
