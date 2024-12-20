@@ -89,3 +89,52 @@ print(result)
 ```luau
 print(debug.getconstant(print)) -- Should error due to being a C closure (function)
 ```
+
+---
+
+## debug.getupvalues
+
+Returns the upvalues of the specified function. `nil` will be returned if there is none.
+
+```luau
+debug.getupvalues(func: function): { [number]: any }
+```
+
+### Parameters
+
+- `func` - The Lua function the upvalues would be obtained from.
+
+### Examples
+
+```luau
+local var1 = false
+local var2 = "Hi"
+local function DummyFunction()
+    var1 = true
+    var2..=", hello"
+end
+
+for upvalIndex, upvalValue in pairs(debug.getupvalues(DummyFunction)) do
+    print(upvalIndex, upvalValue)
+end
+
+-- Output:
+-- 1 false
+-- 2 "Hi"
+```
+
+```luau
+local var1 = false
+local function DummyFunction()
+    print(var1)
+end
+
+print(next(debug.getupvalues(DummyFunction)))
+
+-- Output:
+-- nil
+```
+
+```luau
+print(debug.getupvalues(print)) -- Should error due to being a C closure (function)
+```
