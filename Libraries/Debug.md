@@ -138,3 +138,42 @@ print(next(debug.getupvalues(DummyFunction)))
 ```luau
 print(debug.getupvalues(print)) -- Should error due to being a C closure (function)
 ```
+
+## debug.getupvalue
+
+Returns the upvalue at the specified index. An error should occur if the index is invalid.
+
+```luau
+debug.getupvalue(func: function, index: number): any
+```
+
+### Parameters
+
+- `func` - The Lua function the upvalue would be obtained from.
+- `index` - The position of the wanted upvalue.
+
+### Examples
+
+```luau
+local up1 = function() print("Hello from up") end
+
+local function DummyFunction()
+    up1()
+end
+
+local upvalue = debug.getupvalue(DummyFunction, 1)
+upvalue()
+
+-- Output:
+-- "Hello from up"
+```
+
+```luau
+local function DummyFunction() end
+
+debug.getupvalue(DummyFunction, 0) -- Should error on this line
+```
+
+```luau
+debug.getupvalue(print, 1) -- Should error due to invalid index, and C closure passage
+```
