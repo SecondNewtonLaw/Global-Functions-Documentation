@@ -76,7 +76,7 @@ This function creates a new closure (function) from the module/script's bytecode
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-getscriptclosure(script: LocalScript | ModuleScript | Script): (...any) -> (...any)
+getscriptclosure(script: LocalScript | ModuleScript | Script): function
 ```
 
 ### Parameters
@@ -126,7 +126,7 @@ print(scriptEnv) -- Should return a table
 ```
 
 ```luau
-print(getsenv(Instance.new("LocalScript"))) -- Should error with "This script isn't running"
+print(getsenv(Instance.new("LocalScript"))) -- Should error with something along the lines of "This script isn't running"
 ```
 
 ---
@@ -142,7 +142,7 @@ Returns a table of all instances that inherit the `BaseScript` class; this list 
 This table should also include scripts or modules that are parented to nil.
 
 ```luau
-getscripts(): { LocalScript | ModuleScript | Script }
+getscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```
 
 ### Examples
@@ -168,7 +168,7 @@ Returns a table of all instances like `getscripts` does but only returns modules
 Should also include all `Script` instances with RunContext set to Client that are running.
 
 ```luau
-getrunningscripts(): { LocalScript | ModuleScript | Script }
+getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```
 
 ### Examples
@@ -188,7 +188,7 @@ end
 Returns a table of all ModuleScripts that are currently running.
 
 ```luau
-getloadedmodules(): { ModuleScript }
+getloadedmodules(): { [number]: ModuleScript }
 ```
 
 ### Examples
@@ -214,21 +214,18 @@ getcallingscript(): (LocalScript | ModuleScript | Script)
 ### Examples
 
 ```luau
-game.Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
-    local callingScript = getcallingscript()
+local original__index
+original__index = hookmetamethod(game, "__index", function(t, k)
+	if not checkcaller() then
+		local callingScript = getcallingscript() -- Should return a foreign script
 
-    warn(`{callingScript:GetFullName()} changed the Ambient!`)
+		warn("__index called from script:", callingScript:GetFullName())
+
+		return original__index(t, k)
+	end
 end)
-```
-
-```luau
-local original__index; original__index = hookmetamethod(game, "__index", function(t, k)
-    local callingScript = getcallingscript()
-
-    warn("__index called from script:", callingScript:GetFullName())
-
-    return original__index(t, k)
-end)
+task.wait(0.5)
+hookmetamethod(game, "__index", original__index)
 ```
 
 ```luau
