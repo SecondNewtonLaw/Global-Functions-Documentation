@@ -216,13 +216,13 @@ getcallingscript(): (LocalScript | ModuleScript | Script)
 ```luau
 local original__index
 original__index = hookmetamethod(game, "__index", function(t, k)
-	if not checkcaller() then
-		local callingScript = getcallingscript() -- Should return a foreign script
+    if not checkcaller() then
+        local callingScript = getcallingscript() -- Should return a foreign script
 
-		warn("__index called from script:", callingScript:GetFullName())
+        warn("__index called from script:", callingScript:GetFullName())
 
-		return original__index(t, k)
-	end
+        return original__index(t, k)
+    end
 end)
 task.wait(0.5)
 hookmetamethod(game, "__index", original__index)
