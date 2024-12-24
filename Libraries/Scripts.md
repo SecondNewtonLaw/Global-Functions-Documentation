@@ -221,11 +221,10 @@ original__index = hookmetamethod(game, "__index", function(t, k)
 
         warn("__index called from script:", callingScript:GetFullName())
 
+        hookmetamethod(game, "__index", original__index)
         return original__index(t, k)
     end
 end)
-task.wait(0.5)
-hookmetamethod(game, "__index", original__index)
 ```
 
 ```luau
