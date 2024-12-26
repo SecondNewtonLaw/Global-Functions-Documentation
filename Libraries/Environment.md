@@ -62,7 +62,7 @@ for garbageIndex, garbageValue in pairs(getgc()) do
     if garbageValue == DummyFunction then
         print(`Found function: {DummyFunction}`)
     elseif garbageValue == DummyTable then
-        print(`Found table?: {DummyTable}`) --This shouldn't print
+        print(`Found table?: {DummyTable}`) -- This shouldn't print
     end
 end
 ```
