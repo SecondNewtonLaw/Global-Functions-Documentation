@@ -12,4 +12,10 @@ Returns the name and version of the current executor, first string contains the 
 function identifyexecutor(): (string, string)
 ```
 
+### Example
+
+```luau
+local execName, execVersion = identifyexecutor()
+print(execName, execVersion) -- Output: "YourName 0.0.1"
+```
 ---
