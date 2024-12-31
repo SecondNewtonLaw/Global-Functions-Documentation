@@ -10,4 +10,8 @@ Determines if your client is the network owner of a part, returning true or fals
 function isnetworkowner(part: BasePart): ()
 ```
 
+### Parameters
+
+- `part` - The part for which to check if you have network ownership.
+
 ---
