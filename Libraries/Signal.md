@@ -71,5 +71,5 @@ firebind.Event:Connect(function()
     result = func()
 end)
 
-print(firesignal(firebind.Event) or result)
+print(firesignal(firebind.Event) or result) -- prints "those who know"
 ```
