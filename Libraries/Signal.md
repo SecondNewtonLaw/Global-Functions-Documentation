@@ -14,7 +14,7 @@ getconnections(signal: RBXScriptSignal): {Connection}
 
 ### Parameters
 
-- `signal`: The signal whose connections you want to retrieve.
+- `signal` The signal whose connections you want to retrieve.
 
 ### Example
 
