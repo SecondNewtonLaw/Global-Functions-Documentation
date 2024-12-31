@@ -6,7 +6,7 @@ Functions that allow interaction with RBXSignals.
 
 ## getconnections
 
-returns the connections of a specific signal.
+Returns the connections of a specific signal.
 
 ```luau
 function getconnections(signal: RBXScriptSignal): {Connection}
