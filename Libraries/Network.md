@@ -18,7 +18,7 @@ function isnetworkowner(part: BasePart): ()
 
 ```luau
 local part = Instance.new("Part")
-print(isnetworkowner(part)) -- should return true
+print(isnetworkowner(part)) -- Returns true
 ```
 
 ---
