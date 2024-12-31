@@ -12,6 +12,8 @@ returns the connections of a specific signal.
 getconnections(signal: RBXScriptSignal): {Connection}
 ```
 
+### Connection
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | `Enabled` | boolean | Whether the connection can receive events. |
