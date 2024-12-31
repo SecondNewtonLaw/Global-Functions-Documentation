@@ -14,4 +14,11 @@ function isnetworkowner(part: BasePart): ()
 
 - `part` - The part for which to check if you have network ownership.
 
+### Example
+
+```luau
+local part = Instance.new("Part")
+print(isnetworkowner(part)) -- should return true
+```
+
 ---
