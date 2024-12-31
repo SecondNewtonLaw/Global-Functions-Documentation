@@ -44,3 +44,32 @@ for _, connection in ipairs(connections) do
 end
 ```
 ---
+
+## firesignal
+
+Fires a signal's Lua connections.
+
+```luau
+function firesignal(signal: RBXScriptSignal)
+```
+
+### Parameters
+
+- `signal` The signal to fire
+
+### Example
+
+```luau
+local function func()
+    return "those who know"
+end
+
+local firebind = Instance.new("BindableEvent")
+local result
+
+firebind.Event:Connect(function()
+    result = func()
+end)
+
+print(firesignal(firebind.Event) or result)
+```
