@@ -1,5 +1,7 @@
 # Signal
+
 Functions that allow interaction with RBXSignals.
+
 ---
 
 ## getconnections
