@@ -175,5 +175,5 @@ debug.getupvalue(DummyFunction, 0) -- Should error on this line
 ```
 
 ```luau
-debug.getupvalue(print, 1) -- Should error due to invalid index, and C closure passage
+debug.getupvalue(print, 1) -- Should error due to invalid index and C closure passage
 ```
