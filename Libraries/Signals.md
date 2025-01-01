@@ -1,6 +1,6 @@
-# Signal
+# Signals
 
-Functions that allow interaction with RBXSignals.
+Functions that allow interaction with RBXScriptSignals and RBXScriptConnections.
 
 ---
 
@@ -26,9 +26,9 @@ function getconnections(signal: RBXScriptSignal): {Connection}
 | ----- | ----------- |
 | `Fire(...: any): ()` | Fires this connection with the provided arguments. |
 | `Defer(...: any): ()` | [Defers](https://devforum.roblox.com/t/beta-deferred-lua-event-handling/1240569) an event to connection with the provided arguments. |
-| `Disconnect(): ()` | Disconnects the connection. |
+| `Disconnect(): ()` | Disconnects the connection from the function. |
 | `Disable(): ()` | Prevents the connection from firing. |
-| `Enable(): ()` | Allows the connection to fire if it was previously disabled. |
+| `Enable(): ()` | Enables the connection, allowing it to fire. |
 
 ### Parameters
 
@@ -50,26 +50,22 @@ end
 Fires a signal's Lua connections.
 
 ```luau
-function firesignal(signal: RBXScriptSignal)
+function firesignal(signal: RBXScriptSignal<...any>, ...: any?)
 ```
 
 ### Parameters
 
 - `signal` The signal to fire
+- `...?` The wanted arguments to pass into the fired connections 
 
 ### Example
 
 ```luau
-local function func()
-    return "those who know"
-end
-
-local firebind = Instance.new("BindableEvent")
-local result
-
-firebind.Event:Connect(function()
-    result = func()
+local part = Instance.new("Part")
+part.ChildAdded:Connect(function(arg1)
+    print(typeof(arg1))
 end)
 
-print(firesignal(firebind.Event) or result) -- prints "those who know"
+firesignal(part.ChildAdded) -- Output: nil
+firesignal(part.ChildAdded, workspace) -- Output: Instance
 ```
