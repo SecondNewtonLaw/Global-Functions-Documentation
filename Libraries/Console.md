@@ -37,7 +37,7 @@ Opens the console window. Text previously output to the console will not be clea
 function rconsolecreate(): ()
 ```
 
-> ### 🔎 Note
+> [!NOTE]
 > Some executors also allow functions like `rconsoleprint` to open the console.\
 > This is confusing behavior that should not be relied on.
 
