@@ -100,6 +100,10 @@ queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, Wo
 
 Sends an HTTP request with the given options, yielding until the request is finished, and returns the response.
 
+```lua
+function request(options: HttpRequest): HttpResponse
+```
+
 ### Request
 
 | Field | Type | Description |
