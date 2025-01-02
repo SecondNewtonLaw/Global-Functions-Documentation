@@ -51,7 +51,7 @@ end
 
 > [!NOTE]
 > **gethui** should not be equal to `CoreGui` and should be hidden from visibility.
-> To test your **gethui** implementation's functionality it's recommended you run sUNC.
+> To test your **gethui** implementation's functionality it's recommended you run [sUNC](https://discord.gg/EsfbAZJpzp).
 
 Returns a hidden UI container that minimalizes most detection methods.
 
