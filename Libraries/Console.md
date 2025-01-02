@@ -31,15 +31,15 @@ rconsoleclear()
 
 ## rconsolecreate
 
+> [!NOTE]
+> Some executors also allow functions like `rconsoleprint` to open the console.\
+> This is confusing behavior that should not be relied on.
+
 Opens the console window. Text previously output to the console will not be cleared.
 
 ```luau
 function rconsolecreate(): ()
 ```
-
-> [!NOTE]
-> Some executors also allow functions like `rconsoleprint` to open the console.\
-> This is confusing behavior that should not be relied on.
 
 ### Aliases
 
