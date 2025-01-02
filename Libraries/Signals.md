@@ -74,6 +74,9 @@ firesignal(part.ChildAdded, workspace) -- Output: Instance
 
 ## hooksignal
 
+> [!NOTE]
+> hooksignal cannot intercept C connections or CoreScript Lua connections
+
 Intercepts signal calls, invoking a callback for each Lua connection with an info table and arguments. The original connection runs if the callback returns true.
 
 ```luau
