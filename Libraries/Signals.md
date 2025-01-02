@@ -91,8 +91,16 @@ function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
 ### Example
 
 ```luau
-hooksignal(workspace.Part.AncestryChanged, function()
-    print("AncestryChanged signal logged")
-    return true -- allows the original connection to run
+local part = Instance.new("Part")
+part.Changed:Connect(function(prop)
+    print(prop .. " changed?")
 end)
+hooksignal(part.Changed, function(info, prop)
+    print(info.Connection) -- the connection object.
+    print(info.Function) -- the original function. Not available for waiting connections.
+    print(info.Index) -- the position of this connection in part.Changed at the time this callback is executed. Not available for waiting connections.
+    print(prop)
+    return true, "Hooked"
+end)
+part.Name = "NewName"
 ```
