@@ -9,7 +9,7 @@ The **Script** library provides functions that access to script environments and
 Returns the module/script's decompressed and decrypted bytecode to be used for decompiling. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-getscriptbytecode(script: LocalScript | ModuleScript | Script): string
+function getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ```
 
 ### Parameters
@@ -40,7 +40,7 @@ print(getscriptbytecode(Instance.new("LocalScript")))
 Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-getscripthash(script: LocalScript | ModuleScript | Script): string
+function getscripthash(script: LocalScript | ModuleScript | Script): string
 ```
 
 ### Parameters
@@ -76,7 +76,7 @@ This function creates a new closure (function) from the module/script's bytecode
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-getscriptclosure(script: LocalScript | ModuleScript | Script): function
+function getscriptclosure(script: LocalScript | ModuleScript | Script): function
 ```
 
 ### Parameters
@@ -111,7 +111,7 @@ Gives you the globals table of a running module/script (meaning all variables no
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
+function getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
 ```
 
 ### Parameters
@@ -142,7 +142,7 @@ Returns a table of all instances that inherit the `BaseScript` class; this list 
 This table should also include scripts or modules that are parented to nil.
 
 ```luau
-getscripts(): { [number]: LocalScript | ModuleScript | Script }
+function getscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```
 
 ### Examples
@@ -168,7 +168,7 @@ Returns a table of all instances like `getscripts` does but only returns modules
 Should also include all `Script` instances with RunContext set to Client that are running.
 
 ```luau
-getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
+function getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```
 
 ### Examples
@@ -188,7 +188,7 @@ end
 Returns a table of all ModuleScripts that are currently running.
 
 ```luau
-getloadedmodules(): { [number]: ModuleScript }
+function getloadedmodules(): { [number]: ModuleScript }
 ```
 
 ### Examples
@@ -208,7 +208,7 @@ end
 Returns the script associated with the current thread. This function is useful for determining which script is currently executing the Luau code.
 
 ```luau
-getcallingscript(): (LocalScript | ModuleScript | Script)
+function getcallingscript(): (LocalScript | ModuleScript | Script)
 ```
 
 ### Examples
