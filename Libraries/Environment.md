@@ -130,3 +130,14 @@ print(filtergc('function', {
     Name = "myfunc"
 }, true)
 ```
+
+```luau
+local opentable = {
+    name = "example",
+    age = 25
+}
+
+print(filtergc('table', {
+    Keys = { "name" }
+}, true)) -- The table opentable will be returned as it contains the key specified in the options
+```
