@@ -154,8 +154,8 @@ function checkcaller(): boolean
 
 ```luau
 local originalnamecall = hookmetamethod(Player, "__namecall", function(self, ...)
-    local methodName = getnamecallmethod()
-    if methodName == "FireServer" then
+    local method = getnamecallmethod()
+    if method == "FireServer" then
         if not checkcaller() then
             print("fireserver invoked from executor") -- the namecall was called from the current executor
         else
