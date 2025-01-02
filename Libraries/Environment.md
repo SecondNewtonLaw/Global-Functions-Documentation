@@ -128,7 +128,7 @@ end
 print(filtergc('function', {
     IgnoreExecutor = false,
     Name = "myfunc"
-}, true)
+}, true) -- myfunc will be outputted into the console as myfunc is defined in our executor's thread
 ```
 
 ```luau
