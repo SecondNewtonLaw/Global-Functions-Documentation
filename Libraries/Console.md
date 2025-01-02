@@ -11,10 +11,6 @@ Clears the output of the console window.
 function rconsoleclear(): ()
 ```
 
-### Aliases
-
- * `consoleclear`
-
 ### Example
 
 ```luau
