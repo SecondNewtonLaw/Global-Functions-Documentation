@@ -162,3 +162,67 @@ local func, err = loadfile("name.lua")
 local output = assert(func, err)("Alice")
 print(output)  -- Output: My name is, Alice
 ```
+
+---
+
+## makefolder
+
+Creates a folder at the specified path if it doesn't already exist.
+
+```luau
+function makefolder(path: string): ()
+```
+
+### Parameters
+
+- `path` - The location where you want to create the folder.
+
+### Example
+
+```luau
+makefolder("thingy")
+print(isfolder("thingy"))) -- Output: True
+```
+
+--- 
+
+## isfolder
+
+Determines if the specified path is a folder.
+
+```luau
+function isfolder(path: string): boolean
+```
+
+### Parameters
+
+- `path` - The path to check
+
+### Example
+
+```luau
+writefile("thingy.txt", "sunc")
+print(isfolder("thingy.txt"))) -- Output: False
+```
+
+---
+
+## delfolder
+
+Deletes the folder at the specified path.
+
+```luau
+function delfolder(path: string): ()
+```
+
+### Parameters
+
+- `path` - Path to the folder you will delete
+
+### Example
+
+```luau
+makefolder("thingy")
+delfolder("thingy")
+print(isfolder("thingy")) -- Output: False | it does not exist anymore so it returned false
+```
