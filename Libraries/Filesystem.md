@@ -62,7 +62,10 @@ function listfiles(path: string): {string}
 ### Examples
 
 ```luau
+-- second is a folder under the folder that is in the listfiles parameter; Folder --> Second
+writefile("folder/second/thing1.txt", "what")
+writefile("folder/second/thing2.txt", "what ok")
 for _, file in ipairs(listfiles("folder/second") do
-    print(file)
+    print(file) -- thing1 and thing2 will be outputted into the console
 end
 ```
