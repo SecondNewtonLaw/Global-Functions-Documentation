@@ -129,7 +129,7 @@ end)
 
 part.Touched:Fire()
 
-restoresignal(part.Touched)  -- the signals original behavior is now restored via restoresignal
+restoresignal(part.Touched) -- the signals original behavior is now restored via restoresignal
 
-part.Touched:Fire()  -- back to its original behavior
+part.Touched:Fire() -- back to its original behavior
 ```
