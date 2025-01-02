@@ -31,7 +31,7 @@ rconsoleclear()
 
 ## rconsolecreate
 
-> [!NOTE]
+> [!WARNING]
 > Some executors also allow functions like `rconsoleprint` to open the console.\
 > This is confusing behavior that should not be relied on.
 
