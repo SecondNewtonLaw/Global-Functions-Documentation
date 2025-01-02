@@ -13,6 +13,7 @@
 - [Metatables](./Metatable.md)
 - [Miscellaneous](./Misc.md)
 - [Scripts](./Scripts.md)
+- [Signals](./Signals.md)
 - [WebSocket](./WebSocket.md)
 - [Network](./Network.md)
 - [Reflection](./Reflection.md)
