@@ -139,3 +139,26 @@ writefile("thing.txt", "Hello, world!")
 delfile("thing.txt") -- thing.txt is now removed from the workspace and shouldn't exist
 print(isfile("thing.txt")) -- Output: False
 ```
+
+---
+
+## loadfile
+
+Generates a chunk from the file at the given path, using the global environment. Returns the chunk or nil with an error message.
+
+```luau
+function loadfile(path: string): ()
+```
+
+### Parameters
+
+- `path` - the file to generate a chunk from
+
+### Example
+
+```luau
+writefile("name.lua", "local name = ...; return 'My name is, ' .. name")
+local func, err = loadfile("name.lua")
+local output = assert(func, err)("Alice")
+print(output)  -- Output: My name is, Alice
+```
