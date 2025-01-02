@@ -91,5 +91,5 @@ function queue_on_teleport(code: string): ()
 
 ### Example
 ```luau
-  queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, World!" will be outputted into the console
+queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, World!" will be outputted into the console
 ```
