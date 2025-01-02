@@ -28,6 +28,10 @@ Copies a string or Instance or table of Instances to the clipboard.
 function setclipboard(data: string | number | Instance | table)
 ```
 
+### Parameters
+
+- `data` - The data you want to go onto your clipboard
+
 ### Example
 
 ```luau
@@ -43,6 +47,11 @@ A wrapper around Microsoft's MessageBoxA.
 ```luau
 function messagebox(text: string, caption: string, flags: number): number
 ```
+
+### Parameters
+- `text` - The text to display in the message box
+- `caption` - The caption of the message box
+- `flags` - The flags to use
 
 ### Example
 
