@@ -5,6 +5,9 @@ Functions that provide read and write access to a files in an executor's workspa
 > [!WARNING]
 > **Filesystem** functions should restrict access to read and write potentially harmful file types like `.exe` or `.bat`
 
+> [!NOTE]
+> If a file/folder does not exist and it is checked via `isfolder`/`isfile` it should return false
+
 ---
 
 ## writefile
