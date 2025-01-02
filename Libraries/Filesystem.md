@@ -3,7 +3,7 @@
 Functions that provide read and write access to a files in an executor's workspace.
 
 > [!WARNING]
-> **Filesystem** functions should restrict access to read and write potentially harmful file types like `.exe` or `.bat`.
+> **Filesystem** functions should restrict access to read and write potentially harmful file types like `.exe` or `.bat`
 
 ---
 
