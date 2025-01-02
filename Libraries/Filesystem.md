@@ -168,6 +168,27 @@ print(output)  -- Output: My name is, Alice
 
 ---
 
+## getcustomasset
+
+Returns a content URL `(e.g., rbxasset://)` that can be used with UI elements, sounds, meshes, and more. Internally, files are copied to the game's content directory.
+
+```luau
+function getcustomasset(path: string, noCache: boolean): string
+```
+
+### Parameters
+
+- `path` - The path to the asset.
+- `noCache` - Determines whether the asset should be cached or not.
+
+### Example
+
+```luau
+TBD
+```
+
+---
+
 ## makefolder
 
 Creates a folder at the specified path if it doesn't already exist.
