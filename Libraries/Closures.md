@@ -153,7 +153,7 @@ function checkcaller(): boolean
 ### Examples
 
 ```luau
-local originalnamecall = hookmetamethod(Player, "__namecall", function(self, ...)
+local originalnamecall = hookmetamethod(game, "__namecall", function(self, ...)
     local method = getnamecallmethod()
     if method == "FireServer" then
         if not checkcaller() then
