@@ -45,3 +45,24 @@ function readfile(path: string): string
 writefile("thing.txt", "Hello, world!")
 setclipboard(readfile("thing.txt")) -- your clipboard will now contain the string "Hello, world!" from thing.txt
 ```
+
+---
+
+## listfiles
+
+Provides a list of files and folders within a specified directory.
+
+```luau
+function listfiles(path: string): {string}
+```
+
+### Parameters
+- `path` - path to the directory
+
+### Examples
+
+```luau
+for _, file in ipairs(listfiles("folder/second") do
+    print(file)
+end
+```
