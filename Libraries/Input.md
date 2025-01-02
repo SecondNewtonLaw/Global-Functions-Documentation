@@ -4,27 +4,6 @@ The **Input** library allows you to simulate user inputs.
 
 ---
 
-## isrbxactive
-
-> [!NOTE]
-> For any of the other input functions to work isrbxactive **must** be true
-
-Indicates if the game's window is currently in focus.
-
-```luau
-function isrbxactive(): boolean
-```
-
-### Example
-
-```luau
-if isrbxactive() then
-	print("the window is active")
-end
-```
-
----
-
 ## mouse1click
 
 ```luau
