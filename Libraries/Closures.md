@@ -16,7 +16,7 @@ This function takes in a Lua closure and wraps it into a C closure.
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure, and then the original closure returned arguments are passed to the caller of the C closure.
 
 ```luau
-newcclosure(functionToWrap: function, debugName: string?): function
+function newcclosure(functionToWrap: function, debugName: string?): function
 ```
 
 ### Parameters
@@ -63,7 +63,7 @@ newcclosure(print) -- Should error because print is already C closure (function)
 Checks if a given function is a C closure (implemented in C/C++).
 
 ```luau
-iscclosure(func: function): boolean
+function iscclosure(func: function): boolean
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ print(iscclosure(cFunction)) -- Output: true
 Checks if a given function is a L closure (implemented in Lua).
 
 ```luau
-islclosure(func: function): boolean
+function islclosure(func: function): boolean
 ```
 
 ### Parameters
@@ -117,7 +117,7 @@ print(islclosure(cFunction)) -- Output: false
 Checks if a given function is the executor's closure.
 
 ```luau
-isexecutorclosure(func: function): boolean
+function isexecutorclosure(func: function): boolean
 ```
 
 ### Parameters
@@ -138,4 +138,30 @@ local executorClosure2 = iscclosure
 print(isexecutorclosure(executorClosure)) -- Output: true
 print(isexecutorclosure(standardLuauClosure)) -- Output: false
 print(isexecutorclosure(executorClosure2)) -- Output: true
+```
+
+---
+
+## checkcaller
+
+Determines if the current function was invoked by the executor.
+
+```luau
+function checkcaller(): boolean
+```
+
+### Examples
+
+```luau
+local originalNameCall = hookmetamethod(Player, "__namecall", function(self, ...)
+    local methodName = getnamecallmethod()
+    if methodName == "FireServer" then
+        if not checkcaller() then
+            print("fireserver invoked from executor") -- the namecall was called from the current executor
+        else
+            print("fireserver invoked foreign") -- the namecall was invoked from a foreign script
+        end
+    end
+    return originalNameCall(self, ...)
+end)
 ```
