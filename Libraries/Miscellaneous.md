@@ -133,3 +133,13 @@ The executor provides the following headers for identification on a web server:
 ### Parameters
 
 - `options` - The options to use.
+
+### Example
+```luau
+local response = request({
+	Url = "http://example.com/",
+	Method = "GET",
+})
+
+print(response.StatusCode .. " - " .. response.StatusMessage) --> 200 - HTTP/1.1 200 OK
+```
