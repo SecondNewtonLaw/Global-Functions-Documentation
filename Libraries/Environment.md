@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/f66521e8-492e-43ed-a85e-7548a2c892dd
+
 # Environment
 
 These functions allow to **modify/access** our executor environment and Roblox environment.
@@ -111,6 +115,8 @@ function filtergc(type: string | function | table, options: table, return_one?: 
 | `Constants`| If not empty, only include functions with constants that match all values in this table | `nil`   |
 | `Upvalues` | If not empty, only include functions with upvalues that match all values in this table | `nil`   |
 | `IgnoreExecutor`| If `false`, do not ignore Executor functions | `true` |   
+https://github.com/user-attachments/assets/93d196a3-7bac-49ef-83f2-2ac632180336
+
 
 ### Parameters
 
