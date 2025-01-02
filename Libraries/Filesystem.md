@@ -2,6 +2,9 @@
 
 Functions that provide read and write access to a files in an executor's workspace.
 
+> [!WARNING]
+> Filesystem functions should not be given access to read or write any files such as `.exe` or `.bat`, any malicious file types should be disallowed
+
 ---
 
 ## readfile
