@@ -96,21 +96,40 @@ queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, Wo
 
 ---
 
+## setfflag
+
+Sets a specified flag to the given value.
+
+```luau
+function setfflag(flag: string, value: string): ()
+```
+
+### Parameters
+- `flag` - the flag to change
+- `value` - the value you want to set the flag to
+
+### Example
+
+```luau
+setfflag("BacktraceLogSize", "400") -- sets the backtracelogsize fflag to 400
+```
+
+---
+
 ## setfpscap
 
 Sets the in-game FPS cap. If set to 0, the FPS cap is disabled.
 
-```lua
+```luau
 function setfpscap(fps: number): ()
 ```
 
 ### Parameters
-
- * `fps` - The FPS cap.
+- `fps` - The FPS cap.
 
 ### Example
 
-```lua
+```luau
 setfpscap(0) -- Unlocks the FPS cap
 ```
 
@@ -120,7 +139,7 @@ setfpscap(0) -- Unlocks the FPS cap
 
 Sends an HTTP request with the given options, yielding until the request is finished, and returns the response.
 
-```lua
+```luau
 function request(options: HttpRequest): HttpResponse
 ```
 
