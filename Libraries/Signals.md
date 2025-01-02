@@ -92,7 +92,7 @@ function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
 
 ```luau
 hooksignal(workspace.Part.AncestryChanged, function()
-    print("AncestryChanged signal intercepted")
+    print("AncestryChanged signal logged")
     return true -- allows the original connection to run
 end)
 ```
