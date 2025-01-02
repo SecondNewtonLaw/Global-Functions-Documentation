@@ -100,20 +100,20 @@ function mousemoveabs(x: number, y: number): ()
 
 ### Example
 
-Move the cursor in a circle around the screen:
+Move the mouse in a zigzag pattern across the screen:
 
-```lua
--- Wait for the game window to be selected
-while not isrbxactive() do
-	task.wait()
-end
+```luau
+local direction = 1
 
-local size = workspace.CurrentCamera.ViewportSize
-	
-for i = 0, 50 do
-	local x = math.sin(i / 50 * math.pi * 2) / 2 + 0.5
-	local y = math.cos(i / 50 * math.pi * 2) / 2 + 0.5
-	mousemoveabs(x * size.X, y * size.Y)
-	task.wait(0.05)
+for i = 0, 100 do
+    local x = (i / 100) * workspace.CurrentCamera.ViewportSize.X
+    local y = workspace.CurrentCamera.ViewportSize.Y / 2 + math.sin(i / 10) * 100 * direction
+    mousemoveabs(x, y)
+
+    if i % 25 == 0 then
+        direction = -direction
+    end
+    
+    task.wait(0.05)
 end
 ```
