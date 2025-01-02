@@ -96,6 +96,26 @@ queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, Wo
 
 ---
 
+## setfpscap
+
+Sets the in-game FPS cap. If set to 0, the FPS cap is disabled.
+
+```lua
+function setfpscap(fps: number): ()
+```
+
+### Parameters
+
+ * `fps` - The FPS cap.
+
+### Example
+
+```lua
+setfpscap(0) -- Unlocks the FPS cap
+```
+
+---
+
 ## request
 
 Sends an HTTP request with the given options, yielding until the request is finished, and returns the response.
