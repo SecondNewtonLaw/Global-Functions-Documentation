@@ -69,3 +69,25 @@ for _, file in ipairs(listfiles("folder/second") do
     print(file) -- thing1 and thing2 will be outputted into the console
 end
 ```
+
+---
+
+## isfile
+
+Determines if the specified path is a file.
+
+```luau
+function isfile(path: string): boolean
+```
+
+### Parameters
+- `path` - The path to check
+
+### Example
+
+```luau
+makefolder("thing")
+writefile("thing/real.txt", "Hello, World!")
+print(isfile("thing")) -- Output: False
+print(isfile("thing/real.txt")) -- Output: True
+```
