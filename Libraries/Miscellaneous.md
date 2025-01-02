@@ -87,7 +87,7 @@ function queue_on_teleport(code: string): ()
 ```
 
 ### Parameters
-- `code` The code to schedule
+- `code` - The code to schedule
 
 ### Example
 ```luau
