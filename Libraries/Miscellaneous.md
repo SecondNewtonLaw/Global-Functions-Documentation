@@ -42,7 +42,7 @@ setclipboard(game:GetService("Players").LocalPlayer.Name) -- Your clipboard shou
 
 ## messagebox
 
-A wrapper around Microsoft's MessageBoxA.
+A wrapper around Microsoft's [MessageBoxA](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa).
 
 ```luau
 function messagebox(text: string, caption: string, flags: number): number
