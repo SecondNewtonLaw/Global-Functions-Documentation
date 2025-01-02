@@ -98,6 +98,9 @@ queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, Wo
 
 ## setfflag
 
+> [!NOTE]
+> You can find a list of all Fast Flags [here](https://raw.githubusercontent.com/MaximumADHD/Roblox-FFlag-Tracker/main/PCDesktopClient.json)
+
 Sets a specified flag to the given value.
 
 ```luau
