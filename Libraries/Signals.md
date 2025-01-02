@@ -32,7 +32,7 @@ function getconnections(signal: RBXScriptSignal): {Connection}
 
 ### Parameters
 
-- `signal` The signal whose connections you want to retrieve.
+- `signal` - The signal whose connections you want to retrieve.
 
 ### Example
 
@@ -55,8 +55,8 @@ function firesignal(signal: RBXScriptSignal<...any>, ...: any?)
 
 ### Parameters
 
-- `signal` The signal to fire
-- `...?` The wanted arguments to pass into the fired connections 
+- `signal` - The signal to fire
+- `...?` - The wanted arguments to pass into the fired connections 
 
 ### Example
 
@@ -85,8 +85,8 @@ function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
 
 ### Parameters
 
-- `signal` The signal to be hooked
-- `callback` The new callback triggered by hooksignal, returning true to allow or false/nil to block the original signal connection
+- `signal` - The signal to be hooked
+- `callback` - The new callback triggered by hooksignal, returning true to allow or false/nil to block the original signal connection
 
 ### Example
 
