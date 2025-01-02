@@ -35,3 +35,34 @@ setclipboard(game:GetService("Players").LocalPlayer.Name) -- Your clipboard shou
 ```
 
 ---
+
+## messagebox
+
+A wrapper around Microsoft's MessageBoxA.
+
+```luau
+function messagebox(text: string, caption: string, flags: number): number
+```
+
+### Example
+
+```luau
+local MB_ICONINFORMATION = 0x00000040
+local MB_OKCANCEL = 0x00000001
+local MB_DEFBUTTON1 = 0x00000000
+
+local IDOK = 0x00000001
+local IDCANCEL = 0x00000002
+
+local input = messagebox(
+    "Do you want to proceed with the operation?",
+    "Confirmation",
+    bit32.bor(MB_ICONINFORMATION, MB_OKCANCEL, MB_DEFBUTTON1)
+)
+
+if input == IDOK then
+    print("OK")
+elseif input == IDCANCEL then
+    print("Cancelled")
+end
+```
