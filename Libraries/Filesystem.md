@@ -111,7 +111,7 @@ function appendfile(path: string, data: string): ()
 ```luau
 writefile("items.txt", "List of Items:\n")
 
-for _, child in ipairs(game.ReplicatedStorage:GetChildren()) do
+for _, child in ipairs(game:GetService("ReplicatedStorage"):GetChildren()) do
     if child.ClassName ~= "" then
         appendfile("items.txt", child.ClassName .. "\n")
     end
