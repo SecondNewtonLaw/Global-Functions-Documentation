@@ -9,7 +9,7 @@ The **WebSocket** class provides a simple interface for sending and receiving da
 Establishes a WebSocket connection to the specified URL.
 
 ```luau
-WebSocket.connect(url: string): WebSocketConnection
+function WebSocket.connect(url: string): WebSocketConnection
 ```
 
 ### Parameters
