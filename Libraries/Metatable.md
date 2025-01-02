@@ -1,5 +1,5 @@
 # Metatable
 
-Functions that enable access and manipulation of locked metatables.
+Functions that allow access and manipulation of locked metatables.
 
 ---
