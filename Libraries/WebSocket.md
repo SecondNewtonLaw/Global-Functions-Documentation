@@ -14,7 +14,7 @@ WebSocket.connect(url: string): WebSocketConnection
 
 ### Parameters
 
-- `url`: The URL of the WebSocket server to connect to.
+- `url` The URL of the WebSocket server to connect to.
 
 ### Example
 
@@ -56,7 +56,7 @@ WebSocketConnection:Send(data: string): nil
 
 ### Parameters
 
-- `data`: The data to send.
+- `data` The data to send.
 
 ### Example
 
@@ -92,7 +92,7 @@ WebSocketConnection.OnMessage: RBXScriptSignal<string>
 
 ### Arguments
 
-- `message`: The message which was sent from the connection.
+- `message` The message which was sent from the connection.
 
 ### Example
 
