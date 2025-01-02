@@ -117,3 +117,30 @@ for i = 0, 100 do
     task.wait(0.05)
 end
 ```
+
+---
+
+## mousemoverel
+
+Shifts the mouse cursor by the given relative distance.
+
+```luau
+function mousemoverel(x: number, y: number): ()
+```
+
+### Parameters
+
+- `x` - The x-coordinate of the mouse cursor
+- `y` - The y-coordinate of the mouse cursor
+
+### Example
+
+Moves the cursor in a small circle:
+
+```luau
+for i = 0, 20 do
+	local x = math.sin(i / 20 * math.pi * 2)
+	local y = math.cos(i / 20 * math.pi * 2)
+	mousemoverel(x * 100, y * 100)
+	task.wait(0.05)
+end```
