@@ -140,4 +140,5 @@ local opentable = {
 print(filtergc('table', {
     Keys = { "name" }
 }, true)) -- The table opentable will be returned as it contains the key specified in the options
+-- since return_one is true, opentable will be the only match returned
 ```
