@@ -104,3 +104,32 @@ hooksignal(part.Changed, function(info, prop)
 end)
 part.Name = "NewName"
 ```
+
+---
+
+## restoresignal
+
+restores a signal's original behavior after it has been modified.
+
+```luau
+function restoresignal(signal: RBXScriptSignal<...any>)
+```
+
+### Parameters
+
+- `signal` - The signal to be restored
+
+### Example
+
+```luau
+local hook = hooksignal(workspace.Part.Touched, function(info, ...)
+    print("Touched signal intercepted!")
+    return true
+end)
+
+part.Touched:Fire()
+
+restoresignal(part.Touched)  -- the signals original behavior is now restored via restoresignal
+
+part.Touched:Fire()  -- back to its original behavior
+```
