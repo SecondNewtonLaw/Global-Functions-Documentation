@@ -123,7 +123,7 @@ local function myfunc()
 end
 
 print(filtergc('function', {
-    IgnoreSyn = false,
+    IgnoreExecutor = false,
     Name = "myfunc"
 }, true)
 ```
