@@ -41,10 +41,6 @@ Opens the console window. Text previously output to the console will not be clea
 function rconsolecreate(): ()
 ```
 
-### Aliases
-
- * `consolecreate`
-
 ### Example
 
 Create a program that generates a mountainous landscape:
@@ -93,10 +89,6 @@ Closes the console window and clears its output. The title will not be changed.
 function rconsoledestroy(): ()
 ```
 
-### Aliases
-
- * `consoledestroy`
-
 ### Example
 
 ```luau
@@ -121,10 +113,6 @@ Waits for the user to input text into the console window. Returns the result.
 ```luau
 function rconsoleinput(): string
 ```
-
-### Aliases
-
- * `consoleinput`
 
 ### Example
 
@@ -157,10 +145,6 @@ function rconsoleprint(text: string): ()
 
 * `text` - The text to append to the output.
 
-### Aliases
-
- * `consoleprint`
-
 ### Example
 
 ```luau
@@ -185,11 +169,6 @@ function rconsolesettitle(title: string): ()
 ### Parameters
 
  * `title` - The new title.
-
-### Aliases
-
- * `rconsolename`
- * `consolesettitle`
 
 ### Example
 
