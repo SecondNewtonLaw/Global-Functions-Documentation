@@ -123,7 +123,7 @@ function restoresignal(signal: RBXScriptSignal<...any>)
 
 ```luau
 local hook = hooksignal(workspace.Part.Touched, function(info, ...)
-    print("Touched signal intercepted!")
+    print("Touched signal from part")
     return true
 end)
 
