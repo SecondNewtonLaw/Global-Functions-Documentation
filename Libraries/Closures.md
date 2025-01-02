@@ -153,7 +153,7 @@ function checkcaller(): boolean
 ### Examples
 
 ```luau
-local originalNameCall = hookmetamethod(Player, "__namecall", function(self, ...)
+local originalnamecall = hookmetamethod(Player, "__namecall", function(self, ...)
     local methodName = getnamecallmethod()
     if methodName == "FireServer" then
         if not checkcaller() then
@@ -162,6 +162,6 @@ local originalNameCall = hookmetamethod(Player, "__namecall", function(self, ...
             print("fireserver invoked foreign") -- the namecall was invoked from a foreign script
         end
     end
-    return originalNameCall(self, ...)
+    return originalnamecall(self, ...)
 end)
 ```
