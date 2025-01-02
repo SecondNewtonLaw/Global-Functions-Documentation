@@ -75,3 +75,21 @@ elseif input == IDCANCEL then
     print("Cancelled")
 end
 ```
+
+---
+
+## queue_on_teleport
+
+Schedules the specified script to run after the player has teleported to another place.
+
+```luau
+function queue_on_teleport(code: string): ()
+```
+
+### Parameters
+- `code` The code to schedule
+
+### Example
+```luau
+  queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, World!" will be outputted into the console
+```
