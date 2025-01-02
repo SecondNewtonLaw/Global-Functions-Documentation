@@ -99,12 +99,12 @@ print(isfile("thing/real.txt")) -- Output: True
 Appends data to the end of the file at the specified path, creating the file if it doesn't already exist.
 
 ```luau
-function appendfile(path: string, data: string): ()
+function appendfile(path: string, contents: string): ()
 ```
 
 ### Parameters
 - `path` - Path to the file you will append data to
-- `data` - The data to append
+- `contents` - The content to append
 
 ### Example
 
