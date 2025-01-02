@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/f66521e8-492e-43ed-a85e-7548a2c892dd
-
 # Environment
 
 These functions allow to **modify/access** our executor environment and Roblox environment.
@@ -90,12 +86,11 @@ end
 ## filtergc
 
 > [!NOTE]
-> Values are compared using `bit-for-bit equality`, meaning NaN equals NaN and -0 is not equal to 0. This enables you to search for NaN or -0 as specific values.
 
-Searches for Lua values that are currently referenced and match the specified criteria.
+Searches for Lua values in the garbage collector that are currently referenced and match the specified criteria.
 
 ```luau
-function filtergc(type: string | function | table, options: table, return_one?: bool)
+function filtergc(...): { { [any]: any } | (...any) -> (...any) }  |  { [any]: any } | (...any) -> (...any)
 ```
 
 ### Table:
@@ -111,40 +106,36 @@ function filtergc(type: string | function | table, options: table, return_one?: 
 
 | Key        | Description                                                                        | Default |
 | ---------- | ---------------------------------------------------------------------------------- | ------- |
-| `Name`     | If not empty, only include functions with this name                                | `nil`   |
-| `Constants`| If not empty, only include functions with constants that match all values in this table | `nil`   |
-| `Upvalues` | If not empty, only include functions with upvalues that match all values in this table | `nil`   |
-| `IgnoreExecutor`| If `false`, do not ignore Executor functions | `true` |   
-https://github.com/user-attachments/assets/93d196a3-7bac-49ef-83f2-2ac632180336
-
+| `Name`     | If not empty, also include functions with this name                                | `nil`   |
+| `IgnoreExecutor`| If true, also include functions made in the executor | `true` |
+| `Hash`     | If not empty, also include functions with this hash of their bytecode. | `nil` |
+| `Constants`| If not empty, also include functions with constants that match all values in this table | `nil`   |
+| `Upvalues` | If not empty, also include functions with upvalues that match all values in this table | `nil`   |
 
 ### Parameters
 
 - `type` - specifies the type of Lua value to search for
 - `options` - criteria used to filter the search results based on the specified type
-- `return_one` - A boolean that returns only the first match when true; otherwise, all matches are returned.
+- `return_one?` - A boolean that returns only the first match when true; otherwise, all matches are returned.
 
 ### Examples
 
+Usage of `return_one?`
 ```luau
-local function myfunc()
-    return "aaaaa" .. uv
-end
+local function namedFunction() end
 
-print(filtergc('function', {
-    IgnoreExecutor = false,
-    Name = "myfunc"
-}, true) -- myfunc will be outputted into the console as myfunc is defined in our executor's thread
+local retrieved = filtergc('function', {Name = "namedFunction", IgnoreExecutor = false}, true)
+print(type(retrieved)) -- Output: function
 ```
 
 ```luau
-local opentable = {
-    name = "example",
-    age = 25
-}
+local function namedFunction() end
 
-print(filtergc('table', {
-    Keys = { "name" }
-}, true)) -- The table opentable will be returned as it contains the key specified in the options
--- since return_one is true, opentable will be the only match returned
+local retrieved = filtergc('function', {Name = "namedFunction", IgnoreExecutor = false}) -- Returns a table
+print(type(retrieved[1])) -- Output: function
+```
+
+Usage of `options` parameter
+```luau
+TODO
 ```
