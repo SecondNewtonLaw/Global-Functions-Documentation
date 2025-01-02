@@ -143,4 +143,5 @@ for i = 0, 20 do
 	local y = math.cos(i / 20 * math.pi * 2)
 	mousemoverel(x * 100, y * 100)
 	task.wait(0.05)
-end```
+end
+```
