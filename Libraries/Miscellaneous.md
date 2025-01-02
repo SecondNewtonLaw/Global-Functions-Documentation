@@ -19,3 +19,19 @@ local execName, execVersion = identifyexecutor()
 print(execName, execVersion) -- Output: "YourName 0.0.1"
 ```
 ---
+
+## setclipboard
+
+Copies a string or Instance or table of Instances to the clipboard.
+
+```luau
+function setclipboard(data: string | number | Instance | table)
+```
+
+### Example
+
+```luau
+setclipboard(game:GetService("Players").LocalPlayer.Name) -- Your clipboard should contain your username
+```
+
+---
