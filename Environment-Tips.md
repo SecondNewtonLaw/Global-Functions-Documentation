@@ -11,4 +11,4 @@ For your executor, people expect reliable functions and a stable environment, wh
 - Double-check through your executor's environment to make sure everything is spelled accordingly.
   
 > [!NOTE]
-> Make sure aliases are properly connected to the function
+> Ensure aliases are correctly linked to the function or are just re-written with the same logic
