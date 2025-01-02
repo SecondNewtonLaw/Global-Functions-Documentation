@@ -86,7 +86,7 @@ function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
 ### Parameters
 
 - `signal` The signal to be hooked
-- `callback` the callback the signal will output
+- `callback` The new callback triggered by hooksignal, returning true to allow or false/nil to block the original signal connection
 
 ### Example
 
