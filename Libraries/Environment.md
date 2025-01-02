@@ -85,8 +85,6 @@ end
 
 ## filtergc
 
-> [!NOTE]
-
 Searches for Lua values in the garbage collector that are currently referenced and match the specified criteria.
 
 ```luau
