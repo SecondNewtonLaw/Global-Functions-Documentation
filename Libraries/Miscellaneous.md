@@ -93,3 +93,43 @@ function queue_on_teleport(code: string): ()
 ```luau
 queue_on_teleport([[print("Hello, World!")]]) -- On the next teleport "Hello, World!" will be outputted into the console
 ```
+
+---
+
+## request
+
+Sends an HTTP request with the given options, yielding until the request is finished, and returns the response.
+
+### Request
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `Url` | string | The URL for the request. |
+| `Method` | string | The HTTP method to use. Can be `GET`, `POST`, `PATCH`, or `PUT`. |
+| `Body` | string? | The body of the request. |
+| `Headers` | table? | A table of headers. |
+| `Cookies` | table? | A table of cookies. |
+
+### Response
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `Body` | string | The body of the response. |
+| `StatusCode` | number | The number status code of the response. |
+| `StatusMessage` | string | The status message of the response. |
+| `Success` | boolean | Whether or not the request was successful. |
+| `Headers` | table | A dictionary of headers. |
+
+### Headers
+
+The executor provides the following headers for identification on a web server:
+
+| Header | Description |
+| ------ | ----------- |
+| `PREFIX-User-Identifier` | A string unique to each user, and does not change if the script executor is used across computers. |
+| `PREFIX-Fingerprint` | The hardware identifier of the user. |
+| `User-Agent` | The name and version of the executor. |
+
+### Parameters
+
+- `options` - The options to use.
