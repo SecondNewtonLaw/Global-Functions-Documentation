@@ -86,7 +86,7 @@ end
 ## filtergc
 
 > [!NOTE]
-> values are compared using `bit-for-bit equality checks`. This means that NaN == NaN and -0 ~= 0. This allows you to specify NaN or -0 as a value you want to search for.
+> Values are compared using `bit-for-bit equality`, meaning NaN equals NaN and -0 is not equal to 0. This enables you to search for NaN or -0 as specific values.
 
 Searches for Lua values that are currently referenced and match the specified criteria.
 
