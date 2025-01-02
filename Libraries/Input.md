@@ -145,3 +145,17 @@ for i = 0, 20 do
 	task.wait(0.05)
 end
 ```
+
+---
+
+## mousescroll
+
+Triggers a mouse scroll by the given number of pixels.
+
+```luau
+function mousescroll(pixels: number): ()
+```
+
+### Parameters
+
+- `pixels` - The number of pixels to scroll
