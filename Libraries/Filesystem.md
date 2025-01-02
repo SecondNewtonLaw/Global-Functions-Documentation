@@ -23,5 +23,5 @@ function readfile(path: string): string
 
 ```luau
 writefile("thing.txt", "Hello, world!")
-setclipboard(readfile("thing.txt")) -- your clipboard will now contain the string from thing.txt
+setclipboard(readfile("thing.txt")) -- your clipboard will now contain the string "Hello, world!" from thing.txt
 ```
