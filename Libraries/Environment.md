@@ -80,3 +80,50 @@ for garbageIndex, garbageValue in pairs(getgc(true)) do
     end
 end
 ```
+
+---
+
+## filtergc
+
+Searches for Lua values that are currently referenced and match the specified criteria.
+
+```luau
+function filtergc(type: string | function | table, options: table, return_one?: bool)
+```
+
+### Table:
+
+| Key            | Description                                                                 | Default   |
+| -------------- | --------------------------------------------------------------------------- | --------- |
+| `Keys`         | If not empty, only include tables with keys corresponding to all values in this table | `nil`     |
+| `Values`       | If not empty, only include tables with values corresponding to all values in this table | `nil`     |
+| `KeyValuePairs`| If not empty, only include tables with keys/value pairs corresponding to all values in this table | `nil`     |
+| `Metatable`    | If not empty, only include tables with the metatable passed                | `nil`     |
+
+### Function:
+
+| Key        | Description                                                                        | Default |
+| ---------- | ---------------------------------------------------------------------------------- | ------- |
+| `Name`     | If not empty, only include functions with this name                                | `nil`   |
+| `Constants`| If not empty, only include functions with constants that match all values in this table | `nil`   |
+| `Upvalues` | If not empty, only include functions with upvalues that match all values in this table | `nil`   |
+| `IgnoreExecutor`| If `false`, do not ignore Executor functions | `true` |   
+
+### Parameters
+
+- `type` - specifies the type of Lua value to search for
+- `options` - criteria used to filter the search results based on the specified type
+- `return_one` - A boolean that returns only the first match when true; otherwise, all matches are returned.
+
+### Examples
+
+```luau
+local function myfunc()
+    return "aaaaa" .. uv
+end
+
+print(filtergc('function', {
+    IgnoreSyn = false,
+    Name = "myfunc"
+}, true)
+```
