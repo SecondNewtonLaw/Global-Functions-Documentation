@@ -91,8 +91,8 @@ function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
 ### Example
 
 ```luau
-hooksignal(workspace.Part.Touched, function()
-    print("touch signal intercepted")
+hooksignal(workspace.Part.AncestryChanged, function()
+    print("AncestryChanged signal intercepted")
     return true -- allows the original connection to run
 end)
 ```
