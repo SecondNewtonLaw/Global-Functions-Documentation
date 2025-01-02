@@ -117,3 +117,25 @@ for _, child in ipairs(game:GetService("ReplicatedStorage"):GetChildren()) do
     end
 end
 ```
+
+---
+
+## delfile
+
+Deletes the file at the specified path.
+
+```luau
+function delfile(path: string): ()
+```
+
+### Parameters
+
+- `path` - Path to the file you will delete
+
+### Example
+
+```luau
+writefile("thing.txt", "Hello, world!")
+delfile("thing.txt") -- thing.txt is now removed from the workspace and shouldn't exist
+print(isfile("thing.txt")) -- Output: False
+```
