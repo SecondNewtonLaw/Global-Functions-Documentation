@@ -3,8 +3,6 @@ The console functions are used to interact with one console window.
 
 ---
 
----
-
 ## rconsoleclear
 
 Clears the output of the console window.
