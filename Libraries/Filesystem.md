@@ -91,3 +91,29 @@ writefile("thing/real.txt", "Hello, World!")
 print(isfile("thing")) -- Output: False
 print(isfile("thing/real.txt")) -- Output: True
 ```
+
+---
+
+## appendfile
+
+Appends data to the end of the file at the specified path, creating the file if it doesn't already exist.
+
+```luau
+function appendfile(path: string, data: string): ()
+```
+
+### Parameters
+- `path` - Path to the file you will append data to
+- `data` - The data to append
+
+### Example
+
+```luau
+writefile("items.txt", "List of Items:\n")
+
+for _, child in ipairs(game.ReplicatedStorage:GetChildren()) do
+    if child.ClassName ~= "" then
+        appendfile("items.txt", child.ClassName .. "\n")
+    end
+end
+```
