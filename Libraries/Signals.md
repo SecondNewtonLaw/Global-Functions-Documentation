@@ -69,3 +69,24 @@ end)
 firesignal(part.ChildAdded) -- Output: nil
 firesignal(part.ChildAdded, workspace) -- Output: Instance
 ```
+
+---
+
+## hooksignal
+
+Intercepts signal calls, invoking a callback for each Lua connection with an info table and arguments. The original connection runs if the callback returns true.
+
+```luau
+function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
+```
+
+### Parameters
+
+- `signal` The signal to be hooked
+- `callback` the callback the signal will output
+
+### Example
+
+```luau
+tbd
+```
