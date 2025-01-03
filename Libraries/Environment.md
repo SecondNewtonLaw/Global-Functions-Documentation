@@ -44,7 +44,7 @@ Returns a table with all Lua values that aren't dead (meaning they are reference
 By default, it excludes tables; you can use `includeTables` to also get tables.
 
 ```luau
-getgc(includeTables: boolean?): { [number]: userdata | table | function }
+getgc(includeTables: boolean?): { [number]: { [any]: any } | function }
 ```
 
 ### Parameters
@@ -98,7 +98,6 @@ function filtergc(...): { { [any]: any } | (...any) -> (...any) }  |  { [any]: a
 | `Keys`         | If not empty, only include tables with keys corresponding to all values in this table | `nil`     |
 | `Values`       | If not empty, only include tables with values corresponding to all values in this table | `nil`     |
 | `KeyValuePairs`| If not empty, only include tables with keys/value pairs corresponding to all values in this table | `nil`     |
-| `Metatable`    | If not empty, only include tables with the metatable passed                | `nil`     |
 
 ### Function:
 
@@ -116,9 +115,12 @@ function filtergc(...): { { [any]: any } | (...any) -> (...any) }  |  { [any]: a
 - `options` - criteria used to filter the search results based on the specified type
 - `return_one?` - A boolean that returns only the first match when true; otherwise, all matches are returned.
 
-### Examples
+> [!NOTE]
+> Executing this examples multiple times in a short period of time may result in false negatives
 
-Usage of `return_one?`
+### Examples - Function
+
+Usage of `return_one?`:
 ```luau
 local function namedFunction() end
 
@@ -133,7 +135,59 @@ local retrieved = filtergc('function', {Name = "namedFunction", IgnoreExecutor =
 print(type(retrieved[1])) -- Output: function
 ```
 
-Usage of `options` parameter
+## Usage of `options` parameter
+
+Usage of `IgnoreExecutor` and `Hash`:
 ```luau
-TODO
+local function DummyFunction() end
+local a = getfunctionhash(DummyFunction)
+local b = filtergc('function', {Hash = b, IgnoreExecutor = false}, true)
+print(getfunctionhash(a) == b) -- Output: true
+```
+
+Usage of `Constants` and `Upvalues`:
+```luau
+local up = 5
+local function DummyFunction() 
+    up+=1
+    print(game.Players.LocalPlayer)
+end
+
+local retrieved = filtergc('function', { 
+    Constants = {
+        "print", "game", "Players", "LocalPlayer", 1
+    },
+    Upvalues = {5},
+    IgnoreExecutor = false
+}, true)
+
+print(retrieved == DummyFunction) -- Output: true
+```
+
+---
+
+### Examples - Table
+
+Usage of `Keys` and `Values`:
+```lua
+local DummyTable = { ["DummyKey"] = "" }
+
+local retrieved = filtergc('table', {
+    Keys = { "DummyKey" },
+    IgnoreExecutor = false
+}, true)
+
+print(retrieved == DummyTable) -- Output: true
+```
+
+Usage of `KeyValuePairs`:
+```luau
+local DummyTable = { ["DummyKey"] = "DummyValue" }
+
+local retrieved = filtergc('table', {
+    KeyValuePairs = { ["DummyKey"] = "DummyValue" },
+    IgnoreExecutor = false
+}, true)
+
+print(retrieved == DummyTable) -- Output: true
 ```
