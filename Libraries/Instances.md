@@ -109,3 +109,32 @@ function setrbxclipboard(data: Instance | string): boolean
 local Part = Instance.new("Part", workspace)
 setrbxclipboard(Part) -- you can now paste this part into your roblox studio client workspace
 ```
+
+---
+
+## getcallbackvalue
+
+Returns the function assigned to an object's callback property, which is otherwise inaccessible through standard indexing.
+
+```luau
+function getcallbackvalue(object: Instance, property: string): function?
+```
+
+### Parameters
+
+- `object` - The object to get the callback property from.
+- `property` - The name of the callback property.
+
+### Example
+
+```luau
+local GUI = game.Players.LocalPlayer:WaitForChild("PlayerGui").GUI
+
+GUI.Button.MouseButton1Click:Connect(function()
+    print("clicked")
+end)
+
+local callback = getcallbackvalue(textButton, "MouseButton1Click")
+
+callback() -- Output: clicked
+```
