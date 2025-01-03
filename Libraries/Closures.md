@@ -156,7 +156,7 @@ function checkcaller(): boolean
 local originalnamecall = hookmetamethod(game, "__namecall", function(self, ...)
     local method = getnamecallmethod()
     if method == "FireServer" then
-        if not checkcaller() then
+        if checkcaller() then
             print("fireserver invoked from executor") -- the namecall was called from the current executor
         else
             print("fireserver invoked foreign") -- the namecall was invoked from a foreign script
