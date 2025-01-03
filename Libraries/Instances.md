@@ -12,15 +12,17 @@ The **Instance** library allows interaction with game objects.
 Returns a list of all instances referenced by the client.
 
 ```luau
-function getinstances(): {Instance}
+function getinstances(): {[number]: Instance}
 ```
 
 ### Example
 
 ```luau
-for _, instance in ipairs(getinstances()) do
-    if instance.ClassName == "Model" then
-        print(instance.Name) -- will print all instances with that is a Model
+local DummyPart = Instance.new("Part")
+
+for indexInstance, valueInstance in pairs(getnilinstances()) do
+    if valueInstance == DummyPart then
+        print(`Found the wanted nil instance: {DummyPart}`)
     end
 end
 ```
@@ -32,16 +34,19 @@ end
 Returns a list of instances that aren't descendants of a service provider.
 
 ```luau
-function getnilinstances(): {Instance}
+function getnilinstances(): {[number]: Instance}
 ```
 
 ### Example
 
 ```luau
-for _, object in ipairs(getnilinstances()) do
-	if object:IsA("BasePart") then
-		print(object, "is a BasePart")
-	end
+local DummyPart = Instance.new("Part")
+DummyPart.Parent = nil
+
+for indexNil, valueNil in pairs(getnilinstances()) do
+    if valueNil == DummyPart then
+        print(`Found the wanted nil instance: {DummyPart}`)
+    end
 end
 ```
 
@@ -73,13 +78,14 @@ print(Player == ClonedPlayer) -- Output: False
 
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
-> **gethui** should not be equal to `CoreGui` and should be hidden from visibility.
-> To test your **gethui** implementation's functionality it's recommended you run [sUNC](https://discord.gg/EsfbAZJpzp).
+> The container in which the elements sit in, should not be findable directly. For example, a descendant for loop through CoreGui shouldn't find the container. Although if found directly, the container's parent should be clonereffed.
+
+> If you're going for a different approach from the one above, make sure the container is able to be found in the registry
 
 Returns a hidden UI container that minimalizes most detection methods.
 
 ```luau
-function gethui(): Folder
+function gethui(): Instance
 ```
 
 ### Example
@@ -87,27 +93,7 @@ function gethui(): Folder
 ```luau
 local UI = Instance.new("ScreenGui")
 UI.Parent = gethui()
-```
-
----
-
-## setrbxclipboard
-
-Copies the provided `in-game instance` to the Studio client's clipboard.
-
-```luau
-function setrbxclipboard(data: Instance | string): boolean
-```
-
-### Parameters
-
-- `data` - Path to the instance to set clipboard to
-
-### Example
-
-```luau
-local Part = Instance.new("Part", workspace)
-setrbxclipboard(Part) -- you can now paste this part into your roblox studio client workspace
+print(gethui().ScreenGui) -- Output: "ScreenGui"
 ```
 
 ---
@@ -128,13 +114,11 @@ function getcallbackvalue(object: Instance, property: string): function?
 ### Example
 
 ```luau
-local GUI = game.Players.LocalPlayer:WaitForChild("PlayerGui").GUI
+local DummyBindableFunction = Instance.new("BindableFunction")
 
-GUI.Button.MouseButton1Click:Connect(function()
-    print("clicked")
-end)
+DummyBindableFunction.OnInvoke = function()
+    print("Callback")
+end
 
-local callback = getcallbackvalue(GUI.Button, "MouseButton1Click")
-
-callback() -- clicked should be outputted into the console
+getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
 ```
