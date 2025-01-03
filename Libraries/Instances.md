@@ -136,5 +136,5 @@ end)
 
 local callback = getcallbackvalue(GUI.Button, "MouseButton1Click")
 
-callback() -- Output: clicked
+callback() -- clicked should be outputted into the console
 ```
