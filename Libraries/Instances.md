@@ -95,7 +95,7 @@ UI.Parent = gethui()
 Copies the provided `in-game instance` to the Studio client's clipboard.
 
 ```luau
-function setrbxclipboard(data: Instance): boolean
+function setrbxclipboard(data: Instance | string): boolean
 ```
 
 ### Parameters
