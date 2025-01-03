@@ -70,7 +70,7 @@ UI.Parent = gethui()
 
 ## setrbxclipboard
 
-Copies the provided `rbxm`, `rbxmx` model data, or `in-game instance` to the Studio client's clipboard.
+Copies the provided `in-game instance` to the Studio client's clipboard.
 
 ```luau
 function setrbxclipboard(data: Instance): boolean
