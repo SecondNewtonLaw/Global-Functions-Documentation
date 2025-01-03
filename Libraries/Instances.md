@@ -12,7 +12,7 @@ The **Instance** library allows interaction with game objects.
 Returns a list of all instances referenced by the client.
 
 ```luau
-function getinstances(): {[number]: Instance}
+function getinstances(): { [number]: Instance }
 ```
 
 ### Example
@@ -34,7 +34,7 @@ end
 Returns a list of instances that aren't descendants of a service provider.
 
 ```luau
-function getnilinstances(): {[number]: Instance}
+function getnilinstances(): { [number]: Instance }
 ```
 
 ### Example
