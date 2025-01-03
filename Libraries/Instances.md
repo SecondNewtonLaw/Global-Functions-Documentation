@@ -91,3 +91,23 @@ setrbxclipboard(Part) -- you can now paste this part into your roblox studio cli
 local data = readfile("model.rbxm") -- model.rbxm is a rbxm file in your executor's workspace
 setrbxclipboard(data)
 ```
+
+---
+
+## cloneref
+
+Returns a copy of the Instance where the copy should not be equal to the original Instance it was cloned from.
+
+```luau
+function cloneref(object: Instance): Instance
+```
+
+### Parameters
+
+- `object` - The Instance to clone.
+
+### Example
+
+```
+TBD
+```
