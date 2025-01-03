@@ -109,5 +109,7 @@ function cloneref(object: Instance): Instance
 ### Example
 
 ```
-TBD
+local ClonedPlayer = cloneref(game:GetService("Players").LocalPlayer)
+local Player = game:GetService("Players").LocalPlayer
+print(Player == ClonedPlayer) -- Output: False
 ```
