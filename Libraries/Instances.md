@@ -134,7 +134,7 @@ GUI.Button.MouseButton1Click:Connect(function()
     print("clicked")
 end)
 
-local callback = getcallbackvalue(textButton, "MouseButton1Click")
+local callback = getcallbackvalue(GUI.Button, "MouseButton1Click")
 
 callback() -- Output: clicked
 ```
