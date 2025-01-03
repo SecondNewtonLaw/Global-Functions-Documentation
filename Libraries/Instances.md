@@ -72,6 +72,7 @@ print(Player == ClonedPlayer) -- Output: False
 ## gethui
 
 > [!NOTE]
+> This is an implementation detail; as a regular scripter, you may ignore this!
 > **gethui** should not be equal to `CoreGui` and should be hidden from visibility.
 > To test your **gethui** implementation's functionality it's recommended you run [sUNC](https://discord.gg/EsfbAZJpzp).
 
