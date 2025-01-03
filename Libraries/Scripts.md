@@ -19,8 +19,8 @@ function getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ### Examples
 
 ```luau
-local scriptBytecode = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
-print(scriptBytecode) -- Should return a string with the bytecode
+local AnimScript = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
+print(AnimScript) -- Should return a string with the bytecode
 ```
 
 ```luau
@@ -35,7 +35,6 @@ print(getscriptbytecode(Instance.new("LocalScript")))
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 > Please hash the compressed and encrypted bytecode; do not decrypt and decompress the bytecode and then hash it!
-> Additionally, this will ensure compatibility between executors who do practice sUNC.
 
 Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
@@ -51,7 +50,7 @@ function getscripthash(script: LocalScript | ModuleScript | Script): string
 
 ```luau
 local scriptHash = getscripthash(game.Players.LocalPlayer.Character.Animate)
-print(scriptHash) -- Should return an non-changing SHA384 hash in hex
+print(scriptHash) -- Should return a non-changing SHA384 hash in hex
 ```
 
 ```luau
@@ -65,13 +64,13 @@ print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having 
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 >
-> The closure you return needs to be callable (meaning it can be called without erroring), or you will fail our tests! This means the closure needs to have properly set capabilities and identity and a proper environment with the script global!
+> The closure you return needs to be callable (meaning it can be called without erroring). This means the closure needs to have properly set capabilities and identity and a proper environment with the script global!
 >
 > For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the script global, just push the script instance and set it on the table.
 >
 > For capabilities, make sure to check if the script/module is a RobloxScript, and set identity and capabilities accordingly.
 
-This function creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get; you should primarily use it to retrieve constants.
+This function creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get; it's mostly used it to retrieve constants.
 
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
@@ -86,10 +85,8 @@ function getscriptclosure(script: LocalScript | ModuleScript | Script): function
 ### Examples
 
 ```luau
-local testScript = game.Players.LocalPlayer.Character.Animate
-
-print(getscriptclosure(testScript)) -- Returns an function
-getscriptclosure(testScript)() -- Shouldn't error
+local AnimScript = game.Players.LocalPlayer.Character.Animate
+print(type(getscriptclosure(AnimScript))) -- Output: function
 ```
 
 ```luau
@@ -122,7 +119,7 @@ function getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
 
 ```luau
 local scriptEnv = getsenv(game.Players.LocalPlayer.Character.Animate)
-print(scriptEnv) -- Should return a table
+print(type(scriptEnv.onSwimming)) -- Output: function
 ```
 
 ```luau
@@ -148,10 +145,12 @@ function getscripts(): { [number]: LocalScript | ModuleScript | Script }
 ### Examples
 
 ```luau
-local allScriptsAndModules = getscripts()
+local DummyScript = Instance.new("LocalScript")
 
-for _, v in next, allScriptsAndModules do
-    print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
+for indexScript, valueScript in pairs(getscripts()) do
+    if valueScript == DummyScript then
+        print(`Found the script {DummyScript}`)
+    end
 end
 ```
 
@@ -174,10 +173,17 @@ function getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
 ### Examples
 
 ```luau
-local allRunningScriptsAndModules = getrunningscripts()
+local DummyScript = Instance.new("LocalScript", game.Players.LocalPlayer.Character)
+local DummyScript2 = Instance.new("LocalScript")
 
-for _, v in next, allRunningScriptsAndModules do
-    print(v.ClassName) -- Should print LocalScript, ModuleScript or Script
+pcall(require, DummyScript)
+
+for indexScript, valueScript in pairs(getrunningscripts()) do
+    if valueScript == DummyScript then
+        print(`Found the running script {DummyScript}`)
+    elseif valueScript == DummyScript2 then
+        print(`Found the non-running script: {DummyScript2}`)
+    end
 end
 ```
 
@@ -194,10 +200,17 @@ function getloadedmodules(): { [number]: ModuleScript }
 ### Examples
 
 ```luau
-local allLoadedModules = getloadedmodules()
+local DummyModule = Instance.new("ModuleScript")
+local DummyModule2 = Instance.new("ModuleScript")
 
-for _, v in next, allLoadedModules do
-    print(v.ClassName) -- Should print ModuleScript
+pcall(require, DummyModule)
+
+for indexModule, valueModule in pairs(getloadedmodules()) do
+    if valueModule == DummyModule then
+        print(`Found the loaded {DummyModule}`)
+    elseif valueModule == DummyModule2 then
+        print(`Found the unloaded module: {DummyModule2}`)
+    end
 end
 ```
 
