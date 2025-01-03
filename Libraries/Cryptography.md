@@ -19,9 +19,5 @@ function crypt.base64encode(data: string): string
 ### Example
 
 ```luau
-local base64 = crypt.base64encode("Hello, World!")
-local raw = crypt.base64decode(base64)
-
-print(base64) --> SGVsbG8sIFdvcmxkIQ==
-print(raw) --> Hello, World!
+TBD
 ```
