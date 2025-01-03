@@ -47,6 +47,28 @@ end
 
 ---
 
+## cloneref
+
+Returns a copy of the Instance where the copy should not be equal to the original Instance it was cloned from.
+
+```luau
+function cloneref(object: Instance): Instance
+```
+
+### Parameters
+
+- `object` - The Instance to clone.
+
+### Example
+
+```luau
+local ClonedPlayer = cloneref(game:GetService("Players").LocalPlayer)
+local Player = game:GetService("Players").LocalPlayer
+print(Player == ClonedPlayer) -- Output: False
+```
+
+---
+
 ## gethui
 
 > [!NOTE]
@@ -85,26 +107,4 @@ function setrbxclipboard(data: Instance): boolean
 ```luau
 local Part = Instance.new("Part", workspace)
 setrbxclipboard(Part) -- you can now paste this part into your roblox studio client workspace
-```
-
----
-
-## cloneref
-
-Returns a copy of the Instance where the copy should not be equal to the original Instance it was cloned from.
-
-```luau
-function cloneref(object: Instance): Instance
-```
-
-### Parameters
-
-- `object` - The Instance to clone.
-
-### Example
-
-```luau
-local ClonedPlayer = cloneref(game:GetService("Players").LocalPlayer)
-local Player = game:GetService("Players").LocalPlayer
-print(Player == ClonedPlayer) -- Output: False
 ```
