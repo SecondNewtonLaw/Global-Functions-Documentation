@@ -73,23 +73,18 @@ UI.Parent = gethui()
 Copies the provided `rbxm`, `rbxmx` model data, or `in-game instance` to the Studio client's clipboard.
 
 ```luau
-function setrbxclipboard(data: string | Instance): boolean
+function setrbxclipboard(data: Instance): boolean
 ```
 
 ### Parameters
 
-- `data` - The data to copy to the clipboard, if it is a string it must be a path to the `rbxm` or `rbxmx` file in your workspace, if it is an instance it must be a path to that instance in-game
+- `data` - Path to the instance to set clipboard to
 
 ### Example
 
 ```luau
 local Part = Instance.new("Part", workspace)
 setrbxclipboard(Part) -- you can now paste this part into your roblox studio client workspace
-```
-
-```luau
-local data = readfile("model.rbxm") -- model.rbxm is a rbxm file in your executor's workspace
-setrbxclipboard(data)
 ```
 
 ---
