@@ -136,7 +136,7 @@ Triggers a specified event on a `ClickDetector`. If not provided, the distance p
 function fireclickdetector(object: ClickDetector, distance: number?, event: string?): ()
 ```
 
-Selectable Input Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
+Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
 
 ### Parameters
 
