@@ -128,9 +128,9 @@ getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
 ## fireclickdetector
 
 > [!NOTE]
-> You can read more about ClickDetectors [here](https://create.roblox.com/docs/reference/engine/classes/ClickDetector)
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections
 
-Triggers a specified event on a `ClickDetector`. If not provided, the distance parameter defaults to **zero**, and the event parameter defaults to **MouseClick**.
+Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite
 
 ```luau
 function fireclickdetector(object: ClickDetector, distance: number?, event: string?): ()
@@ -141,18 +141,27 @@ Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHov
 ### Parameters
 
 - `object` - The ClickDetector to trigger
-- `distance` - Optional distance to trigger the ClickDetector from
-- `event` - Optional input event to specify
+- `distance?` - Distance to trigger the ClickDetector from
+- `event?` - Input event to specify
 
 ### Example
 
 ```luau
-local Part = Instance.new("Part", workspace)
-local ClickDetector = Instance.new("ClickDetector", Part)
+local ClickDetector = Instance.new("ClickDetector")
 
-ClickDetector.RightMouseClick:Connect(function()
-	Part.Color = Color3.fromRGB(0, 170, 255) -- Cyan
+ClickDetector.MouseClick:Connect(function()
+    print("Fired")
 end)
 
-fireclickdetector(ClickDetector, math.huge, "RightMouseClick") -- The part's color is now cyan
+fireclickdetector(ClickDetector, 32) -- This will not output
+```
+
+```luau
+local ClickDetector = Instance.new("ClickDetector")
+
+ClickDetector.MouseClick:Connect(function()
+    print("Fired")
+end)
+
+fireclickdetector(ClickDetector, 31) -- Output: Fired
 ```
