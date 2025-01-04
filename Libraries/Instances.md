@@ -154,6 +154,5 @@ ClickDetector.RightMouseClick:Connect(function()
 	print("Hello, World!")
 end)
 
-fireclickdetector(ClickDetector, 5, "RightMouseClick") -- Output: Hello, World!
-holon im workin on this type sh
+fireclickdetector(ClickDetector, math.huge, "RightMouseClick") -- Output: Hello, World!
 ```
