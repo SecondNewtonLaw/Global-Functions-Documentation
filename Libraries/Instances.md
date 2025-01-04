@@ -122,3 +122,37 @@ end
 
 getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
 ```
+
+---
+
+## fireclickdetector
+
+> [!NOTE]
+> You can read more about the ClickDetector events [here](https://create.roblox.com/docs/reference/engine/classes/ClickDetector)
+
+Triggers a specified event on a `ClickDetector`. If not provided, the distance parameter defaults to **zero**, and the event parameter defaults to **MouseClick**.
+
+```luau
+function fireclickdetector(object: ClickDetector, distance: number?, event: string?): ()
+```
+
+Selectable Input Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
+
+### Parameters
+
+- `object` - The ClickDetector to trigger
+- `distance` - Optional distance to trigger the ClickDetector from
+- `event` - Optional input event to specify
+
+### Example
+
+```luau
+local Part = Instance.new("Part", workspace)
+local ClickDetector = Instance.new("ClickDetector", Part)
+
+ClickDetector.RightMouseClick:Connect(function()
+	print("Hello, World!")
+end)
+
+fireclickdetector(ClickDetector, 5, "RightMouseClick") -- Output: Hello, World!
+```
