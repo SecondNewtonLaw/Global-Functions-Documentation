@@ -93,21 +93,22 @@ function filtergc(...): { { [any]: any } | (...any) -> (...any) }  |  { [any]: a
 
 ### Table:
 
-| Key            | Description                                                                 | Default   |
-| -------------- | --------------------------------------------------------------------------- | --------- |
-| `Keys`         | If not empty, only include tables with keys corresponding to all values in this table | `nil`     |
-| `Values`       | If not empty, only include tables with values corresponding to all values in this table | `nil`     |
-| `KeyValuePairs`| If not empty, only include tables with keys/value pairs corresponding to all values in this table | `nil`     |
+| Key            | Description                                                                                       | Default |
+| -------------- | ------------------------------------------------------------------------------------------------- | ------- |
+| `Keys`         | If not empty, only include tables with keys corresponding to all values in this table             |  `nil`  |
+| `Values`       | If not empty, only include tables with values corresponding to all values in this table           |  `nil`  |
+| `KeyValuePairs`| If not empty, only include tables with keys/value pairs corresponding to all values in this table |  `nil`  |
+| `Metatable`    | If not empty, only include tables with the metatable passed                                       |  `nil`  |
 
 ### Function:
 
-| Key        | Description                                                                        | Default |
-| ---------- | ---------------------------------------------------------------------------------- | ------- |
-| `Name`     | If not empty, also include functions with this name                                | `nil`   |
-| `IgnoreExecutor`| If true, also include functions made in the executor | `true` |
-| `Hash`     | If not empty, also include functions with this hash of their bytecode. | `nil` |
-| `Constants`| If not empty, also include functions with constants that match all values in this table | `nil`   |
-| `Upvalues` | If not empty, also include functions with upvalues that match all values in this table | `nil`   |
+| Key             | Description                                                                             | Default |
+| --------------- | --------------------------------------------------------------------------------------- | ------- |
+| `Name`          | If not empty, also include functions with this name                                     |  `nil`  |
+| `IgnoreExecutor`| If true, also include functions made in the executor                                    |  `true` |
+| `Hash`          | If not empty, also include functions with this hash of their bytecode.                  |  `nil`  |
+| `Constants`     | If not empty, also include functions with constants that match all values in this table |  `nil`  |
+| `Upvalues`      | If not empty, also include functions with upvalues that match all values in this table  |  `nil`  |
 
 ### Parameters
 
