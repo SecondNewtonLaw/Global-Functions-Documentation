@@ -151,8 +151,8 @@ local Part = Instance.new("Part", workspace)
 local ClickDetector = Instance.new("ClickDetector", Part)
 
 ClickDetector.RightMouseClick:Connect(function()
-	print("Hello, World!")
+	Part.Color = Color3.fromRGB(163, 162, 165) -- Gray
 end)
 
-fireclickdetector(ClickDetector, math.huge, "RightMouseClick") -- Output: Hello, World!
+fireclickdetector(ClickDetector, math.huge, "RightMouseClick") -- The part's color is now gray
 ```
