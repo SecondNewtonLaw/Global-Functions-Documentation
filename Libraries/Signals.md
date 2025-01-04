@@ -127,9 +127,5 @@ local hook = hooksignal(workspace.Part.Touched, function(info, ...)
     return true
 end)
 
-part.Touched:Fire()
-
 restoresignal(part.Touched) -- the signals original behavior is now restored via restoresignal
-
-part.Touched:Fire() -- back to its original behavior
 ```
