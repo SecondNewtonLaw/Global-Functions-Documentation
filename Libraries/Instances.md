@@ -155,4 +155,5 @@ ClickDetector.RightMouseClick:Connect(function()
 end)
 
 fireclickdetector(ClickDetector, 5, "RightMouseClick") -- Output: Hello, World!
+holon im workin on this type sh
 ```
