@@ -128,7 +128,7 @@ getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
 ## fireclickdetector
 
 > [!NOTE]
-> You can read more about the ClickDetector [here](https://create.roblox.com/docs/reference/engine/classes/ClickDetector)
+> You can read more about ClickDetectors [here](https://create.roblox.com/docs/reference/engine/classes/ClickDetector)
 
 Triggers a specified event on a `ClickDetector`. If not provided, the distance parameter defaults to **zero**, and the event parameter defaults to **MouseClick**.
 
