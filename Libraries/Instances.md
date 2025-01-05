@@ -130,7 +130,7 @@ getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
 > [!NOTE]
 > It's not recommended to implement this function in luau. Doing so will expose you to easy detections
 
-Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite
+Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite.
 
 ```luau
 function fireclickdetector(object: ClickDetector, distance: number?, event: string?): ()
@@ -164,4 +164,37 @@ ClickDetector.MouseClick:Connect(function()
 end)
 
 fireclickdetector(ClickDetector, 31) -- Output: Fired
+```
+
+---
+
+## fireproximityprompt
+
+Triggers a `ProximityPrompt` with a specified number of times, with an option to ignore its hold duration.
+
+```luau
+function fireproximityprompt(object: ProximityPrompt, amount: number?, skip: boolean?): ()
+```
+
+### Parameters
+
+- `object` - The ProximityPrompt to fire
+- `amount` - Number of times to fire the specified ProximityPrompt
+- `skip` - Determines if the ProximityPrompt should ignore the hold duration
+
+### Example
+
+```luau
+local Part = Instance.new("Part")
+local ProximityPrompt = Instance.new("ProximityPrompt", Part)
+
+ProximityPrompt.Triggered:Connect(function()
+	Part.Name = "Triggered"
+end)
+
+fireproximityprompt(ProximityPrompt, 1, true) -- Fires the proximityprompt once and instantly does it by specifying skip as `true`
+
+repeat task.wait() until Part.Name == "Triggered"
+
+print("Part is now named Triggered!")
 ```
