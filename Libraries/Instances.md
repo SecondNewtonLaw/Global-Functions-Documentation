@@ -133,7 +133,7 @@ getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
 Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite.
 
 ```luau
-function fireclickdetector(object: ClickDetector, distance: number?, event: string?): ()
+function fireclickdetector(object: Instance<ClickDetector>, distance: number?): ()
 ```
 
 Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
@@ -142,7 +142,6 @@ Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHov
 
 - `object` - The ClickDetector to trigger
 - `distance?` - Distance to trigger the ClickDetector from
-- `event?` - Input event to specify
 
 ### Example
 
@@ -170,31 +169,29 @@ fireclickdetector(ClickDetector, 31) -- Output: Fired
 
 ## fireproximityprompt
 
-Triggers a `ProximityPrompt` with a specified number of times, with an option to ignore its hold duration.
+> [!NOTE]
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections
+
+Triggers a `ProximityPrompt` instantly, regardless of distance or duration.
 
 ```luau
-function fireproximityprompt(object: ProximityPrompt, amount: number?, skip: boolean?): ()
+function fireproximityprompt(object: Instance<ProximityPrompt>): ()
 ```
 
 ### Parameters
 
 - `object` - The ProximityPrompt to fire
-- `amount` - Number of times to fire the specified ProximityPrompt
-- `skip` - Determines if the ProximityPrompt should ignore the hold duration
 
 ### Example
 
 ```luau
-local Part = Instance.new("Part")
-local ProximityPrompt = Instance.new("ProximityPrompt", Part)
+local DummyPart = Instance.new("Part", workspace)
+local DummyProximityPrompt = Instance.new("ProximityPrompt")
+DummyProximityPrompt.Parent = DummyPart
 
-ProximityPrompt.Triggered:Connect(function()
-	Part.Name = "Triggered"
+DummyProximityPrompt.Triggered:Connect(function()
+    print("Triggered")
 end)
 
-fireproximityprompt(ProximityPrompt, 1, true) -- Fires the proximityprompt once and instantly does it by specifying skip as `true`
-
-repeat task.wait() until Part.Name == "Triggered"
-
-print("Part is now named Triggered!")
+fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 ```
