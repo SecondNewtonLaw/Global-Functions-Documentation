@@ -195,3 +195,27 @@ end)
 
 fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 ```
+
+---
+
+## firetouchinterest
+
+Triggers a `Touched` event between two specified parts.
+
+```luau
+function firetouchinterest(part: Instance, to_touch: Instance, toggle: bool?): ()
+```
+
+### Parameters
+
+- `part` - The part initiating the touch
+- `to_touch` - The part to be touched
+- `toggle` - Determines the event
+    - `1` - Starts the **Touched** event
+    - `0` - Ends the **Touched** event
+
+### Example
+
+```luau
+TBD
+```
