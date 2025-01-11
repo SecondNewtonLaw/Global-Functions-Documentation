@@ -200,22 +200,36 @@ fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 
 ## firetouchinterest
 
-Triggers a `Touched` event between two specified parts.
+> [!NOTE]
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections
+
+Triggers a `Touched` event on a `BasePart` with the other wanted part.
 
 ```luau
-function firetouchinterest(part: Instance, to_touch: Instance, toggle: bool?): ()
+function firetouchinterest(part: Instance<BasePart>, part2: Instance<BasePart>, toggle: number): ()
 ```
 
 ### Parameters
 
 - `part` - The part initiating the touch
-- `to_touch` - The part to be touched
-- `toggle` - Determines the event
+- `part2` - The part to be touched
+- `toggle` - Determines the touching event trigger
     - `1` - Starts the **Touched** event
     - `0` - Ends the **Touched** event
 
 ### Example
 
 ```luau
-TBD
+local DummyPart = Instance.new("Part")
+DummyPart.CFrame = CFrame.new(0, -200, 0)
+DummyPart.Anchored = true
+DummyPart.Parent = workspace
+
+DummyPart.Touched:Connect(function(arg1)
+    print(arg1:IsDescendantOf(game.Players.LocalPlayer.Character))
+end)
+
+firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, 1)
+task.wait(0.5)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, 0) -- Output: true
 ```
