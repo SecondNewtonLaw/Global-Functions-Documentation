@@ -171,34 +171,36 @@ print(newfunction()) --should print "hello world!"
 
 ## hookfunction
 
-Hooks the first passed function with the second passed function and returns the old first function.
-> [!NOTE]
-> hookfunction shouldn't replace the function
-> 
-> It should be possible to hook even if the number of upvalues of the second passed functions are higher than the first
-> 
-> It should be possible to hook even if the `what` fields aren't the same in the 2 functions (example: C function ->L function)
+Hooks a function and returns the original unhooked function.
+
+> [!Note]
+> The hook shouldn't have more upvalues than the function you want to hook.
+> All closure pairs should be supported, otherwise it will not pass the test.
 
 ```luau
-function hookfunction(targetfunc: function, hook: function): function
+function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any)): T
 ```
 
 ### Parameters
 
-- `targetfunc` - The function to hook.
-- `hook` - The function that hooks the targetfunc.
+- `function_to_hook` - The function that will be hooked
+- `function_hook` - The function that will be used as a hook
 
 ### Examples
 
 ```luau
-local upval = 0
-local function first()
-    return "hi"
+local function DummyFunction(): string
+    print("I am NOT hooked!")
 end
-local old; old = hookfunction(first,newcclosure(function() --shouldn't be a problem if i'm hooking a lclosure with a cclosure
-    print(old())
-    local upvaltest = upval --shouldn't be a problem if the hooking function has more upvals than the function to hook
-    return "hooked!"
-end))
-print(first()) --prints hi and then hooked
+
+local function DummyHook(): string
+    print("I am hooked!")
+end
+
+DummyFunction() -- prints: "I am NOT hooked!"
+
+local OldFunction = hookfunction(DummyFunction, DummyHook)
+
+DummyFunction() -- prints: "I am hooked!"
+OldFunction() -- prints: "I am NOT hooked!"
 ```
