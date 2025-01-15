@@ -140,32 +140,6 @@ print(isexecutorclosure(executorClosure2)) -- Output: true
 
 ---
 
-## checkcaller
-
-Determines if the current function was invoked by the executor.
-
-```luau
-function checkcaller(): boolean
-```
-
-### Examples
-
-```luau
-local originalnamecall = hookmetamethod(game, "__namecall", function(self, ...)
-    local method = getnamecallmethod()
-    if method == "FireServer" then
-        if checkcaller() then
-            print("fireserver invoked from executor") -- the namecall was called from the current executor
-        else
-            print("fireserver invoked foreign") -- the namecall was invoked from a foreign script
-        end
-    end
-    return originalnamecall(self, ...)
-end)
-```
-
----
-
 ## clonefunction
 
 Creates and returns a new function that has the same behaviour as the passed function.
