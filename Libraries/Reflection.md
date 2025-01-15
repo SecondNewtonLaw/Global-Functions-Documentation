@@ -67,3 +67,27 @@ print(gethiddenproperty(part, "DataCost")) -- Returns 100, true [Hidden]
 ```
 
 ---
+
+## checkcaller
+
+Determines if the current function was invoked by the executor.
+
+```luau
+function checkcaller(): boolean
+```
+
+### Examples
+
+```luau
+local originalnamecall = hookmetamethod(game, "__namecall", function(self, ...)
+    local method = getnamecallmethod()
+    if method == "FireServer" then
+        if checkcaller() then
+            print("fireserver invoked from executor") -- the namecall was called from the current executor
+        else
+            print("fireserver invoked foreign") -- the namecall was invoked from a foreign script
+        end
+    end
+    return originalnamecall(self, ...)
+end)
+```
