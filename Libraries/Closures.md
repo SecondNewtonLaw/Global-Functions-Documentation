@@ -71,14 +71,22 @@ function iscclosure(func: function): boolean
 ### Examples
 
 ```luau
-local luaFunction = function()
-    print("This is a Lua function")
+local function ExecutorLuaClosure()
+    print("This is an Exeucotr Lua Closure")
 end
 
-local cFunction = print
+local ExecutorCClosure = newcclosure(function()
+    print("This is an Executor C Closure
+end)
 
-print(iscclosure(luaFunction)) -- Output: false
-print(iscclosure(cFunction)) -- Output: true
+local StandardCClosure = print
+local GlobalExecutorClosure = filtergc
+
+print(iscclosure(ExecutorCClosure)) -- Output: true
+print(iscclosure(GlobalExecutorClosure)) -- Output: true
+print(iscclosure(StandardCClosure)) -- Output: true
+
+print(iscclosure(ExecutorLuaClosure)) -- Output: false
 ```
 
 ---
@@ -98,14 +106,20 @@ function islclosure(func: function): boolean
 ### Examples
 
 ```luau
-local luaFunction = function()
-    print("This is a Lua function")
+local function ExecutorLuaClosure()
+    print("This is an Exeucotr Lua Closure")
 end
 
-local cFunction = print
+local ExecutorCClosure = newcclosure(function()
+    print("This is an Executor C Closure
+end)
 
-print(islclosure(luaFunction)) -- Output: true
-print(islclosure(cFunction)) -- Output: false
+local StandardCClosure = print
+
+print(islclosure(ExecutorLuaClosure)) -- Output: true
+
+print(islclosure(StandardCClosure)) -- Output: false
+print(islclosure(ExecutorCClosure)) -- Output: false
 ```
 
 ---
@@ -125,17 +139,22 @@ function isexecutorclosure(func: function): boolean
 ### Examples
 
 ```luau
-local executorClosure = function()
-    print("This is a Lua function")
+local function ExecutorLuaClosure()
+    print("This is an Exeucotr Lua Closure")
 end
 
-local standardLuauClosure = print
+local ExecutorCClosure = newcclosure(function()
+    print("This is an Executor C Closure
+end)
 
-local executorClosure2 = iscclosure
+local StandardCClosure = print
+local GlobalExecutorClosure = filtergc
 
-print(isexecutorclosure(executorClosure)) -- Output: true
-print(isexecutorclosure(standardLuauClosure)) -- Output: false
-print(isexecutorclosure(executorClosure2)) -- Output: true
+print(isexecutorclosure(ExecutorLuaClosure)) -- Output: true
+print(isexecutorclosure(ExecutorCClosure)) -- Output: true
+print(isexecutorclosure(GlobalExecutorClosure)) -- Output: true
+
+print(isexecutorclosure(StandardCClosure)) -- Output: false
 ```
 
 ---
@@ -162,8 +181,9 @@ function clonefunction(func: function): function
 local function oldfunction()
     return "hello world!"
 end
+
 local newfunction = clonefunction(oldfunction)
-print(oldfunction==newfunction) --should return false
+print(oldfunction == newfunction) --should return false
 print(newfunction()) --should print "hello world!"
 ```
 
