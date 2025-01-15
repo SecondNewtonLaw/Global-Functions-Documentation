@@ -174,8 +174,7 @@ print(newfunction()) --should print "hello world!"
 Hooks a function and returns the original unhooked function.
 
 > [!Note]
-> The hook shouldn't have more upvalues than the function you want to hook.
-
+> The hook shouldn't have more upvalues than the function you want to hook.                                                                         
 > All closure pairs should be supported, otherwise it will not pass the test.
 
 ```luau
