@@ -1,4 +1,4 @@
-# Closures
+![image](https://github.com/user-attachments/assets/faaf6e63-650e-40c0-b6b3-b92dc4d02fd2)# Closures
 
 Functions that allow **inspection/modification/creation** of Luau closures
 
@@ -164,4 +164,31 @@ local originalnamecall = hookmetamethod(game, "__namecall", function(self, ...)
     end
     return originalnamecall(self, ...)
 end)
+```
+
+---
+
+## clonefunction
+
+Creates and returns a new function that has the same behaviour as the passed function.
+The new function must have the same environment as the old one.
+Hooking the new function must not affect the old one.
+
+```luau
+function isexecutorclosure(func: function): function
+```
+
+### Parameters
+
+- `func` - The function to clone.
+
+### Examples
+
+```luau
+local function oldfunction()
+return "hello world!"
+end
+local newfunction = clonefunction(oldfunction)
+print(oldfunction==newfunction) --should return false
+print(newfunction()) --should print "hello world!"
 ```
