@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/faaf6e63-650e-40c0-b6b3-b92dc4d02fd2)# Closures
-
 Functions that allow **inspection/modification/creation** of Luau closures
 
 ---
@@ -186,7 +184,7 @@ function isexecutorclosure(func: function): function
 
 ```luau
 local function oldfunction()
-return "hello world!"
+    return "hello world!"
 end
 local newfunction = clonefunction(oldfunction)
 print(oldfunction==newfunction) --should return false
