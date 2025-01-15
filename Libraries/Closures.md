@@ -143,8 +143,8 @@ print(isexecutorclosure(executorClosure2)) -- Output: true
 ## clonefunction
 
 Creates and returns a new function that has the same behaviour as the passed function.
-The new function must have the same environment as the old one.
-Hooking the new function must not affect the old one.
+> The new function must have the same environment as the old one.
+> Hooking the new function must not affect the old one.
 
 ```luau
 function clonefunction(func: function): function
@@ -170,9 +170,9 @@ print(newfunction()) --should print "hello world!"
 ## hookfunction
 
 Hooks the first passed function with the second passed function and returns the old first function.
-Hookfunction shouldn't replace the function
-It should be possible to hook even if the number of upvalues of the second passed functions are higher than the first
-It should be possible to hook even if the `what` fields aren't the same in the 2 functions (example: C function ->L function)
+> Hookfunction shouldn't replace the function
+> It should be possible to hook even if the number of upvalues of the second passed functions are higher than the first
+> It should be possible to hook even if the `what` fields aren't the same in the 2 functions (example: C function ->L function)
 
 ```luau
 function hookfunction(functohook: function, hookingfunc: function): function
