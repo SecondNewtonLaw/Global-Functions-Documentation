@@ -72,7 +72,7 @@ function iscclosure(func: function): boolean
 
 ```luau
 local function ExecutorLuaClosure()
-    print("This is an Exeucotr Lua Closure")
+    print("This is an Executor Lua Closure")
 end
 
 local ExecutorCClosure = newcclosure(function()
