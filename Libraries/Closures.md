@@ -9,7 +9,7 @@ Functions that allow **inspection/modification/creation** of Luau closures
 >
 > The wrapped function should be yieldable (meaning the function can call `task.wait` for example)
 
-This function takes in a Lua closure and wraps it into a C closure.
+This function takes in a function and wraps it into a C closure.
 
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure, and then the original closure returned arguments are passed to the caller of the C closure.
 
@@ -48,10 +48,6 @@ local functionThatYields = newcclosure(function()
 end)
 
 functionThatYields() -- Should print "hello world" after 5 seconds
-```
-
-```luau
-newcclosure(print) -- Should error because print is already C closure (function)
 ```
 
 ---
