@@ -7,20 +7,20 @@ Functions that allow **inspection/modification/creation** of Luau closures
 > [!WARNING]
 > Many executors are implementing this function using `coroutine` functions in Lua; these implementations won't pass sUNC checks.
 >
-> The wrapped function should be yieldable (meaning the function can call `task.wait` for example)
+> The wrapped function should be yieldable (meaning that the function should be able to call `task.wait`, for example)
 
 This function takes in a function and wraps it into a C closure.
 
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure, and then the original closure returned arguments are passed to the caller of the C closure.
 
 ```luau
-function newcclosure(functionToWrap: function, debugName: string?): function
+function newcclosure(function_to_wrap: (...any) -> (...any), debug_name: string?): (...any) -> (...any)
 ```
 
 ### Parameters
 
-- `functionToWrap` - A function to be wrapped.
-- `debugName` - (Optional) A debug name for the wrapped function. If not provided, the name will be blank.
+- `function_to_wrap` - A function to be wrapped.
+- `debug_name?` - (Optional) A debug name for the wrapped function. If not provided, the name will be blank.
 
 ### Examples
 
@@ -29,25 +29,30 @@ local originalFunction = function(...)
     return ...
 end
 
-print(iscclosure(originalFunction)) -- Prints false
+print(iscclosure(originalFunction)) -- Output: false
 
 local wrappedFunction = newcclosure(originalFunction, "sUNC")
 
-print(iscclosure(wrappedFunction)) -- Prints true
+print(iscclosure(wrappedFunction)) -- Output: true
 
-local functionResults = wrappedFunction("hello world")
-print(functionResults) -- Prints "hello world"
+local functionResults = wrappedFunction("Hello")
+print(functionResults) -- Output: Hello
 
-print(debug.info(wrappedFunction, "n")) -- Prints "sUNC"
+print(debug.info(wrappedFunction, "n")) -- Output: sUNC
 ```
 
 ```luau
 local functionThatYields = newcclosure(function()
-   task.wait(5)
-   print("hello world")
+    print("Before")
+    task.wait(1.5)
+    print("After")
 end)
 
-functionThatYields() -- Should print "hello world" after 5 seconds
+functionThatYields()
+-- Output:
+-- Before
+-- yield for 1.5 seconds
+-- After
 ```
 
 ---
