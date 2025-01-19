@@ -25,30 +25,30 @@ function newcclosure(function_to_wrap: (...any) -> (...any), debug_name: string?
 ### Examples
 
 ```luau
-local originalFunction = function(...)
+local OriginalFunction = function(...)
     return ...
 end
 
-print(iscclosure(originalFunction)) -- Output: false
+print(iscclosure(OriginalFunction)) -- Output: false
 
-local wrappedFunction = newcclosure(originalFunction, "sUNC")
+local WrappedFunction = newcclosure(OriginalFunction, "sUNC")
 
-print(iscclosure(wrappedFunction)) -- Output: true
+print(iscclosure(WrappedFunction)) -- Output: true
 
-local functionResults = wrappedFunction("Hello")
-print(functionResults) -- Output: Hello
+local FunctionResults = WrappedFunction("Hello")
+print(FunctionResults) -- Output: Hello
 
-print(debug.info(wrappedFunction, "n")) -- Output: sUNC
+print(debug.info(WrappedFunction, "n")) -- Output: sUNC
 ```
 
 ```luau
-local functionThatYields = newcclosure(function()
+local FunctionThatYields = newcclosure(function()
     print("Before")
     task.wait(1.5)
     print("After")
 end)
 
-functionThatYields()
+FunctionThatYields()
 -- Output:
 -- Before
 -- yield for 1.5 seconds
@@ -62,7 +62,7 @@ functionThatYields()
 Checks if a given function is a C closure (implemented in C/C++).
 
 ```luau
-function iscclosure(func: function): boolean
+function iscclosure(func: (...any) -> (...any)): boolean
 ```
 
 ### Parameters
@@ -97,7 +97,7 @@ print(iscclosure(ExecutorLuaClosure)) -- Output: false
 Checks if a given function is a L closure (implemented in Lua).
 
 ```luau
-function islclosure(func: function): boolean
+function islclosure(func: (...any) -> (...any)): boolean
 ```
 
 ### Parameters
@@ -130,7 +130,7 @@ print(islclosure(ExecutorCClosure)) -- Output: false
 Checks if a given function is the executor's closure.
 
 ```luau
-function isexecutorclosure(func: function): boolean
+function isexecutorclosure(func: (...any) -> (...any)): boolean
 ```
 
 ### Parameters
@@ -169,7 +169,7 @@ Creates and returns a new function that has the same behaviour as the passed fun
 > Hooking the new function must not affect the old one.
 
 ```luau
-function clonefunction(func: function): function
+function clonefunction(func: (...any) -> (...any)): (...any) -> (...any)
 ```
 
 ### Parameters
@@ -179,13 +179,13 @@ function clonefunction(func: function): function
 ### Examples
 
 ```luau
-local function oldfunction()
+local function OldFunction()
     return "hello world!"
 end
 
-local newfunction = clonefunction(oldfunction)
-print(oldfunction == newfunction) --should return false
-print(newfunction()) --should print "hello world!"
+local NewFunction = clonefunction(OldFunction)
+print(OldFunction == NewFunction) --should return false
+print(NewFunction()) --should print "hello world!"
 ```
 
 ---
