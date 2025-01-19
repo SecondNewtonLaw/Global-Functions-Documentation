@@ -19,7 +19,7 @@ function newcclosure(functionToWrap: function, debugName: string?): function
 
 ### Parameters
 
-- `functionToWrap` - A Lua closure (function) to be wrapped.
+- `functionToWrap` - A function to be wrapped.
 - `debugName` - (Optional) A debug name for the wrapped function. If not provided, the name will be blank.
 
 ### Examples
