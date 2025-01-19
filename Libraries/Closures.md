@@ -141,7 +141,7 @@ function isexecutorclosure(func: (...any) -> (...any)): boolean
 
 ```luau
 local function ExecutorLuaClosure()
-    print("This is an Exeucotr Lua Closure")
+    print("This is an Executor Lua Closure")
 end
 
 local ExecutorCClosure = newcclosure(function()
@@ -164,9 +164,9 @@ print(isexecutorclosure(StandardCClosure)) -- Output: false
 
 Creates and returns a new function that has the same behaviour as the passed function.
 > [!NOTE]
-> The new function must have the same environment as the old one.
+> The cloned function must have the same environment as the original.
 > 
-> Hooking the new function must not affect the old one.
+> Any sort of modification to the original shouldn't affect the clone. Meaning that stuff like hooking the original will not affect the clone.
 
 ```luau
 function clonefunction(func: (...any) -> (...any)): (...any) -> (...any)
@@ -179,24 +179,28 @@ function clonefunction(func: (...any) -> (...any)): (...any) -> (...any)
 ### Examples
 
 ```luau
-local function OldFunction()
-    return "hello world!"
+local function Old()
+    print("Hello")
 end
 
-local NewFunction = clonefunction(OldFunction)
-print(OldFunction == NewFunction) --should return false
-print(NewFunction()) --should print "hello world!"
+local Clone = clonefunction(Old)
+
+print(debug.info(Clone, "l")) -- Output: 1
+print(debug.info(Clone, "n")) -- Output: old
+print(Clone == Old) -- Output: false
+print(getfenv(Clone) == getfenv(Old)) -- Output: true
 ```
 
 ---
 
 ## hookfunction
 
-Hooks a function and returns the original unhooked function.
+Hooks a function with another wanted function, and returns the original unhooked function.
 
 > [!Note]
-> The hook shouldn't have more upvalues than the function you want to hook.                                                                         
-> All closure pairs should be supported, otherwise it will not pass the test.
+> The hook shouldn't have more upvalues than the function you want to hook.
+>                       
+> All possible hooking closure pairs should be supported.
 
 ```luau
 function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any)): T
@@ -210,18 +214,18 @@ function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any
 ### Examples
 
 ```luau
-local function DummyFunction(): string
+local function DummyFunction()
     print("I am NOT hooked!")
 end
 
-local function DummyHook(): string
+local function DummyHook()
     print("I am hooked!")
 end
 
-DummyFunction() -- prints: "I am NOT hooked!"
+DummyFunction() -- Output: I am NOT hooked!
 
 local OldFunction = hookfunction(DummyFunction, DummyHook)
 
-DummyFunction() -- prints: "I am hooked!"
-OldFunction() -- prints: "I am NOT hooked!"
+DummyFunction() -- Output: I am hooked!
+OldFunction() -- Output: I am NOT hooked!
 ```
