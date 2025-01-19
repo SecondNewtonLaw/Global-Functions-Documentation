@@ -107,7 +107,7 @@ local function ExecutorLuaClosure()
 end
 
 local ExecutorCClosure = newcclosure(function()
-    print("This is an Executor C Closure
+    print("This is an Executor C Closure")
 end)
 
 local StandardCClosure = print
@@ -140,7 +140,7 @@ local function ExecutorLuaClosure()
 end
 
 local ExecutorCClosure = newcclosure(function()
-    print("This is an Executor C Closure
+    print("This is an Executor C Closure")
 end)
 
 local StandardCClosure = print
