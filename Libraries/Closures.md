@@ -22,7 +22,7 @@ function newcclosure(function_to_wrap: (...any) -> (...any), debug_name: string?
 - `function_to_wrap` - A function to be wrapped.
 - `debug_name?` - (Optional) A debug name for the wrapped function. If not provided, the name will be blank.
 
-### Examples
+### Example
 
 ```luau
 local OriginalFunction = function(...)
@@ -65,11 +65,11 @@ Checks if a given function is a C closure (implemented in C/C++).
 function iscclosure(func: (...any) -> (...any)): boolean
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The function to check.
 
-### Examples
+### Example
 
 ```luau
 local function ExecutorLuaClosure()
@@ -100,11 +100,11 @@ Checks if a given function is a L closure (implemented in Lua).
 function islclosure(func: (...any) -> (...any)): boolean
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The function to check.
 
-### Examples
+### Example
 
 ```luau
 local function ExecutorLuaClosure()
@@ -133,11 +133,11 @@ Checks if a given function is the executor's closure.
 function isexecutorclosure(func: (...any) -> (...any)): boolean
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The function to check.
 
-### Examples
+### Example
 
 ```luau
 local function ExecutorLuaClosure()
@@ -172,11 +172,11 @@ Creates and returns a new function that has the same behaviour as the passed fun
 function clonefunction(func: (...any) -> (...any)): (...any) -> (...any)
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The function to clone.
 
-### Examples
+### Example
 
 ```luau
 local function Old()
@@ -200,19 +200,7 @@ Hooks a function with another wanted function, and returns the original unhooked
 > [!Note]
 > The hook shouldn't have more upvalues than the function you want to hook.
 >                       
-> All possible hooking closure pairs should be supported (NC = newcclosure):
-
-| Function | Hook |
-| -------- | ---- |
-|     L    |  L   |
-|     L    |  C   |
-|     L    |  NC  |
-|     C    |  C   |
-|     C    |  L   |
-|     C    |  NC  |
-|     NC   |  NC  |
-|     NC   |  L   |
-|     NC   |  C   |
+> All possible hooking closure pairs should be supported throughout L, NC, C. (NC = newcclosure)
 
 ```luau
 function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any)): T
@@ -223,7 +211,7 @@ function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any
 - `function_to_hook` - The function that will be hooked
 - `function_hook` - The function that will be used as a hook
 
-### Examples
+### Example
 
 ```luau
 local function DummyFunction()
