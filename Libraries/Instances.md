@@ -103,7 +103,7 @@ print(gethui().ScreenGui) -- Output: "ScreenGui"
 Returns the function assigned to an object's callback property, which is otherwise inaccessible through standard indexing.
 
 ```luau
-function getcallbackvalue(object: Instance, property: string): function?
+function getcallbackvalue(object: Instance, property: string): (...any) -> (...any)?
 ```
 
 ### Parameters
