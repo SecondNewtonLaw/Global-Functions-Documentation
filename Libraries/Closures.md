@@ -200,7 +200,25 @@ Hooks a function with another wanted function, and returns the original unhooked
 > [!Note]
 > The hook shouldn't have more upvalues than the function you want to hook.
 >                       
-> All possible hooking closure pairs should be supported.
+> All possible hooking closure pairs should be supported (NC = newcclosure):
+
+> L -> L
+> 
+> L -> C
+> 
+> L -> NC
+> 
+> C -> C
+> 
+> C -> L
+> 
+> C -> NC
+> 
+> NC -> NC
+> 
+> NC -> L
+> 
+> NC -> C
 
 ```luau
 function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any)): T
