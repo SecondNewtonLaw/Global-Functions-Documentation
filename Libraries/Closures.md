@@ -202,23 +202,17 @@ Hooks a function with another wanted function, and returns the original unhooked
 >                       
 > All possible hooking closure pairs should be supported (NC = newcclosure):
 
-> L -> L
-> 
-> L -> C
-> 
-> L -> NC
-> 
-> C -> C
-> 
-> C -> L
-> 
-> C -> NC
-> 
-> NC -> NC
-> 
-> NC -> L
-> 
-> NC -> C
+| Function | Hook |
+| -------- | ---- |
+|     L    |  L   |
+|     L    |  C   |
+|     L    |  NC  |
+|     C    |  C   |
+|     C    |  L   |
+|     C    |  NC  |
+|     NC   |  NC  |
+|     NC   |  L   |
+|     NC   |  C   |
 
 ```luau
 function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any)): T
