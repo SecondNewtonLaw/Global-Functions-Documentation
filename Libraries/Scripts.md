@@ -6,26 +6,25 @@ The **Script** library provides functions that access to script environments and
 
 ## getscriptbytecode
 
-Returns the module/script's decompressed and decrypted bytecode to be used for decompiling. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
+> [!NOTE]
+> This function should return nil, an empty string or error if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to check for nil or an empty string, rather than each executor having its own output.
 
 ```luau
 function getscriptbytecode(script: LocalScript | ModuleScript | Script): string
 ```
 
-### Parameters
+### Parameter
 
 - `script` - The module/script the bytecode should be obtained from.
 
-### Examples
+### Example
 
 ```luau
 local AnimScript = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
 print(AnimScript) -- Should return a string with the bytecode
-```
 
-```luau
--- Should error due to having no bytecode or being unable to decompress the bytecode
-print(getscriptbytecode(Instance.new("LocalScript")))
+print(getscriptbytecode(Instance.new("LocalScript"))) -- Output: nil, "" or error
 ```
 
 ---
@@ -42,19 +41,15 @@ Returns a `SHA384` hash represented in hex of the module/script's bytecode. This
 function getscripthash(script: LocalScript | ModuleScript | Script): string
 ```
 
-### Parameters
+### Parameter
 
 - `script` - The module/script the function should obtain a hash of.
 
-### Examples
+### Example
 
 ```luau
 local scriptHash = getscripthash(game.Players.LocalPlayer.Character.Animate)
-print(scriptHash) -- Should return a non-changing SHA384 hash in hex
-```
-
-```luau
-print(getscripthash(Instance.new("LocalScript"))) -- Should error due to having no bytecode
+print(scriptHash) -- Should return a non-changing SHA384 hash in hex representation
 ```
 
 ---
@@ -74,23 +69,21 @@ This function creates a new closure (function) from the module/script's bytecode
 
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
-```luau
-function getscriptclosure(script: LocalScript | ModuleScript | Script): function
-```
+> [!NOTE]
+> This function should return nil, an empty string or error if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to check for nil or an empty string, rather than each executor having its own output.
 
-### Parameters
+### Parameter
 
 - `script` - The module/script the function should create a closure out of.
 
-### Examples
+### Example
 
 ```luau
 local AnimScript = game.Players.LocalPlayer.Character.Animate
 print(type(getscriptclosure(AnimScript))) -- Output: function
-```
 
-```luau
-print(getscriptclosure(Instance.new("LocalScript"))) -- Should error for not having any bytecode
+print(getscriptclosure(Instance.new("LocalScript"))) -- Output: nil, "" or error
 ```
 
 ---
@@ -111,7 +104,7 @@ This should work with `LocalScript`, `ModuleScript`, and `Script` instances that
 function getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
 ```
 
-### Parameters
+### Parameter
 
 - `script` - The module/script the function gets the globals table of.
 
@@ -120,10 +113,8 @@ function getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
 ```luau
 local scriptEnv = getsenv(game.Players.LocalPlayer.Character.Animate)
 print(type(scriptEnv.onSwimming)) -- Output: function
-```
 
-```luau
-print(getsenv(Instance.new("LocalScript"))) -- Should error with something along the lines of "This script isn't running"
+print(getsenv(Instance.new("LocalScript"))) -- Should error with something along the lines of "script not running"
 ```
 
 ---
@@ -133,7 +124,7 @@ print(getsenv(Instance.new("LocalScript"))) -- Should error with something along
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 >
-> This function should be implemented by using the `RBX::Lua::InstanceBridge::Push` function; any other implementation will fail our tests.
+> This function is recommended to be implemented by using the `RBX::Lua::InstanceBridge::Push` function.
 
 Returns a table of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
 This table should also include scripts or modules that are parented to nil.
@@ -142,7 +133,7 @@ This table should also include scripts or modules that are parented to nil.
 function getscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```
 
-### Examples
+### Example
 
 ```luau
 local DummyScript = Instance.new("LocalScript")
@@ -170,7 +161,7 @@ Should also include all `Script` instances with RunContext set to Client that ar
 function getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```
 
-### Examples
+### Example
 
 ```luau
 local DummyScript = Instance.new("LocalScript", game.Players.LocalPlayer.Character)
@@ -197,7 +188,7 @@ Returns a table of all ModuleScripts that are currently running.
 function getloadedmodules(): { [number]: ModuleScript }
 ```
 
-### Examples
+### Example
 
 ```luau
 local DummyModule = Instance.new("ModuleScript")
@@ -224,7 +215,7 @@ Returns the script associated with the current thread. This function is useful f
 function getcallingscript(): (LocalScript | ModuleScript | Script)
 ```
 
-### Examples
+### Example
 
 ```luau
 local _
@@ -238,10 +229,7 @@ _ = hookmetamethod(game, "__index", function(t, k)
         return _(t, k)
     end
 end)
-```
 
-```luau
--- Called from the executor's thread
 local currentScript = getcallingscript()
 print(currentScript.Name) -- Prints the name of the script
 ```
