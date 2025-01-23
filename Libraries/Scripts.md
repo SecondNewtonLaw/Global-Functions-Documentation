@@ -227,15 +227,15 @@ function getcallingscript(): (LocalScript | ModuleScript | Script)
 ### Examples
 
 ```luau
-local original__index
-original__index = hookmetamethod(game, "__index", function(t, k)
+local _
+_ = hookmetamethod(game, "__index", function(t, k)
     if not checkcaller() then
         local callingScript = getcallingscript() -- Should return a foreign script
 
         warn("__index called from script:", callingScript:GetFullName())
 
-        hookmetamethod(game, "__index", original__index)
-        return original__index(t, k)
+        hookmetamethod(game, "__index", _)
+        return _(t, k)
     end
 end)
 ```
