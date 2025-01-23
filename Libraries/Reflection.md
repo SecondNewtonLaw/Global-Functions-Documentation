@@ -70,24 +70,26 @@ print(gethiddenproperty(part, "DataCost")) -- Returns 100, true [Hidden]
 
 ## checkcaller
 
-Determines if the current function was invoked by the executor.
+Determines whether the function was called from the executor's thread.
 
 ```luau
 function checkcaller(): boolean
 ```
 
-### Examples
+### Example
 
 ```luau
-local originalnamecall = hookmetamethod(game, "__namecall", function(self, ...)
-    local method = getnamecallmethod()
-    if method == "FireServer" then
-        if checkcaller() then
-            print("fireserver invoked from executor") -- the namecall was called from the current executor
-        else
-            print("fireserver invoked foreign") -- the namecall was invoked from a foreign script
-        end
+local FromCaller
+local _; _ = hookmetamethod(game, "__namecall", function(...)
+    if FromCaller ~= true then
+        FromCaller = checkcaller()
     end
-    return originalnamecall(self, ...)
+    return _(...)
 end)
+
+task.wait(0.09) -- Step a bit
+hookmetamethod(game, "__namecall", _)
+
+print(FromCaller) -- Output: false
+print(checkcaller()) -- Output: true
 ```
