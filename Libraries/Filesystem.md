@@ -5,9 +5,6 @@ Functions that provide read and write access to a files in an executor's workspa
 > [!WARNING]
 > **Filesystem** functions should restrict access to read and write potentially harmful file types like `.exe` or `.bat`
 
-> [!NOTE]
-> If a file or folder does not exist and it is checked via `isfolder`/`isfile` it should return false
-
 ---
 
 ## writefile
@@ -25,8 +22,8 @@ function writefile(path: string, data: string): ()
 ### Example
 
 ```luau
-writefile("thing.txt", "Hello, world!") -- thing.txt is written with the data "Hello, world!"
-setclipboard(readfile("thing.txt")) -- your clipboard will now contain the string "Hello, world!" from thing.txt
+writefile("file.txt", "Hello world")
+print(readfile("file.txt")) -- Output: Hello world
 ```
 
 ---
@@ -39,14 +36,14 @@ Retrieves the content of the file at the specified path.
 function readfile(path: string): string
 ```
 
-### Parameters
+### Parameter
 - `path` - path to the file that will be read
 
 ### Example
 
 ```luau
-writefile("thing.txt", "Hello, world!")
-setclipboard(readfile("thing.txt")) -- your clipboard will now contain the string "Hello, world!" from thing.txt
+writefile("file0.txt", "Hello")
+print(readfile("file0.txt")) -- Output: Hello
 ```
 
 ---
@@ -56,20 +53,25 @@ setclipboard(readfile("thing.txt")) -- your clipboard will now contain the strin
 Provides a list of files and folders within a specified directory.
 
 ```luau
-function listfiles(path: string): {string}
+function listfiles(path: string): { [number]: string }
 ```
 
-### Parameters
+### Parameter
 - `path` - path to the directory
 
-### Examples
+### Example
 
 ```luau
--- second is a folder under the folder that is in the listfiles parameter; Folder --> Second
-writefile("folder/second/thing1.txt", "what")
-writefile("folder/second/thing2.txt", "what ok")
-for _, file in ipairs(listfiles("folder/second") do
-    print(file) -- thing1 and thing2 will be outputted into the console
+writefile("file1.txt", "")
+writefile("file2.lua", "")
+task.wait()
+for _, File in listfiles("") do
+    if File == "file1.txt" then
+        print(`Found: {File}`) -- Output: Found: file1.txt
+    end
+    if File == "file2.lua" then
+        print(`Found: {File}`) -- Output: Found: file2.lua
+    end
 end
 ```
 
@@ -83,16 +85,15 @@ Determines if the specified path is a file.
 function isfile(path: string): boolean
 ```
 
-### Parameters
-- `path` - The path to check
+### Parameter
+- `path` - The path to the file
 
 ### Example
 
 ```luau
-makefolder("thing")
-writefile("thing/real.txt", "Hello, World!")
-print(isfile("thing")) -- Output: False
-print(isfile("thing/real.txt")) -- Output: True
+print(isfile("nonexistent.txt")) -- Output: false
+writefile("file3.txt", "")
+print(isfile("file3.txt")) -- Output: true
 ```
 
 ---
@@ -106,19 +107,15 @@ function appendfile(path: string, contents: string): ()
 ```
 
 ### Parameters
-- `path` - Path to the file you will append data to
+- `path` - Path to the file
 - `contents` - The content to append
 
 ### Example
 
 ```luau
-writefile("items.txt", "List of Items:\n")
-
-for _, child in ipairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-    if child.ClassName ~= "" then
-        appendfile("items.txt", child.ClassName .. "\n")
-    end
-end
+writefile("file4.txt", "print(")
+appendfile("file4.txt", "'Hello')")
+print(readfile("file4.txt")) -- Output: print('Hello')
 ```
 
 ---
@@ -131,16 +128,17 @@ Deletes the file at the specified path.
 function delfile(path: string): ()
 ```
 
-### Parameters
+### Parameter
 
-- `path` - Path to the file you will delete
+- `path` - Path to the file
 
 ### Example
 
 ```luau
-writefile("thing.txt", "Hello, world!")
-delfile("thing.txt") -- thing.txt is now removed from the workspace and shouldn't exist
-print(isfile("thing.txt")) -- Output: False
+writefile("file5.txt", "Hello")
+print(isfile("file5.txt")) -- Output: true
+delfile("file5.txt")
+print(isfile("file5.txt")) -- Output: false
 ```
 
 ---
@@ -153,38 +151,25 @@ Generates a chunk from the file at the given path, using the global environment.
 function loadfile(path: string): ()
 ```
 
-### Parameters
+### Parameter
 
-- `path` - the file to generate a chunk from
+- `path` - Path to the file
 
-### Example
+### Examples
 
 ```luau
-writefile("name.lua", "local name = ...; return 'My name is, ' .. name")
-local func, err = loadfile("name.lua")
-local output = assert(func, err)("Alice")
-print(output)  -- Output: My name is, Alice
+writefile("file6.lua", "return 10 + ...")
+local Func, Err = loadfile("file5.lua")
+print(Func(1), Err) -- Output: 11, nil
 ```
 
----
-
-## getcustomasset
-
-Returns a content URL `(e.g., rbxasset://)` that can be used with UI elements, sounds, meshes, and more. Internally, files are copied to the game's content directory.
-
 ```luau
-function getcustomasset(path: string, noCache: boolean): string
-```
+writefile("file6.lua", "retrn 10  ...")
+local Func, Err = loadfile("file5.lua")
 
-### Parameters
-
-- `path` - The path to the asset.
-- `noCache` - Determines whether the asset should be cached or not.
-
-### Example
-
-```luau
-TBD
+if Func == nil and string.find(Err, "expected assignment or a function call") then
+    print("Caught the error") -- Output: Caught the error
+end
 ```
 
 ---
@@ -197,15 +182,15 @@ Creates a folder at the specified path if it doesn't already exist.
 function makefolder(path: string): ()
 ```
 
-### Parameters
+### Parameter
 
 - `path` - The location where you want to create the folder.
 
 ### Example
 
 ```luau
-makefolder("thingy")
-print(isfolder("thingy"))) -- Output: True
+makefolder("folder")
+print(isfolder("folder"))) -- Output: true
 ```
 
 --- 
@@ -218,15 +203,17 @@ Determines if the specified path is a folder.
 function isfolder(path: string): boolean
 ```
 
-### Parameters
+### Parameter
 
 - `path` - The path to check
 
-### Example
+### Examples
 
 ```luau
-writefile("thingy.txt", "sunc")
-print(isfolder("thingy.txt"))) -- Output: False
+writefile("file7.txt", "")
+makefolder("folder2")
+print(isfolder("file7.txt")) -- Output: false
+print(isfolder("folder2")) -- Output: true
 ```
 
 ---
@@ -239,14 +226,43 @@ Deletes the folder at the specified path.
 function delfolder(path: string): ()
 ```
 
-### Parameters
+### Parameter
 
 - `path` - Path to the folder you will delete
 
 ### Example
 
 ```luau
-makefolder("thingy")
-delfolder("thingy")
-print(isfolder("thingy")) -- Output: False | it does not exist anymore so it returned false
+makefolder("folder3")
+print(isfolder("folder3")) -- Output: true
+delfolder("folder3")
+print(isfolder("folder3")) -- Output: false
+```
+
+---
+
+## getcustomasset
+
+Returns a content URL `(e.g., rbxasset://)` that can be used with UI elements, sounds, meshes, and more. Internally, files are copied to the game's content directory.
+
+```luau
+function getcustomasset(path: string): string
+```
+
+### Parameter
+
+- `path` - The path to the file.
+
+### Example
+
+```luau
+-- Will load and play an mp3 sound in-game.
+local Encoded = game:HttpGet("https://gitlab.com/sens3/nebunu/-/raw/main/encodedBytecode.txt?ref_type=heads")
+writefile("ExampleSound.mp3", crypt.base64decode(Encoded)) -- Write bytes to file
+local Retrieved = getcustomasset("ExampleSound.mp3")
+local Sound = Instance.new("Sound")
+Sound.Parent = workspace
+Sound.SoundId = Retrieved
+Sound.Volume = 0.35
+Sound:Play()
 ```
