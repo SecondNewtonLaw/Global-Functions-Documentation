@@ -9,14 +9,14 @@ Functions that allow us to get **more control** over Luau functions.
 Returns the constants of the specified Lua function. Should error on C closure (functions) because they have no constants.
 
 ```luau
-debug.getconstants(func: function): { [number]: number | string | nil }
+fuunction debug.getconstants(func: function): { [number]: number | string | boolean | nil }
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The Lua function the constants would be obtained from.
 
-### Examples
+### Example
 
 ```luau
 local function DummyFunction()
@@ -24,17 +24,17 @@ local function DummyFunction()
     string.split(dummyString, " ")
 end
 
-local constants = debug.getconstants(DummyFunction)
-for constantIndex, constant in constants do
-    print(`[{constantIndex}]: {constant}`)
+local Constants = debug.getconstants(DummyFunction)
+for ConstantIndex, Constant in Constants do
+    print(`[{ConstantIndex}]: {Constant}`)
 end
 
--- Optimization Level: 1, Debug Level: 1
 -- Output:
 -- [1]: "string"
 -- [2]: "split"
 -- [4]: "foo bar"
 -- [5]: " "
+-- Optimization Level: 1, Debug Level: 1
 ```
 
 ```luau
@@ -48,7 +48,7 @@ print(debug.getconstants(print)) -- Should error due to being a C closure (funct
 Returns the constant at the specified index. If there is no constant at the specified index, `nil` will be returned instead.
 
 ```luau
-debug.getconstant(func: function, index: number): number | string | nil
+function debug.getconstant(func: (...any) -> (...any), index: number): number | string | boolean | nil
 ```
 
 ### Parameters
@@ -64,30 +64,55 @@ local function DummyFunction()
     string.split(dummyString, " ")
 end
 
-local result = debug.getconstant(DummyFunction, 2)
-print(result)
+local Result = debug.getconstant(DummyFunction, 2)
+print(Result) -- Output: string
 
 -- Optimization Level: 1, Debug Level: 1
--- Output:
--- string
 ```
 
 ```luau
 local function DummyFunction()
-    local dummyString = "foo bar"
-    string.split(dummyString, " ")
+    local DummyString = "foo bar"
+    string.split(DummyString, " ")
 end
 
-local result = debug.getconstant(DummyFunction, 3)
-print(result)
+local Result = debug.getconstant(DummyFunction, 3)
+print(Result) -- Output: nil
 
 -- Optimization Level: 1, Debug Level: 1
--- Output:
--- nil
 ```
 
 ```luau
 print(debug.getconstant(print)) -- Should error due to being a C closure (function)
+```
+
+---
+
+## debug.setconstant
+
+Sets the wanted constant at the specified index. An error will be returned if the index is invalid.
+
+```luau
+function debug.setconstant(func: (...any) -> (...any), index: number, value: number | string | boolean): ()
+```
+
+### Parameters
+
+- `func` - The Lua function whose constant would be set
+- `index` - The position of the constant
+- `value` - New constant replacing the old one
+
+### Example
+
+```luau
+local function DummyFunction()
+    print(game.Name)
+end
+
+debug.setconstant(DummyFunction, 4, "Players")
+
+DummyFunction() -- Output: Players
+-- Optimization Level: 1, Debug Level: 1
 ```
 
 ---
@@ -97,54 +122,53 @@ print(debug.getconstant(print)) -- Should error due to being a C closure (functi
 Returns the upvalues of the specified function. `nil` will be returned if there is none.
 
 ```luau
-debug.getupvalues(func: function): { [number]: any }
+function debug.getupvalues(func: (...any) -> (...any)): { [number]: any }
 ```
 
-### Parameters
+### Parameter
 
 - `func` - The Lua function the upvalues would be obtained from.
 
 ### Examples
 
 ```luau
-local var1 = false
-local var2 = "Hi"
+local Var1 = false
+local Var2 = "Hi"
 local function DummyFunction()
-    var1 = true
-    var2..=", hello"
+    Var1 = true
+    Var2..=", hello"
 end
 
-for upvalIndex, upvalValue in pairs(debug.getupvalues(DummyFunction)) do
-    print(upvalIndex, upvalValue)
+for UpvalIndex, UpvalValue in pairs(debug.getupvalues(DummyFunction)) do
+    print(UpvalIndex, UpvalValue)
 end
 
 -- Output:
 -- 1 false
--- 2 "Hi"
+-- 2 Hi
 ```
 
 ```luau
-local var1 = false
+local Var1 = false
 local function DummyFunction()
-    print(var1)
+    print(Var1)
 end
 
-print(next(debug.getupvalues(DummyFunction)))
-
--- Output:
--- nil
+print(next(debug.getupvalues(DummyFunction))) -- Output: nil
 ```
 
 ```luau
-print(debug.getupvalues(print)) -- Should error due to being a C closure (function)
+print(debug.getupvalues(print)) -- Should error due to `print` being a C closure
 ```
+
+---
 
 ## debug.getupvalue
 
 Returns the upvalue at the specified index. An error should occur if the index is invalid.
 
 ```luau
-debug.getupvalue(func: function, index: number): any
+function debug.getupvalue(func: (...any) -> (...any), index: number): any
 ```
 
 ### Parameters
@@ -155,17 +179,14 @@ debug.getupvalue(func: function, index: number): any
 ### Examples
 
 ```luau
-local up1 = function() print("Hello from up") end
+local Up1 = function() print("Hello from up") end
 
 local function DummyFunction()
-    up1()
+    Up1()
 end
 
-local upvalue = debug.getupvalue(DummyFunction, 1)
-upvalue()
-
--- Output:
--- "Hello from up"
+local Upvalue = debug.getupvalue(DummyFunction, 1)
+Upvalue() -- Output: Hello from up
 ```
 
 ```luau
@@ -176,4 +197,82 @@ debug.getupvalue(DummyFunction, 0) -- Should error on this line
 
 ```luau
 debug.getupvalue(print, 1) -- Should error due to invalid index and C closure passage
+```
+
+---
+
+## debug.setupvalue
+
+Replaces the upvalue at the specified index. An error should occur if the index is invalid.
+
+```luau
+function debug.setupvalue(func: (...any) -> (...any), index: number, value: any): ()
+```
+
+### Parameters
+
+- `func` - The Lua function whose upvalue would be set.
+- `index` - The position of the wanted upvalue.
+- `value` - New upvalue replacing the old one
+
+### Example
+
+```luau
+local Up = 90
+
+local function DummyFunction()
+    Up += 1
+    print(Up)
+end
+
+DummyFunction() -- Output: 91
+debug.setupvalue(DummyFunction, 1, 99)
+DummyFunction() -- Output: 100
+```
+
+---
+
+## debug.getstack
+
+Returns all used values in the provided stack level
+
+```luau
+function debug.getstack(level: number, index: number?): any | { [number]: any  }
+```
+
+### Parameters
+
+- `level` - The call stack
+- `index?` - The position of the values inside the call stack
+
+### Examples
+
+```luau
+-- level 1 (stack)
+local Count = 0
+local function RecursiveFunction() -- Entering a level deeper, meaning we can call using level 2 in this function
+    Count += 1
+    if Count > 6 then return end -- We'll stop at 6 to not retrieve useless information for our example
+    local a = 29
+    local b = true
+    local f = "Example"
+    a += 1
+    b = false
+    f..="s"
+    print(debug.getstack(1, Count))
+    RecursiveFunction()
+end
+
+RecursiveFunction()
+-- Output:
+-- 30
+-- false
+-- Examples
+-- function: 0x...  <-- print function
+-- function: 0x...  <-- getstack function
+-- 1  <-- argument provided to getstack function
+```
+
+```luau
+TODO
 ```
