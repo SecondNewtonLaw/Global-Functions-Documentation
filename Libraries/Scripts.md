@@ -7,24 +7,24 @@ The **Script** library provides functions that access to script environments and
 ## getscriptbytecode
 
 > [!NOTE]
-> This function should return nil, an empty string or error if the script has no bytecode.
-> We encourage this behavior, as it's easier for people to check for nil or an empty string, rather than each executor having its own output.
+> This function should return nil if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to check for nil, rather than each executor having its own output.
 
 ```luau
-function getscriptbytecode(script: LocalScript | ModuleScript | Script): string
+function getscriptbytecode(script: LocalScript | ModuleScript | Script): string | nil
 ```
 
 ### Parameter
 
-- `script` - The module/script the bytecode should be obtained from.
+- `script` - The `Script`, `LocalScript` or `ModuleScript` the bytecode should be obtained from.
 
 ### Example
 
 ```luau
-local AnimScript = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
-print(AnimScript) -- Should return a string with the bytecode
+local AnimateScriptBytecode = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
+print(AnimateScriptBytecode) -- Returns a string with the bytecode.
 
-print(getscriptbytecode(Instance.new("LocalScript"))) -- Output: nil, "" or error
+print(getscriptbytecode(Instance.new("LocalScript"))) -- Output: nil
 ```
 
 ---
