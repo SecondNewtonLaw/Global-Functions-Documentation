@@ -274,5 +274,50 @@ RecursiveFunction()
 ```
 
 ```luau
-TODO
+local function DummyFunction() return "Hello" end
+local Var = 5
+Var += 1
+
+return (function()
+    print(debug.getstack(2, 1)()) -- Output: Hello
+    print(debug.getstack(2, 2)) -- Output: 6
+end)()
+```
+
+---
+
+## debug.setstack
+
+Sets a value in the stack at the specified index.
+
+```luau
+function debug.setstack(level: number, index: number, value: any): ()
+```
+
+### Parameters
+
+- `level` - The call stack.
+- `index` - The position of the values inside the call stack.
+- `value` - The new value to set at the specified position.
+
+### Examples
+
+```luau
+error(debug.setstack(1, 1, function() -- Replace error with our function
+    return function()
+        print("Replaced")
+    end
+end))() -- Output: Replaced
+```
+
+```luau
+local OuterValue = 10
+
+local function InnerFunction()
+    OuterValue += 9
+    debug.setstack(2, 1, 100)
+end 
+InnerFunction()
+
+print(OuterValue) -- Output: 100
 ```
