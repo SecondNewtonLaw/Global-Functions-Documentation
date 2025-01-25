@@ -27,6 +27,24 @@ print(AnimateScriptBytecode) -- Returns a string with the bytecode.
 print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws Error
 ```
 
+## setscriptbytecode
+
+```luau
+function getscriptbytecode(script: Script | LocalScript | ModuleScript, source: string)
+```
+
+### Parameter
+
+- `script` - The `Script`, `LocalScript` or `ModuleScript` the bytecode should be obtained from.
+- `source` - The string to be compiled, compressed and then written to the script's bytecode
+
+### Example
+
+```luau
+local AnimateScriptBytecode = game.Players.LocalPlayer.Character.Animate
+setscriptbytecode(AnimateScriptBytecode, "print('undetcteted')")
+```
+
 ---
 
 ## getscripthash
