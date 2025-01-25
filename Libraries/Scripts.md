@@ -7,11 +7,11 @@ The **Script** library provides functions that access to script environments and
 ## getscriptbytecode
 
 > [!NOTE]
-> This function should return nil if the script has no bytecode.
-> We encourage this behavior, as it's easier for people to check for nil, rather than each executor having its own output.
+> This function should throw an **error** if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
 
 ```luau
-function getscriptbytecode(script: LocalScript | ModuleScript | Script): string | nil
+function getscriptbytecode(script: Script | LocalScript | ModuleScript): string
 ```
 
 ### Parameter
@@ -24,7 +24,7 @@ function getscriptbytecode(script: LocalScript | ModuleScript | Script): string 
 local AnimateScriptBytecode = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
 print(AnimateScriptBytecode) -- Returns a string with the bytecode.
 
-print(getscriptbytecode(Instance.new("LocalScript"))) -- Output: nil
+print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws Error
 ```
 
 ---
@@ -38,12 +38,12 @@ print(getscriptbytecode(Instance.new("LocalScript"))) -- Output: nil
 Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-function getscripthash(script: LocalScript | ModuleScript | Script): string
+function getscripthash(script: Script | LocalScript | ModuleScript): string
 ```
 
 ### Parameter
 
-- `script` - The module/script the function should obtain a hash of.
+- `script` - The `Script`, `LocalScript` or `ModuleScript` the function should obtain a hash of.
 
 ### Example
 
@@ -70,20 +70,24 @@ This function creates a new closure (function) from the module/script's bytecode
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 > [!NOTE]
-> This function should return nil, an empty string or error if the script has no bytecode.
-> We encourage this behavior, as it's easier for people to check for nil or an empty string, rather than each executor having its own output.
+> This function should throw an **error** if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
+
+```luau
+function getscriptclosure(script: Script | LocalScript | ModuleScript): (...any) -> (...any)
+```
 
 ### Parameter
 
-- `script` - The module/script the function should create a closure out of.
+- `script` - The `Script`, `LocalScript` or `ModuleScript` the function should create a closure out of.
 
 ### Example
 
 ```luau
-local AnimScript = game.Players.LocalPlayer.Character.Animate
-print(type(getscriptclosure(AnimScript))) -- Output: function
+local AnimateScript = game.Players.LocalPlayer.Character.Animate
+print(getscriptclosure(AnimateScript)) -- Output: function ...
 
-print(getscriptclosure(Instance.new("LocalScript"))) -- Output: nil, "" or error
+print(getscriptclosure(Instance.new("LocalScript"))) -- Throws Error
 ```
 
 ---
@@ -101,7 +105,7 @@ Gives you the globals table of a running module/script (meaning all variables no
 This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
 
 ```luau
-function getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
+function getsenv(script: Script | LocalScript | ModuleScript): { [any]: any }
 ```
 
 ### Parameter
@@ -112,9 +116,9 @@ function getsenv(script: LocalScript | ModuleScript | Script): { [string]: any }
 
 ```luau
 local scriptEnv = getsenv(game.Players.LocalPlayer.Character.Animate)
-print(type(scriptEnv.onSwimming)) -- Output: function
+print(scriptEnv.onSwimming) -- Output: function ...
 
-print(getsenv(Instance.new("LocalScript"))) -- Should error with something along the lines of "script not running"
+print(getsenv(Instance.new("LocalScript"))) -- Throws an error
 ```
 
 ---
@@ -130,7 +134,7 @@ Returns a table of all instances that inherit the `BaseScript` class; this list 
 This table should also include scripts or modules that are parented to nil.
 
 ```luau
-function getscripts(): { [number]: LocalScript | ModuleScript | Script }
+function getscripts(): { Script | LocalScript | ModuleScript }
 ```
 
 ### Example
@@ -138,8 +142,8 @@ function getscripts(): { [number]: LocalScript | ModuleScript | Script }
 ```luau
 local DummyScript = Instance.new("LocalScript")
 
-for indexScript, valueScript in pairs(getscripts()) do
-    if valueScript == DummyScript then
+for _, value_script in pairs(getscripts()) do
+    if (value_script == DummyScript) then
         print(`Found the script {DummyScript}`)
     end
 end
@@ -164,16 +168,16 @@ function getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
 ### Example
 
 ```luau
-local DummyScript = Instance.new("LocalScript", game.Players.LocalPlayer.Character)
+local DummyScript = game.Players.LocalPlayer.Character.Animate
 local DummyScript2 = Instance.new("LocalScript")
 
 pcall(require, DummyScript)
 
-for indexScript, valueScript in pairs(getrunningscripts()) do
-    if valueScript == DummyScript then
+for _, value_script in pairs(getrunningscripts()) do
+    if (value_script == DummyScript) then
         print(`Found the running script {DummyScript}`)
-    elseif valueScript == DummyScript2 then
-        print(`Found the non-running script: {DummyScript2}`)
+    elseif (value_script == DummyScript2) then
+        -- Should never happen!
     end
 end
 ```
@@ -196,11 +200,11 @@ local DummyModule2 = Instance.new("ModuleScript")
 
 pcall(require, DummyModule)
 
-for indexModule, valueModule in pairs(getloadedmodules()) do
-    if valueModule == DummyModule then
+for _, value_module in pairs(getloadedmodules()) do
+    if value_module == DummyModule then
         print(`Found the loaded {DummyModule}`)
-    elseif valueModule == DummyModule2 then
-        print(`Found the unloaded module: {DummyModule2}`)
+    elseif value_module == DummyModule2 then
+        -- Should never happen!
     end
 end
 ```
@@ -208,25 +212,25 @@ end
 ---
 
 ## getcallingscript
-
+s
 Returns the script associated with the current thread. This function is useful for determining which script is currently executing the Luau code.
 
 ```luau
-function getcallingscript(): (LocalScript | ModuleScript | Script)
+function getcallingscript(): LocalScript | ModuleScript | Script
 ```
 
 ### Example
 
 ```luau
-local _
-_ = hookmetamethod(game, "__index", function(t, k)
+local old
+old = hookmetamethod(game, "__index", function(t, k)
     if not checkcaller() then
         local callingScript = getcallingscript() -- Should return a foreign script
 
         warn("__index called from script:", callingScript:GetFullName())
 
-        hookmetamethod(game, "__index", _)
-        return _(t, k)
+        hookmetamethod(game, "__index", old)
+        return old(t, k)
     end
 end)
 
