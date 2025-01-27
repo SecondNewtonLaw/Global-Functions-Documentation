@@ -9,7 +9,7 @@ Functions that allow us to get **more control** over Luau functions.
 Returns the constants of the specified Lua function. Should error on C closure (functions) because they have no constants.
 
 ```luau
-fuunction debug.getconstants(func: function): { [number]: number | string | boolean | nil }
+function debug.getconstants(func: function): { [number]: number | string | boolean | nil }
 ```
 
 ### Parameter
@@ -320,4 +320,35 @@ end
 InnerFunction()
 
 print(OuterValue) -- Output: 100
+```
+
+---
+
+## debug.getprotos
+
+Returns all the functions defined in the provided function
+
+```luau
+function debug.getprotos(func: (...any) -> (...any)): { [number]: (...any) -> (...any) }
+```
+
+### Parameter
+
+- `func` - The function to obtain the protos from
+
+### Example
+
+```luau
+local function DummyFunction0()
+    local function DummyFunction1() end
+    local function DummyFunction2() end
+end
+
+for IndexProto, ValueProto in pairs(debug.getprotos(DummyFunction0)) do
+    print(IndexProto, debug.info(ValueProto, "n"))
+end
+
+-- Output:
+-- DummyFunction1
+-- DummyFunction2
 ```
