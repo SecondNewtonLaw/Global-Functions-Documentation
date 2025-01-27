@@ -14,7 +14,7 @@ This function takes in a function and wraps it into a C closure.
 When the returned function is called, the original Lua closure is called, and arguments are passed to the original closure, and then the original closure returned arguments are passed to the caller of the C closure.
 
 ```luau
-function newcclosure<T>(function_to_wrap: T): T
+function newcclosure<A..., R...>(function_to_wrap: (A...) -> R...): (A...) -> R...
 ```
 
 ### Parameter
@@ -59,7 +59,7 @@ FunctionThatYields()
 Checks if a given function is a C closure (implemented in C/C++).
 
 ```luau
-function iscclosure(func: (...any) -> (...any)): boolean
+function iscclosure<A..., R...>(func: (A...) -> R...): boolean
 ```
 
 ### Parameter
@@ -94,7 +94,7 @@ print(iscclosure(ExecutorLuaClosure)) -- Output: false
 Checks if a given function is a L closure (implemented in Lua).
 
 ```luau
-function islclosure(func: (...any) -> (...any)): boolean
+function islclosure<A..., R...>(func: (A...) -> R...): boolean
 ```
 
 ### Parameter
@@ -127,7 +127,7 @@ print(islclosure(ExecutorCClosure)) -- Output: false
 Checks if a given function is the executor's closure.
 
 ```luau
-function isexecutorclosure(func: (...any) -> (...any)): boolean
+function isexecutorclosure<A..., R...>(func: (A...) -> R...): boolean
 ```
 
 ### Parameter
@@ -166,7 +166,7 @@ Creates and returns a new function that has the same behaviour as the passed fun
 > Any sort of modification to the original shouldn't affect the clone. Meaning that stuff like hooking the original will not affect the clone.
 
 ```luau
-clonefunction<T>(func: T): T
+function clonefunction<A..., R...>(func: (A...) -> R...): (A...) -> R...
 ```
 
 ### Parameter
@@ -200,7 +200,7 @@ Hooks a function with another wanted function, and returns the original unhooked
 > All possible hooking closure pairs should be supported throughout L, NC, C. (NC = newcclosure)
 
 ```luau
-function hookfunction<T>(function_to_hook: T, function_hook: (...any) -> (...any)): T
+function hookfunction<A1..., R1..., A2..., R2...>(function_to_hook: (A1...) -> R1..., function_hook: (A2...) -> R2...): (A1...) -> R1...
 ```
 
 ### Parameters
