@@ -169,7 +169,7 @@ Creates and returns a new function that has the same behaviour as the passed fun
 > Any sort of modification to the original shouldn't affect the clone. Meaning that stuff like hooking the original will not affect the clone.
 
 ```luau
-function clonefunction(func: (...any) -> (...any)): (...any) -> (...any)
+clonefunction<T>(func: T): T
 ```
 
 ### Parameter
