@@ -12,7 +12,7 @@ Provides a table containing all executor functions, serving as the shared enviro
 getgenv(): { [any]: any }
 ```
 
-### Examples
+### Example
 
 ```luau
 getgenv().test = "hello world"
@@ -29,7 +29,7 @@ Returns the environment table that all game scripts use. Can be used to access f
 getrenv(): { [any]: any }
 ```
 
-### Examples
+### Example
 
 ```luau
 getrenv().game = nil -- Now no game script can access game
@@ -44,12 +44,12 @@ Returns a table with all Lua values that aren't dead (meaning they are reference
 By default, it excludes tables; you can use `includeTables` to also get tables.
 
 ```luau
-getgc(includeTables: boolean?): { [number]: { [any]: any } | function }
+getgc<A..., R...>(includeTables: boolean?): { [number]: { [any]: any } | (A...) -> R... }
 ```
 
-### Parameters
+### Parameter
 
-- `includeTables` - (Optional) Whether the output table should also include tables
+- `includeTables?` - Whether the output table should also include tables
 
 ### Examples
 
@@ -88,7 +88,7 @@ end
 Searches for Lua values in the garbage collector that are currently referenced and match the specified criteria.
 
 ```luau
-function filtergc(...): { { [any]: any } | (...any) -> (...any) }  |  { [any]: any } | (...any) -> (...any)
+function filtergc<A1..., R1..., A2..., R2...>(...): { { [any]: any } | (A1...) -> R1... }  |  { [any]: any } | (A2...) -> R2...
 ```
 
 ### Table:
