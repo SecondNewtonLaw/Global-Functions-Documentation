@@ -48,7 +48,7 @@ print(debug.getconstants(print)) -- Should error due to being a C closure (funct
 Returns the constant at the specified index. If there is no constant at the specified index, `nil` will be returned instead.
 
 ```luau
-function debug.getconstant<A..., R...>(func: (A...) -> (R...)), index: number): number | string | boolean | nil
+function debug.getconstant<A..., R...>(func: (A...) -> (R...) | number), index: number): number | string | boolean | nil
 ```
 
 ### Parameters
@@ -93,12 +93,12 @@ print(debug.getconstant(print)) -- Should error due to being a C closure (functi
 Sets the wanted constant at the specified index. An error will be returned if the index is invalid.
 
 ```luau
-function debug.setconstant<A..., R...>(func: (A...) -> (R...), index: number, value: number | string | boolean | nil): ()
+function debug.setconstant<A..., R...>(func: (A...) -> (R...) | number, index: number, value: number | string | boolean | nil): ()
 ```
 
 ### Parameters
 
-- `func` - The Lua function whose constant would be set
+- `func` - The Lua function/level whose constant would be set
 - `index` - The position of the constant
 - `value` - New constant replacing the old one
 
@@ -122,12 +122,12 @@ DummyFunction() -- Output: Players
 Returns the upvalues of the specified function. `nil` will be returned if there is none.
 
 ```luau
-function debug.getupvalues<A..., R...>(func: (A...) -> (R...)): { any }
+function debug.getupvalues<A..., R...>(func: (A...) -> (R...) | number): { any }
 ```
 
 ### Parameter
 
-- `func` - The Lua function the upvalues would be obtained from.
+- `func` - The Lua function/level the upvalues would be obtained from.
 
 ### Examples
 
@@ -168,12 +168,12 @@ print(debug.getupvalues(print)) -- Should error due to `print` being a C closure
 Returns the upvalue at the specified index. An error should occur if the index is invalid.
 
 ```luau
-function debug.getupvalue<A..., R...>(func: (A...) -> (R...), index: number): any
+function debug.getupvalue<A..., R...>(func: (A...) -> (R...) | number, index: number): any
 ```
 
 ### Parameters
 
-- `func` - The Lua function the upvalue would be obtained from.
+- `func` - The Lua function/level the upvalue would be obtained from.
 - `index` - The position of the wanted upvalue.
 
 ### Examples
@@ -206,12 +206,12 @@ debug.getupvalue(print, 1) -- Should error due to invalid index and C closure pa
 Replaces the upvalue at the specified index. An error should occur if the index is invalid.
 
 ```luau
-function debug.setupvalue<A..., R...>(func: (A...) -> (R...), index: number, value: any): ()
+function debug.setupvalue<A..., R...>(func: (A...) -> (R...) | number, index: number, value: any): ()
 ```
 
 ### Parameters
 
-- `func` - The Lua function whose upvalue would be set.
+- `func` - The Lua function/level whose upvalue would be set.
 - `index` - The position of the wanted upvalue.
 - `value` - New upvalue replacing the old one
 
@@ -329,7 +329,7 @@ print(OuterValue) -- Output: 100
 Returns all the functions defined in the provided function
 
 ```luau
-function debug.getprotos<A1..., R1...>(func: (A1...) -> (R1...)): { (...any) -> (...any) }
+function debug.getprotos<A1..., R1...>(func: (A1...) -> (R1...) | number): { (...any) -> (...any) }
 ```
 
 ### Parameter
@@ -360,7 +360,7 @@ end
 Returns the proto at the specified position.
 
 ```luau
-function debug.getproto<A1..., R1...>(func: (A1...) -> (R1...), index: number, activated: boolean?): (...any) -> (...any)
+function debug.getproto<A1..., R1...>(func: (A1...) -> (R1...) | number, index: number, activated: boolean?): (...any) -> (...any)
 ```
 
 ### Parameters
