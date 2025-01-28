@@ -103,7 +103,7 @@ print(gethui().ScreenGui) -- Output: "ScreenGui"
 Returns the function assigned to an object's callback property, which is otherwise inaccessible through standard indexing.
 
 ```luau
-function getcallbackvalue(object: Instance, property: string): (...any) -> (...any)?
+function getcallbackvalue(object: Instance, property: string): (...any) -> (...any)
 ```
 
 ### Parameters
@@ -115,12 +115,14 @@ function getcallbackvalue(object: Instance, property: string): (...any) -> (...a
 
 ```luau
 local DummyBindableFunction = Instance.new("BindableFunction")
+local DummyRemoteFunction = Instance.new("RemoteFunction")
 
 DummyBindableFunction.OnInvoke = function()
     print("Callback")
 end
 
 getcallbackvalue(DummyBindableFunction, "OnInvoke")() -- Output: Callback
+getcallbackvalue(DummyRemoteFunction, "OnClientInvoke") -- Throws an error
 ```
 
 ---
