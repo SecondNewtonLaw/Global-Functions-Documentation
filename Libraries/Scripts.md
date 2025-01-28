@@ -211,7 +211,7 @@ end
 ---
 
 ## getcallingscript
-s
+
 Returns the script associated with the current thread. This function is useful for determining which script is currently executing the Luau code.
 
 ```luau
@@ -233,4 +233,35 @@ local Old; Old = hookmetamethod(game, "__index", function(t, k)
 end)
 
 print(getcallingscript().Name)
+```
+
+---
+
+## loadstring
+
+Compiles the given string, and returns it runnable in a function.
+
+```luau
+function loadstring<A...>(src: string, chunkname: string?): (((A...) -> any) | nil, string?)
+```
+
+### Parameters
+
+- `src` - The source to compile.
+- `chunkname` - Name of the chunk.
+
+### Examples
+
+```luau
+loadstring([[
+    Placeholder = {"Example"}
+]])()
+
+print(Placeholder[1]) -- Output: Example
+```
+
+```luau
+local Func, Err = loadstring("Example = ", "CustomName")
+
+print(`{Func}, {Err}`) -- Output: nil, [string "CustomName"]:1: Expected identifier when parsing expression, got <eof>
 ```
