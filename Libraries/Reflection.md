@@ -93,3 +93,46 @@ hookmetamethod(game, "__namecall", _)
 print(FromCaller) -- Output: false
 print(checkcaller()) -- Output: true
 ```
+
+---
+
+## setthreadidentity
+
+Sets the current thread's identity to the wanted value
+
+```luau
+function setthreadidentity(id: number): ()
+```
+
+### Parameters
+
+- `id` - The wanted identity to change to
+
+### Example
+
+```luau
+setthreadidentity(2)
+print(game.CoreGui) -- Throws an error
+setthreadidentity(8)
+print(pcall(Instance.new, "Player")) -- Output: true Player
+```
+
+---
+
+## getthreadidentity
+
+Gets the current thread's identity
+
+```luau
+function getthreadidentity(): number
+```
+
+```luau
+task.defer(function() setthreadidentity(2); print(getthreadidentity()) end)
+setthreadidentity(3)
+print(getthreadidentity())
+
+-- Output: 
+-- 3
+-- 2
+```
