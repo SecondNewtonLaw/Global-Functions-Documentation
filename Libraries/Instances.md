@@ -12,7 +12,7 @@ The **Instance** library allows interaction with game objects.
 Returns a list of all instances referenced by the client.
 
 ```luau
-function getinstances(): { [number]: Instance }
+function getinstances(): { Instance }
 ```
 
 ### Example
@@ -20,8 +20,8 @@ function getinstances(): { [number]: Instance }
 ```luau
 local DummyPart = Instance.new("Part")
 
-for indexInstance, valueInstance in pairs(getnilinstances()) do
-    if valueInstance == DummyPart then
+for IndexInstance, ValueInstance in pairs(getnilinstances()) do
+    if ValueInstance == DummyPart then
         print(`Found the wanted nil instance: {DummyPart}`)
     end
 end
@@ -34,7 +34,7 @@ end
 Returns a list of instances that aren't descendants of a service provider.
 
 ```luau
-function getnilinstances(): { [number]: Instance }
+function getnilinstances(): { Instance }
 ```
 
 ### Example
@@ -43,8 +43,8 @@ function getnilinstances(): { [number]: Instance }
 local DummyPart = Instance.new("Part")
 DummyPart.Parent = nil
 
-for indexNil, valueNil in pairs(getnilinstances()) do
-    if valueNil == DummyPart then
+for IndexNil, ValueNil in pairs(getnilinstances()) do
+    if ValueNil == DummyPart then
         print(`Found the wanted nil instance: {DummyPart}`)
     end
 end
@@ -60,7 +60,7 @@ Returns a copy of the Instance where the copy should not be equal to the origina
 function cloneref(object: Instance): Instance
 ```
 
-### Parameters
+### Parameter
 
 - `object` - The Instance to clone.
 
@@ -180,7 +180,7 @@ Triggers a `ProximityPrompt` instantly, regardless of distance or duration.
 function fireproximityprompt(object: Instance<ProximityPrompt>): ()
 ```
 
-### Parameters
+### Parameter
 
 - `object` - The ProximityPrompt to fire
 
