@@ -127,6 +127,8 @@ Gets the current thread's identity
 function getthreadidentity(): number
 ```
 
+### Example
+
 ```luau
 task.defer(function() setthreadidentity(2); print(getthreadidentity()) end)
 setthreadidentity(3)
