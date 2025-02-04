@@ -33,6 +33,7 @@ print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws an error
 
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
+> 
 > Please hash the compressed and encrypted bytecode; do not decrypt and decompress the bytecode and then hash it!
 > Additionally, this function should throw an **error** if the script has no bytecode to hash.
 > We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
@@ -62,6 +63,7 @@ print(getscripthash(Instance.new("LocalScript"))) -- Throws an error
 
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
+> 
 > The closure you return needs to be callable (meaning it can be called without erroring). This means the closure needs to have properly set capabilities and identity and a proper environment with the script global!
 >
 > For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the script global, just push the script instance and set it on the table.
@@ -211,6 +213,12 @@ end
 ---
 
 ## getcallingscript
+
+> [!NOTE]
+> This is an implementation detail; as a regular scripter, you may ignore this!
+> 
+> Do not make this function simply grab the script global from the current thread, this is easily breakable if the game devs set their script global to other or nil,
+> instead use the instance from the Lua State userdata.
 
 Returns the script associated with the current thread. This function is useful for determining which script is currently executing the Luau code.
 
