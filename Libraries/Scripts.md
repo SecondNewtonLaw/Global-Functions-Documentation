@@ -250,7 +250,7 @@ print(getcallingscript().Name)
 Compiles the given string, and returns it runnable in a function.
 
 ```luau
-function loadstring<A...>(src: string, chunkname: string?): (((A...) -> any) | nil, string?)
+function loadstring<A...>(src: string, chunkname: string?): ((A...) -> any | nil, string?)
 ```
 
 ### Parameters
