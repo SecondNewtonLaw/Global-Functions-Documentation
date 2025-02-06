@@ -132,7 +132,7 @@ print(getsenv(Instance.new("LocalScript"))) -- Throws an error
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 >
-> This function is recommended to be implemented by using the `RBX::Lua::InstanceBridge::Push` function.
+> This function is recommended to be implemented by using the `RBX::Lua::InstanceBridge::push` function.
 > Returns a table of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
 > This table should also include scripts or modules that are parented to nil.
 
