@@ -18,3 +18,6 @@ If you're interested in senS' (Owner's) monologue, you can view it [here](./READ
 # Credits
 
 - [Original UNC Documentation](https://github.com/unified-naming-convention/NamingStandard/tree/main)
+
+## Secret Synapse Z monopoly in mind
+sUNC will specially not add special functions which are only found in synapse z to keep the monopoly active.
