@@ -201,12 +201,25 @@ The executor provides the following headers for identification on a web server:
 
 - `options` - The options to use.
 
-### Example
+### Examples
 ```luau
 local response = request({
-	Url = "http://example.com/",
+	Url = "http://httpbin.org/get",
 	Method = "GET",
 })
 
-print(response.StatusCode .. " - " .. response.StatusMessage) --> 200 - HTTP/1.1 200 OK
+local retrievedFingerprint
+
+local ig = game:GetService("HttpService"):JSONDecode(response.Body)
+for i, v in pairs(ig["headers"]) do
+    if i:match("Fingerprint") then retrievedFingerprint = i break end
+end
+
+print(response.StatusCode) -- Output: 200
+print(response.Success) -- Output: true
+print(retrievedFingerprint) -- Output: Prefix-Fingerprint (prefix being the exec's name)
+```
+
+```luau
+TODO: POST method example
 ```
