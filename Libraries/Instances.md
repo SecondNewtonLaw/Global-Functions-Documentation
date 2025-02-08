@@ -135,7 +135,7 @@ getcallbackvalue(DummyRemoteFunction, "OnClientInvoke") -- Throws an error
 Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite.
 
 ```luau
-function fireclickdetector(object: Instance<ClickDetector>, distance: number?): ()
+function fireclickdetector(object: ClickDetector, distance: number?): ()
 ```
 
 Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
@@ -177,7 +177,7 @@ fireclickdetector(ClickDetector, 31) -- Output: Fired
 Triggers a `ProximityPrompt` instantly, regardless of distance or duration.
 
 ```luau
-function fireproximityprompt(object: Instance<ProximityPrompt>): ()
+function fireproximityprompt(object: ProximityPrompt): ()
 ```
 
 ### Parameter
@@ -208,7 +208,7 @@ fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 Triggers a `Touched` event on a `BasePart` with the other wanted part.
 
 ```luau
-function firetouchinterest(part: Instance<BasePart>, part2: Instance<BasePart>, toggle: number): ()
+function firetouchinterest(part: BasePart, part2: BasePart, toggle: number): ()
 ```
 
 ### Parameters
