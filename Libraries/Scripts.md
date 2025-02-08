@@ -165,7 +165,7 @@ end
 > Should also include all `Script` instances with RunContext set to Client that are running.
 
 ```luau
-function getrunningscripts(): { [number]: LocalScript | ModuleScript | Script }
+function getrunningscripts(): { LocalScript | ModuleScript | Script }
 ```
 
 ### Example
@@ -190,7 +190,7 @@ end
 Returns a table of all ModuleScripts that are currently running.
 
 ```luau
-function getloadedmodules(): { [number]: ModuleScript }
+function getloadedmodules(): { ModuleScript }
 ```
 
 ### Example
@@ -241,6 +241,45 @@ local Old; Old = hookmetamethod(game, "__index", function(t, k)
 end)
 
 print(getcallingscript().Name)
+```
+
+---
+
+## getthreadidentity
+
+Returns the executor's current identity
+
+```luau
+function getthreadidentity(): number
+```
+
+### Example
+
+```luau
+setthreadidentity(3)
+print(getthreadidentity()) -- Output: 3
+setthreadidentity(7)
+print(getthreadidentity()) -- Output: 7
+```
+
+---
+
+## setthreadidentity
+
+Sets the executor's identity and capabilities matching that identity
+
+```luau
+function setthreadidentity(input: number): ()
+```
+
+### Parameter
+
+- `input` - The wanted identity to set to
+
+### Examples
+
+```luau
+TODO ts
 ```
 
 ---
