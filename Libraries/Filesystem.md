@@ -3,7 +3,7 @@
 Functions that provide read and write access to a files in an executor's workspace.
 
 > [!WARNING]
-> **Filesystem** functions should restrict access to read and write potentially harmful file types like `.exe` or `.bat`
+> **Filesystem** functions should restrict access to read and write potentially harmful file types like `.exe` or `.bat`.
 
 ---
 
@@ -16,8 +16,8 @@ function writefile(path: string, data: string): ()
 ```
 
 ### Parameters
-- `path` - path to the file that will be wrote to
-- `data` - the data to be written into the file
+- `path` - path to the file that will be wrote to.
+- `data` - the data to be written into the file.
 
 ### Example
 
@@ -37,7 +37,7 @@ function readfile(path: string): string
 ```
 
 ### Parameter
-- `path` - path to the file that will be read
+- `path` - path to the file that will be read.
 
 ### Example
 
@@ -53,11 +53,11 @@ print(readfile("file0.txt")) -- Output: Hello
 Provides a list of files and folders within a specified directory.
 
 ```luau
-function listfiles(path: string): { [number]: string }
+function listfiles(path: string): { string }
 ```
 
 ### Parameter
-- `path` - path to the directory
+- `path` - path to the directory.
 
 ### Example
 
@@ -86,7 +86,7 @@ function isfile(path: string): boolean
 ```
 
 ### Parameter
-- `path` - The path to the file
+- `path` - The path to the file.
 
 ### Example
 
@@ -107,8 +107,8 @@ function appendfile(path: string, contents: string): ()
 ```
 
 ### Parameters
-- `path` - Path to the file
-- `contents` - The content to append
+- `path` - Path to the file.
+- `contents` - The content to append.
 
 ### Example
 
@@ -130,7 +130,7 @@ function delfile(path: string): ()
 
 ### Parameter
 
-- `path` - Path to the file
+- `path` - Path to the file.
 
 ### Example
 
@@ -153,7 +153,7 @@ function loadfile(path: string): ()
 
 ### Parameter
 
-- `path` - Path to the file
+- `path` - Path to the file.
 
 ### Examples
 
@@ -205,9 +205,9 @@ function isfolder(path: string): boolean
 
 ### Parameter
 
-- `path` - The path to check
+- `path` - The path to check.
 
-### Examples
+### Example
 
 ```luau
 writefile("file7.txt", "")
@@ -228,7 +228,7 @@ function delfolder(path: string): ()
 
 ### Parameter
 
-- `path` - Path to the folder you will delete
+- `path` - Path to the folder you will delete.
 
 ### Example
 
