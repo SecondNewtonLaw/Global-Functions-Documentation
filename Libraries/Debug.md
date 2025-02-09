@@ -98,9 +98,9 @@ function debug.setconstant<A..., R...>(func: (A...) -> (R...) | number, index: n
 
 ### Parameters
 
-- `func` - The Lua function/level whose constant would be set
-- `index` - The position of the constant
-- `value` - New constant replacing the old one
+- `func` - The Lua function/level whose constant would be set.
+- `index` - The position of the constant.
+- `value` - New constant replacing the old one.
 
 ### Example
 
@@ -213,7 +213,7 @@ function debug.setupvalue<A..., R...>(func: (A...) -> (R...) | number, index: nu
 
 - `func` - The Lua function/level whose upvalue would be set.
 - `index` - The position of the wanted upvalue.
-- `value` - New upvalue replacing the old one
+- `value` - New upvalue replacing the old one.
 
 ### Example
 
@@ -234,7 +234,7 @@ DummyFunction() -- Output: 100
 
 ## debug.getstack
 
-Returns all used values in the provided stack level
+Returns all used values in the provided stack level.
 
 ```luau
 function debug.getstack(level: number, index: number?): any | { any }
@@ -242,8 +242,8 @@ function debug.getstack(level: number, index: number?): any | { any }
 
 ### Parameters
 
-- `level` - The call stack
-- `index?` - The position of the values inside the call stack
+- `level` - The call stack.
+- `index?` - The position of the values inside the call stack.
 
 ### Examples
 
@@ -326,7 +326,7 @@ print(OuterValue) -- Output: 100
 
 ## debug.getprotos
 
-Returns all the functions defined in the provided function
+Returns all the functions defined in the provided function.
 
 ```luau
 function debug.getprotos<A1..., R1...>(func: (A1...) -> (R1...) | number): { (...any) -> (...any) }
@@ -334,7 +334,7 @@ function debug.getprotos<A1..., R1...>(func: (A1...) -> (R1...) | number): { (..
 
 ### Parameter
 
-- `func` - The function to obtain the protos from
+- `func` - The function to obtain the protos from.
 
 ### Example
 
