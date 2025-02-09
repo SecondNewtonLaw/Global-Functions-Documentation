@@ -7,7 +7,7 @@ The **Instance** library allows interaction with game objects.
 ## getinstances
 
 > [!NOTE]
-> **getinstances** should be able to return instances outside of `game`
+> **getinstances** should be able to return instances outside of `game`.
 
 Returns a list of all instances referenced by the client.
 
@@ -80,7 +80,7 @@ print(Player == ClonedPlayer) -- Output: False
 > This is an implementation detail; as a regular scripter, you may ignore this!
 > The container in which the elements sit in, should not be findable directly. For example, a descendant for loop through CoreGui shouldn't find the container. Although if found directly, the container's parent should be clonereffed.
 >
-> If you're going for a different approach from the one above, make sure the container is able to be found in the registry
+> If you're going for a different approach from the one above, make sure the container is able to be found in the registry.
 
 Returns a hidden UI container that minimalizes most detection methods.
 
@@ -130,20 +130,21 @@ getcallbackvalue(DummyRemoteFunction, "OnClientInvoke") -- Throws an error
 ## fireclickdetector
 
 > [!NOTE]
-> It's not recommended to implement this function in luau. Doing so will expose you to easy detections
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections.
 
 Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite.
 
 ```luau
-function fireclickdetector(object: ClickDetector, distance: number?): ()
+function fireclickdetector(object: ClickDetector, distance: number?, event?): ()
 ```
 
 Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
 
 ### Parameters
 
-- `object` - The ClickDetector to trigger
-- `distance?` - Distance to trigger the ClickDetector from
+- `object` - The ClickDetector to trigger.
+- `distance?` - Distance to trigger the ClickDetector from.
+- `event?` - The chosen event to trigger the detector with.
 
 ### Example
 
@@ -161,10 +162,25 @@ fireclickdetector(ClickDetector, 32) -- This will not output
 local ClickDetector = Instance.new("ClickDetector")
 
 ClickDetector.MouseClick:Connect(function()
-    print("Fired")
+    print("Fired M1")
 end)
 
-fireclickdetector(ClickDetector, 31) -- Output: Fired
+ClickDetector.RightMouseClick:Connect(function()
+    print("Fired M2")
+end)
+
+ClickDetector.MouseHoverEnter:Connect(function()
+    print("Fired HoverEnter")
+end)
+
+ClickDetector.MouseHoverLeave:Connect(function()
+    print("Fired HoverLeave")
+end)
+
+fireclickdetector(ClickDetector, 0, "MouseClick") -- Output: Fired M1
+fireclickdetector(ClickDetector, 0, "RightMouseClick") -- Output: Fired M2
+fireclickdetector(ClickDetector, 0, "MouseHoverEnter") -- Output: Fired HoverEnter
+fireclickdetector(ClickDetector, 0, "MouseHoverLeave") -- Output: Fired MouseHoverLeave
 ```
 
 ---
@@ -172,7 +188,7 @@ fireclickdetector(ClickDetector, 31) -- Output: Fired
 ## fireproximityprompt
 
 > [!NOTE]
-> It's not recommended to implement this function in luau. Doing so will expose you to easy detections
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections.
 
 Triggers a `ProximityPrompt` instantly, regardless of distance or duration.
 
@@ -182,7 +198,7 @@ function fireproximityprompt(object: ProximityPrompt): ()
 
 ### Parameter
 
-- `object` - The ProximityPrompt to fire
+- `object` - The ProximityPrompt to fire.
 
 ### Example
 
@@ -203,7 +219,7 @@ fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 ## firetouchinterest
 
 > [!NOTE]
-> It's not recommended to implement this function in luau. Doing so will expose you to easy detections
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections.
 
 Triggers a `Touched` event on a `BasePart` with the other wanted part.
 
@@ -213,11 +229,11 @@ function firetouchinterest(part: BasePart, part2: BasePart, toggle: number): ()
 
 ### Parameters
 
-- `part` - The part initiating the touch
-- `part2` - The part to be touched
-- `toggle` - Determines the touching event trigger
-    - `1` - Starts the **Touched** event
-    - `0` - Ends the **Touched** event
+- `part` - The part initiating the touch.
+- `part2` - The part to be touched.
+- `toggle` - Determines the touching event trigger.
+    - `1` - Starts the **Touched** event.
+    - `0` - Ends the **Touched** event.
 
 ### Example
 
