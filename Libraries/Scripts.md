@@ -279,8 +279,26 @@ function setthreadidentity(input: number): ()
 ### Examples
 
 ```luau
-TODO ts
+local Success, Result = pcall(function()
+	setthreadidentity(0)
+	return game.DataCost
+end)
+
+print(Success) -- Output: false
+print(Result) -- Output: The current thread cannot read 'DataCost'...
 ```
+
+```luau
+local Success, Result = pcall(function()
+	setthreadidentity(8)
+	return Instance.new("Player")
+end)
+
+print(Success) -- Output: true
+print(typeof(Result)) -- Output: Instance
+print(Result.AccountAge) -- Output: 0
+```
+
 
 ---
 
