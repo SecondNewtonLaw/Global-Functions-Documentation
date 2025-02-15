@@ -190,6 +190,7 @@ fireclickdetector(ClickDetector, 0, "MouseHoverLeave") -- Output: Fired MouseHov
 > [!NOTE]
 > It's not recommended to implement this function in luau. Doing so will expose you to easy detections.
 
+
 Triggers a `ProximityPrompt` instantly, regardless of distance or duration.
 
 ```luau
@@ -219,7 +220,13 @@ fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 ## firetouchinterest
 
 > [!NOTE]
+> This is an implementation detail; as a regular scripter, you may ignore this!
+> 
 > It's not recommended to implement this function in luau. Doing so will expose you to easy detections.
+> 
+> Also this function should yield when you are calling the function that fires the touch interests.
+> 
+> Additionaly, this function should handle both numbers and booleans for the toggle (1 being true, 0 being false as in UNC)
 
 Triggers a `Touched` event on a `BasePart` with the other wanted part.
 
