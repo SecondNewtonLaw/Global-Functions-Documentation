@@ -224,7 +224,7 @@ fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 Triggers a `Touched` event on a `BasePart` with the other wanted part.
 
 ```luau
-function firetouchinterest(part: BasePart, part2: BasePart, toggle: number): ()
+function firetouchinterest(part: BasePart, part2: BasePart, toggle: boolean): ()
 ```
 
 ### Parameters
@@ -232,8 +232,8 @@ function firetouchinterest(part: BasePart, part2: BasePart, toggle: number): ()
 - `part` - The part initiating the touch.
 - `part2` - The part to be touched.
 - `toggle` - Determines the touching event trigger.
-    - `1` - Starts the **Touched** event.
-    - `0` - Ends the **Touched** event.
+    - `true` - Starts the **Touched** event.
+    - `false` - Ends the **Touched** event.
 
 ### Example
 
@@ -247,7 +247,7 @@ DummyPart.Touched:Connect(function(arg1)
     print(arg1:IsDescendantOf(game.Players.LocalPlayer.Character))
 end)
 
-firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, 1)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, true)
 task.wait(0.5)
-firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, 0) -- Output: true
+firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, false)
 ```
