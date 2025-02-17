@@ -180,7 +180,7 @@ end)
 fireclickdetector(ClickDetector, 0, "MouseClick") -- Output: Fired M1
 fireclickdetector(ClickDetector, 0, "RightMouseClick") -- Output: Fired M2
 fireclickdetector(ClickDetector, 0, "MouseHoverEnter") -- Output: Fired HoverEnter
-fireclickdetector(ClickDetector, 0, "MouseHoverLeave") -- Output: Fired MouseHoverLeave
+fireclickdetector(ClickDetector, 0, "MouseHoverLeave") -- Output: Fired HoverLeave
 ```
 
 ---
