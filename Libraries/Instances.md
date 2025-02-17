@@ -135,7 +135,7 @@ getcallbackvalue(DummyRemoteFunction, "OnClientInvoke") -- Throws an error
 Triggers a specified event on a `ClickDetector`. The event parameter defaults to **MouseClick** if not defined. Not providing the distance will default to infinite.
 
 ```luau
-function fireclickdetector(object: ClickDetector, distance: number?, event?): ()
+function fireclickdetector(object: ClickDetector, distance: number?, event: string?): ()
 ```
 
 Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHoverLeave'.
@@ -143,8 +143,8 @@ Selectable Events: 'MouseClick', 'RightMouseClick', 'MouseHoverEnter', 'MouseHov
 ### Parameters
 
 - `object` - The ClickDetector to trigger.
-- `distance?` - Distance to trigger the ClickDetector from.
-- `event?` - The chosen event to trigger the detector with.
+- `distance` - Distance to trigger the ClickDetector from.
+- `event` - The chosen event to trigger the detector with.
 
 ### Example
 
