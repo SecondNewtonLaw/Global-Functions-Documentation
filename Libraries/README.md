@@ -1,18 +1,15 @@
 # Libraries 📂
 
-- [Environment](./Environment.md)
 - [Closures](./Closures.md)
 - [Cryptography](./Crypt.md)
 - [Debug](./Debug.md)
 - [Drawing](./Drawing.md)
+- [Environment](./Environment.md)
 - [Filesystem](./Filesystem.md)
 - [Instances](./Instances.md)
 - [Miscellaneous](./Misc.md)
+- [Network](./Network.md)
+- [Reflection](./Reflection.md)
 - [Scripts](./Scripts.md)
 - [Signals](./Signals.md)
 - [WebSocket](./WebSocket.md)
-- [Network](./Network.md)
-- [Reflection](./Reflection.md)
-
-> [!NOTE]
-> This table of contents is still being worked on. Will be alphabetised later.
