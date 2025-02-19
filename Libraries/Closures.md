@@ -56,7 +56,7 @@ FunctionThatYields()
 
 ## iscclosure
 
-Checks if a given function is a C closure (implemented in C/C++).
+Checks if a given function is a C closure.
 
 ```luau
 function iscclosure<A..., R...>(func: (A...) -> R...): boolean
@@ -91,7 +91,7 @@ print(iscclosure(ExecutorLuaClosure)) -- Output: false
 
 ## islclosure
 
-Checks if a given function is a L closure (implemented in Lua).
+Checks if a given function is a L closure.
 
 ```luau
 function islclosure<A..., R...>(func: (A...) -> R...): boolean
