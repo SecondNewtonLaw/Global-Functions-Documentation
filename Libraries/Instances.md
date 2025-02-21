@@ -239,8 +239,8 @@ function firetouchinterest(part: BasePart, part2: BasePart, toggle: boolean): ()
 - `part` - The part initiating the touch.
 - `part2` - The part to be touched.
 - `toggle` - Determines the touching event trigger.
-    - `false` - Starts the **Touched** event.
-    - `true` - Ends the **Touched** event.
+    - `false` - Starts the **Touched** event. (Touch, internally).
+    - `true` - Ends the **Touched** event. (Untouch, internally).
 
 ### Example
 
@@ -254,7 +254,7 @@ DummyPart.Touched:Connect(function(arg1)
     print(arg1:IsDescendantOf(game.Players.LocalPlayer.Character))
 end)
 
-firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, true)
-task.wait(0.5)
 firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, false)
+task.wait(0.5)
+firetouchinterest(game.Players.LocalPlayer.Character.Head, DummyPart, true)
 ```
