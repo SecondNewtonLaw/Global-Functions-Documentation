@@ -88,7 +88,7 @@ end
 Searches for Lua values in the garbage collector that are currently referenced and match the specified criteria.
 
 ```luau
-function filtergc<A1..., R1..., A2..., R2...>(...): { { [any]: any } | (A1...) -> R1... }  |  { [any]: any } | (A2...) -> R2...
+TODO
 ```
 
 ### Table:
