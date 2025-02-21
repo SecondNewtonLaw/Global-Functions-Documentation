@@ -239,8 +239,8 @@ function firetouchinterest(part: BasePart, part2: BasePart, toggle: boolean): ()
 - `part` - The part initiating the touch.
 - `part2` - The part to be touched.
 - `toggle` - Determines the touching event trigger.
-    - `true` - Starts the **Touched** event.
-    - `false` - Ends the **Touched** event.
+    - `false` - Starts the **Touched** event.
+    - `true` - Ends the **Touched** event.
 
 ### Example
 
