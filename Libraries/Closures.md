@@ -59,7 +59,7 @@ FunctionThatYields()
 Checks if a given function is a C closure.
 
 ```luau
-function iscclosure<A..., R...>(func: (A...) -> R...): boolean
+function iscclosure(func: (...any) -> (...any): boolean
 ```
 
 ### Parameter
@@ -94,7 +94,7 @@ print(iscclosure(ExecutorLuaClosure)) -- Output: false
 Checks if a given function is a L closure.
 
 ```luau
-function islclosure<A..., R...>(func: (A...) -> R...): boolean
+function islclosure(func: (...any) -> (...any): boolean
 ```
 
 ### Parameter
@@ -127,7 +127,7 @@ print(islclosure(ExecutorCClosure)) -- Output: false
 Checks if a given function is the executor's closure.
 
 ```luau
-function isexecutorclosure<A..., R...>(func: (A...) -> R...): boolean
+function isexecutorclosure(func: (...any) -> (...any): boolean
 ```
 
 ### Parameter
