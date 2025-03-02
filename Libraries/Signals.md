@@ -12,7 +12,7 @@ Functions that allow interaction with RBXScriptSignals and RBXScriptConnections.
 Returns the connections of a specific signal.
 
 ```luau
-function getconnections(signal: RBXScriptSignal<...any>): {Connection}
+function getconnections(signal: RBXScriptSignal): {Connection}
 ```
 
 ### Connection
@@ -58,7 +58,7 @@ print(`{CConnection.Function}, {CConnection.Thread}`) -- Output: nil, nil
 Fires a signal's Lua connections.
 
 ```luau
-function firesignal(signal: RBXScriptSignal<...any>, ...: any?)
+function firesignal(signal: RBXScriptSignal, ...: any?)
 ```
 
 ### Parameters
@@ -88,7 +88,7 @@ firesignal(part.ChildAdded, workspace) -- Output: Instance
 Intercepts signal calls, invoking a callback for each Lua connection with an info table and arguments. The original connection runs if the callback returns true.
 
 ```luau
-function hooksignal(signal: RBXScriptSignal<...any>, callback: function)
+function hooksignal(signal: RBXScriptSignal, callback: function)
 ```
 
 ### Parameters
@@ -109,7 +109,7 @@ TODO
 restores a signal's original behavior after it has been hooked.
 
 ```luau
-function restoresignal(signal: RBXScriptSignal<...any>)
+function restoresignal(signal: RBXScriptSignal)
 ```
 
 ### Parameters
