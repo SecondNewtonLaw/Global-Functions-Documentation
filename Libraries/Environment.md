@@ -88,7 +88,7 @@ end
 Similar to `getgc`, will return Lua values that are being referenced and match the specified criteria.
 
 ```luau
-function filtergc(filter_type: "function" | "table", filter_options: FunctionFilterOptions | TableFilterOptions, return_one: boolean?): (...any) -> (...any) | { [any]: any }
+function filtergc(filter_type: "function" | "table", filter_options: FunctionFilterOptions | TableFilterOptions, return_one: boolean?): (...any) -> (...any) | { [any]: any } | { (...any) -> (...any) | { [any]: any } }
 ```
 
 ### Table filter options:
