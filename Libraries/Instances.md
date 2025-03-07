@@ -57,7 +57,7 @@ end
 Returns a copy of the Instance where the copy should not be equal to the original Instance it was cloned from.
 
 ```luau
-function cloneref(object: Instance): Instance
+function cloneref<T>(object: T & Instance): T
 ```
 
 ### Parameter
@@ -69,7 +69,7 @@ function cloneref(object: Instance): Instance
 ```luau
 local ClonedPlayer = cloneref(game:GetService("Players").LocalPlayer)
 local Player = game:GetService("Players").LocalPlayer
-print(Player == ClonedPlayer) -- Output: False
+print(Player == ClonedPlayer) -- Output: false
 ```
 
 ---
