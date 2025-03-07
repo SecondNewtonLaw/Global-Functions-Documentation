@@ -193,3 +193,10 @@ local Retrieved = filtergc('table', {
 
 print(Retrieved == DummyTable) -- Output: true
 ```
+
+Usage of `Metatable`:
+```luau
+local wawmetatable = setmetatable({}, { __index = getgenv() })
+local mm = filtergc('table', { Metatable = getmetatable(wawmetatable) }, true)
+print(mm == wawmetatable)
+```
