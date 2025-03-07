@@ -9,7 +9,7 @@ These functions allow to **modify/access** our executor environment and Roblox e
 Provides a table containing all executor functions, serving as the shared environment for all scripts executed by the executor.
 
 ```luau
-getgenv(): { [any]: any }
+getgenv(): { any }
 ```
 
 ### Example
@@ -26,7 +26,7 @@ print(test) -- Should print "hello world" in current script and all future execu
 Returns the environment table that all game scripts use. Can be used to access functions that game scripts use.
 
 ```luau
-getrenv(): { [any]: any }
+getrenv(): { any }
 ```
 
 ### Example
@@ -44,7 +44,7 @@ Returns a table with all Lua values that aren't dead (meaning they are reference
 By default, it excludes tables; you can use `includeTables` to also get tables.
 
 ```luau
-getgc(include_tables: boolean?): { { [any]: any } | (...any) -> (...any) }
+getgc(include_tables: boolean?): { { any } | (...any) -> (...any) }
 ```
 
 ### Parameter
@@ -88,10 +88,10 @@ end
 Similar to `getgc`, will return Lua values that are being referenced and match the specified criteria.
 
 ```luau
-TODO
+function filtergc(filter_type: "function" | "table", filter_options: FunctionFilterOptions | TableFilterOptions, return_one: boolean?): (...any) -> (...any) | { [any]: any }
 ```
 
-### Table:
+### Table filter options:
 
 | Key            | Description                                                                                       | Default |
 | -------------- | ------------------------------------------------------------------------------------------------- | ------- |
@@ -100,7 +100,7 @@ TODO
 | `KeyValuePairs`| If not empty, only include tables with keys/value pairs corresponding to all values in this table. |  `nil`  |
 | `Metatable`    | If not empty, only include tables with the metatable passed.                                       |  `nil`  |
 
-### Function:
+### Function filter options:
 
 | Key             | Description                                                                             | Default |
 | --------------- | --------------------------------------------------------------------------------------- | ------- |
@@ -112,8 +112,8 @@ TODO
 
 ### Parameters
 
-- `type` - specifies the type of Lua value to search for.
-- `options` - criteria used to filter the search results based on the specified type.
+- `filter_type` - specifies the type of Lua value to search for.
+- `filter_options` - criteria used to filter the search results based on the specified type.
 - `return_one?` - A boolean that returns only the first match when true; otherwise, all matches are returned.
 
 > [!NOTE]
