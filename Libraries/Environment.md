@@ -169,7 +169,7 @@ print(getfunctionhash(Retrieved) == DummyFunctionHash) -- Output: true
 print(Retrieved == DummyFunction) -- Output: true
 ```
 
-Usage of `Constants`, `Upvalues`:
+Usage of `Constants` and `Upvalues`:
 ```luau
 local Upvalue = 5
 
