@@ -117,49 +117,70 @@ function filtergc(filter_type: "function" | "table", filter_options: FunctionFil
 - `return_one?` - A boolean that returns only the first match when true; otherwise, all matches are returned.
 
 > [!NOTE]
-> Executing this examples multiple times in a short period of time may result in false negatives.
+> Executing these examples multiple times in a short period of time may result in false negatives.
 
 ### Examples - Function
 
-Usage of `return_one?`:
-```luau
-local function DummyFunction() end
 
-local Retrieved = filtergc('function', {Name = "DummyFunction", IgnoreExecutor = false}, true)
-print(type(Retrieved)) -- Output: function
+Usage of `Name` and `return_one?` set to `false` (default option):
+```luau
+local function DummyFunction() 
+end
+
+local Retrieved = filtergc("function", {
+    Name = "DummyFunction", 
+    IgnoreExecutor = false
+}, false)
+
+print(typeof(Retreived)) -- Output: table
+print(Retrieved[1] == DummyFunction) -- Output: true
 ```
 
+Usage of `Name` and `return_one?` set to `true`:
 ```luau
-local function DummyFunction() end
+local function DummyFunction() 
+end
 
-local Retrieved = filtergc('function', {Name = "DummyFunction", IgnoreExecutor = false}) -- Returns a table
-print(type(Retrieved[1])) -- Output: function
+local Retrieved = filtergc("function", {
+    Name = "DummyFunction", 
+    IgnoreExecutor = false
+}, true)
+
+print(typeof(Retreived)) -- Output: function
+print(Retrieved == DummyFunction) -- Output: true
 ```
 
 ## Usage of `options` parameter
 
-Usage of `IgnoreExecutor` and `Hash`:
+Usage of `Hash`:
 ```luau
-local function DummyFunction() return "Hello" end
-local FuncHash = getfunctionhash(DummyFunction)
-local Retrieved = filtergc("function", {Hash = FuncHash, IgnoreExecutor = false}, true)
-print(getfunctionhash(Retrieved) == FuncHash) -- Output: true
+local function DummyFunction() 
+    return "Hello" 
+end
+
+local DummyFunctionHash = getfunctionhash(DummyFunction)
+
+local Retrieved = filtergc("function", {
+    Hash = DummyFunctionHash, 
+    IgnoreExecutor = false
+}, true)
+
+print(getfunctionhash(Retrieved) == DummyFunctionHash) -- Output: true
 print(Retrieved == DummyFunction) -- Output: true
 ```
 
-Usage of `Constants` and `Upvalues`:
+Usage of `Constants`, `Upvalues`:
 ```luau
-local up = 5
+local Upvalue = 5
+
 local function DummyFunction() 
-    up+=1
+    Upvalue += 1
     print(game.Players.LocalPlayer)
 end
 
-local Retrieved = filtergc('function', { 
-    Constants = {
-        "print", "game", "Players", "LocalPlayer", 1
-    },
-    Upvalues = {5},
+local Retrieved = filtergc("function", { 
+    Constants = { "print", "game", "Players", "LocalPlayer", 1 },
+    Upvalues = { 5 },
     IgnoreExecutor = false
 }, true)
 
@@ -174,9 +195,8 @@ Usage of `Keys` and `Values`:
 ```lua
 local DummyTable = { ["DummyKey"] = "" }
 
-local Retrieved = filtergc('table', {
+local Retrieved = filtergc("table", {
     Keys = { "DummyKey" },
-    IgnoreExecutor = false
 }, true)
 
 print(Retrieved == DummyTable) -- Output: true
@@ -186,9 +206,8 @@ Usage of `KeyValuePairs`:
 ```luau
 local DummyTable = { ["DummyKey"] = "DummyValue" }
 
-local Retrieved = filtergc('table', {
+local Retrieved = filtergc("table", {
     KeyValuePairs = { ["DummyKey"] = "DummyValue" },
-    IgnoreExecutor = false
 }, true)
 
 print(Retrieved == DummyTable) -- Output: true
@@ -196,7 +215,11 @@ print(Retrieved == DummyTable) -- Output: true
 
 Usage of `Metatable`:
 ```luau
-local wawmetatable = setmetatable({}, { __index = getgenv() })
-local mm = filtergc('table', { Metatable = getmetatable(wawmetatable) }, true)
-print(mm == wawmetatable)
+local DummyTable = setmetatable( {}, { __index = getgenv() } )
+
+local Retereived = filtergc("table", { 
+    Metatable = getmetatable(DummyTable) 
+}, true)
+
+print(Retreived == DummyTable) -- Output: true
 ```
