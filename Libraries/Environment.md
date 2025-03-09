@@ -217,7 +217,7 @@ Usage of `Metatable`:
 ```luau
 local DummyTable = setmetatable( {}, { __index = getgenv() } )
 
-local Retereived = filtergc("table", { 
+local Retrieved = filtergc("table", { 
     Metatable = getmetatable(DummyTable) 
 }, true)
 
