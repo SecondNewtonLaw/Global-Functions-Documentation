@@ -7,14 +7,10 @@ Functions that allow to **modify/access** hidden/non-scriptable properties of In
 ## gethiddenproperty
 
 > [!WARNING]
-> It appears that many executors fail to implement some or all property types, Mainly `SharedString` and `SystemAddress`
+> Many executors may implement this function by using `setscriptable`, which is discouraged due to detection vectors and/or limitations coming with `setscriptable` itself.
 
-> [!NOTE]
-> Developers should not rely on just `setscriptable` to make this function work
+Returns the hidden, non-scriptable properties value no matter its type, such as `BinaryString`, `SharedString` and `SystemAddress`. A boolean will also be returned, indicating if the property is hidden or not.
 
-Returns the hidden, non-scriptable properties value no matter its type, such as `BinaryString`, `SharedString` and `SystemAddress` and a boolean indicating if the property is hidden.
-
-Avoids detections and errors that can happen by just using `setscriptable` to read the property
 
 ```luau
 gethiddenproperty(instance: Instance, propertyName: string): (any, boolean)
@@ -29,8 +25,8 @@ gethiddenproperty(instance: Instance, propertyName: string): (any, boolean)
 
 ```luau
 local part = Instance.new("Part")
-print(gethiddenproperty(part, "Name")) -- Returns "Part", false [Not Hidden]
-print(gethiddenproperty(part, "DataCost")) -- Returns 20, true [Hidden]
+print(gethiddenproperty(part, "Name")) -- Output: "Part", false
+print(gethiddenproperty(part, "DataCost")) -- Output: 20, true
 ```
 
 ---
@@ -38,12 +34,10 @@ print(gethiddenproperty(part, "DataCost")) -- Returns 20, true [Hidden]
 ## sethiddenproperty
 
 > [!WARNING]
-> It appears that many executors fail to implement some or all property types, Mainly `SharedString` and `SystemAddress`
+> Many executors may implement this function by using `setscriptable`, which is discouraged due to detection vectors and/or limitations coming with `setscriptable` itself.
 
-> [!NOTE]
-> Developers should not rely on just `setscriptable` to make this function work
 
-Sets the hidden, non-scriptable property's value no matter its type, such as `BinaryString`, `SharedString` and `SystemAddress` and returns a boolean indicating if the property is hidden.
+Sets the hidden, non-scriptable property's value no matter its type, such as `BinaryString`, `SharedString` and `SystemAddress`. A boolean will also be returned, indicating if the property is hidden or not.
 
 Avoids detections and errors that can happen by just using `setscriptable` to set the property
 
@@ -61,16 +55,16 @@ sethiddenproperty(instance: Instance, propertyName: string, propertyValue: any):
 
 ```luau
 local part = Instance.new("Part")
-print(gethiddenproperty(part, "DataCost")) -- Returns 20, true [Hidden]
-sethiddenproperty(part, "DataCost", 100) -- Returns true [Hidden]
-print(gethiddenproperty(part, "DataCost")) -- Returns 100, true [Hidden]
+print(gethiddenproperty(part, "DataCost")) -- Output: 20, true
+sethiddenproperty(part, "DataCost", 100)
+print(gethiddenproperty(part, "DataCost")) -- Output: 100, true
 ```
 
 ---
 
 ## checkcaller
 
-Determines whether the function was called from the executor's thread.
+Determines whether the function was called from the executor's thread or not.
 
 ```luau
 function checkcaller(): boolean
