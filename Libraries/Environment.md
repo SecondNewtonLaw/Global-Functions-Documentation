@@ -6,10 +6,10 @@ These functions allow to **modify/access** our executor environment and Roblox e
 
 ## getgenv
 
-Provides a table containing all executor functions, serving as the shared environment for all scripts executed by the executor.
+Returns a table containing all executor functions, serving as the shared environment for all scripts executed by the executor.
 
 ```luau
-getgenv(): { any }
+function getgenv: { any }
 ```
 
 ### Example
@@ -26,7 +26,7 @@ print(test) -- Should print "hello world" in current script and all future execu
 Returns the environment table that all game scripts use. Can be used to access functions that game scripts use.
 
 ```luau
-getrenv(): { any }
+function getrenv: { any }
 ```
 
 ### Example
@@ -44,7 +44,7 @@ Returns a table with all Lua values that aren't dead (meaning they are reference
 By default, it excludes tables; you can use `includeTables` to also get tables.
 
 ```luau
-getgc(include_tables: boolean?): { { any } | (...any) -> (...any) }
+function getgc(include_tables: boolean?): { { any } | (...any) -> (...any) }
 ```
 
 ### Parameter
