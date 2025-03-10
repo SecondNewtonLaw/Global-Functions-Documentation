@@ -166,7 +166,7 @@ Creates and returns a new function that has the same behaviour as the passed fun
 > Any sort of modification to the original shouldn't affect the clone. Meaning that stuff like hooking the original will not affect the clone.
 
 ```luau
-function clonefunction<A..., R...>(func: (A...) -> R...): (A...) -> R...
+function clonefunction<A..., R...>(function_to_clone: (A...) -> R...): (A...) -> R...
 ```
 
 ### Parameter
@@ -225,4 +225,36 @@ local OldFunction = hookfunction(DummyFunction, DummyHook)
 
 DummyFunction() -- Output: I am hooked!
 OldFunction() -- Output: I am NOT hooked!
+```
+
+---
+
+## getfunctionhash
+
+Returns a Hex represented SHA384 hash of the provided function's instructions/bytecode
+
+```luau
+function getfunctionhash(function_to_hash): string
+```
+
+### Example
+
+```luau
+local function isSHA384Hex(hash)
+    if #hash ~= 96 then
+        return false
+    end
+    if not hash:match("^[0-9a-fA-F]+$") then
+        return false
+    end
+    return true
+end
+
+local DummyFunction0 = function() end
+local DummyFunction1 = function(...) end
+local DummyFunction2 = function() end
+
+print(isSHA384Hex(getfunctionhash(DummyFunction0))) -- Output: true
+print(getfunctionhash(DummyFunction0) == getfunctionhash(DummyFunction1)) -- Output: false
+print(getfunctionhash(DummyFunction0) == getfunctionhash(DummyFunction2)) -- Output: true
 ```
