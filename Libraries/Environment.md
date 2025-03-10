@@ -9,7 +9,7 @@ These functions allow to **modify/access** our executor environment and Roblox e
 Returns a table containing all executor functions, serving as the shared environment for all scripts executed by the executor.
 
 ```luau
-function getgenv: { any }
+function getgenv(): { any }
 ```
 
 ### Example
@@ -26,7 +26,7 @@ print(test) -- Should print "hello world" in current script and all future execu
 Returns the environment table that all game scripts use. Can be used to access functions that game scripts use.
 
 ```luau
-function getrenv: { any }
+function getrenv(): { any }
 ```
 
 ### Example
