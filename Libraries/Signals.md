@@ -88,13 +88,13 @@ firesignal(part.ChildAdded, workspace) -- Output: Instance
 Intercepts signal calls, invoking a callback for each Lua connection with an info table and arguments. The original connection runs if the callback returns true.
 
 ```luau
-function hooksignal(signal: RBXScriptSignal, callback: function)
+function hooksignal(signal: RBXScriptSignal, callback: (...any) -> (...any))
 ```
 
 ### Parameters
 
 - `signal` - The signal to be hooked.
-- `callback` - The new callback triggered by hooksignal, returning true to allow or false/nil to block the original signal connection.
+- `callback` - The new callback triggered by the hook
 
 ### Examples
 
