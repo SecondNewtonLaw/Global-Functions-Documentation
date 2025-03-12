@@ -357,17 +357,17 @@ end
 
 ## debug.getproto
 
-Returns the proto at the specified position.
+Returns the proto at the specified position. If third argument is true, instead returns a table which contains the active functions of the proto.
 
 ```luau
-function debug.getproto(func: (...any) -> (...any) | number, index: number, activated: boolean?): (...any) -> (...any)
+function debug.getproto(func: (...any) -> (...any) | number, index: number, activated: boolean?): (...any) -> (...any) | { (...any) -> (...any) } 
 ```
 
 ### Parameters
 
 - `func` - The function to obtain the proto from.
 - `index` - The position of the proto.
-- `activated` - Whether to search the GC for the active proto.
+- `activated` - Whether to search the GC for the active function of the proto.
 
 ### Examples
 
@@ -397,4 +397,5 @@ local RealProto = DummyFunction()
 local RetrievedProto = debug.getproto(DummyFunction, 1, true)[1]
 
 print(RealProto == RetrievedProto) -- Output: true
+print(RetrievedProto()) -- Output: hi
 ```
