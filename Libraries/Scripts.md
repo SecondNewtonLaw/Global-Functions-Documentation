@@ -35,7 +35,8 @@ print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws an error
 > This is an implementation detail; as a regular scripter, you may ignore this!
 > 
 > Please hash the compressed and encrypted bytecode; do not decrypt and decompress the bytecode and then hash it!
-> Additionally, this function should throw an **error** if the script has no bytecode to hash.
+> 
+> This function should throw an **error** if the script has no bytecode.
 > We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
 
 Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
@@ -63,12 +64,6 @@ print(getscripthash(Instance.new("LocalScript"))) -- Throws an error
 
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
-> 
-> The closure you return needs to be callable (meaning it can be called without erroring). This means the closure needs to have properly set capabilities and identity and a proper environment with the script global!
->
-> For the environment, make a new table having __index set to the table L->global->mainthread->gt, and for the script global, just push the script instance and set it on the table.
->
-> For capabilities, make sure to check if the script/module is a RobloxScript, and set identity and capabilities accordingly.
 > 
 > This function should throw an **error** if the script has no bytecode.
 > We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
@@ -129,12 +124,7 @@ print(getsenv(Instance.new("LocalScript"))) -- Throws an error
 
 ## getscripts
 
-> [!NOTE]
-> This is an implementation detail; as a regular scripter, you may ignore this!
->
-> This function is recommended to be implemented by using the `RBX::Lua::InstanceBridge::push` function.
-> Returns a table of all instances that inherit the `BaseScript` class; this list should include `LocalScript`, `ModuleScript`, and any `Script` with the RunContext set to Client.
-> This table should also include scripts or modules that are parented to nil.
+Returns all the scripts in the game. CoreScripts should be filtered by default.
 
 ```luau
 function getscripts(): { Script | LocalScript | ModuleScript }
@@ -156,13 +146,7 @@ end
 
 ## getrunningscripts
 
-> [!NOTE]
-> This is an implementation detail; as a regular scripter, you may ignore this!
->
-> To check whether a module/script is running, you would use the same method you use for getting the script/module's Lua state in `getsenv`.
-> 
-> Returns a table of all instances like `getscripts` does but only returns modules and scripts that are currently running.
-> Should also include all `Script` instances with RunContext set to Client that are running.
+Returns all the running scripts in the caller's global state. CoreScripts should be filtered by default.
 
 ```luau
 function getrunningscripts(): { LocalScript | ModuleScript | Script }
@@ -187,7 +171,7 @@ end
 
 ## getloadedmodules
 
-Returns a table of all ModuleScripts that are currently running.
+Returns all the loaded modules in the caller's global state. CoreScripts should be filtered by default.
 
 ```luau
 function getloadedmodules(): { ModuleScript }
