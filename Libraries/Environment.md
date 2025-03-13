@@ -130,7 +130,7 @@ end
 local Retrieved = filtergc("function", {
     Name = "DummyFunction", 
     IgnoreExecutor = false
-}, false)
+})
 
 print(typeof(Retreived)) -- Output: table
 print(Retrieved[1] == DummyFunction) -- Output: true
