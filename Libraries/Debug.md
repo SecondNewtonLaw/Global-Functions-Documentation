@@ -6,7 +6,7 @@ Functions that allow us to get **more control** over Luau functions.
 
 ## debug.getconstants
 
-Returns the constants of the specified Lua function. Should error on C closure (functions) because they have no constants.
+Returns the constants of the specified Lua function. Should error on C closures, since they have no constants.
 
 ```luau
 function debug.getconstants(func: (...any) -> (...any) | number): { number | string | boolean | nil }
@@ -20,8 +20,8 @@ function debug.getconstants(func: (...any) -> (...any) | number): { number | str
 
 ```luau
 local function DummyFunction()
-    local dummyString = "foo bar"
-    string.split(dummyString, " ")
+    local DummyString = "foo bar"
+    string.split(DummyString, " ")
 end
 
 local Constants = debug.getconstants(DummyFunction)
@@ -38,7 +38,7 @@ end
 ```
 
 ```luau
-print(debug.getconstants(print)) -- Should error due to being a C closure (function)
+print(debug.getconstants(print)) -- Should error due to being a C closure
 ```
 
 ---
@@ -60,8 +60,8 @@ function debug.getconstant(func: (...any) -> (...any) | number), index: number):
 
 ```luau
 local function DummyFunction()
-    local dummyString = "foo bar"
-    string.split(dummyString, " ")
+    local DummyString = "foo bar"
+    string.split(DummyString, " ")
 end
 
 local Result = debug.getconstant(DummyFunction, 2)
@@ -83,7 +83,7 @@ print(Result) -- Output: nil
 ```
 
 ```luau
-print(debug.getconstant(print)) -- Should error due to being a C closure (function)
+print(debug.getconstant(print)) -- Should error due to being a C closure
 ```
 
 ---
@@ -179,10 +179,10 @@ function debug.getupvalue(func: (...any) -> (...any) | number, index: number): a
 ### Examples
 
 ```luau
-local Up1 = function() print("Hello from up") end
+local UpFunction = function() print("Hello from up") end
 
 local function DummyFunction()
-    Up1()
+    UpFunction()
 end
 
 local Upvalue = debug.getupvalue(DummyFunction, 1)
@@ -192,7 +192,7 @@ Upvalue() -- Output: Hello from up
 ```luau
 local function DummyFunction() end
 
-debug.getupvalue(DummyFunction, 0) -- Should error on this line
+debug.getupvalue(DummyFunction, 0) -- Should error due to invalid index passage
 ```
 
 ```luau
@@ -218,11 +218,11 @@ function debug.setupvalue(func: (...any) -> (...any) | number, index: number, va
 ### Example
 
 ```luau
-local Up = 90
+local Upvalue = 90
 
 local function DummyFunction()
-    Up += 1
-    print(Up)
+    Upvalue += 1
+    print(Upvalue)
 end
 
 DummyFunction() -- Output: 91
@@ -243,22 +243,22 @@ function debug.getstack(level: number, index: number?): any | { any }
 ### Parameters
 
 - `level` - The call stack.
-- `index?` - The position of the values inside the call stack.
+- `index?` - The position of the values inside the stack frame.
 
 ### Examples
 
 ```luau
--- level 1 (stack)
+-- level 1
 local Count = 0
 local function RecursiveFunction() -- Entering a level deeper, meaning we can call using level 2 in this function
     Count += 1
     if Count > 6 then return end -- We'll stop at 6 to not retrieve useless information for our example
     local a = 29
     local b = true
-    local f = "Example"
+    local c = "Example"
     a += 1
     b = false
-    f..="s"
+    c..="s"
     print(debug.getstack(1, Count))
     RecursiveFunction()
 end
@@ -278,9 +278,9 @@ local function DummyFunction() return "Hello" end
 local Var = 5
 Var += 1
 
-return (function()
-    print(debug.getstack(2, 1)()) -- Output: Hello
-    print(debug.getstack(2, 2)) -- Output: 6
+(function()
+    print(debug.getstack(2)[1]()) -- Output: Hello
+    print(debug.getstack(2)[2]) -- Output: 6
 end)()
 ```
 
@@ -297,7 +297,7 @@ function debug.setstack(level: number, index: number, value: any): ()
 ### Parameters
 
 - `level` - The call stack.
-- `index` - The position of the values inside the call stack.
+- `index` - The position of the values inside the stack frame.
 - `value` - The new value to set at the specified position.
 
 ### Examples
@@ -373,9 +373,9 @@ function debug.getproto(func: (...any) -> (...any) | number, index: number, acti
 
 ```luau
 local function DummyFunction()
-	local function DummyProto()
+    local function DummyProto1()
         print("Hello")
-	end
+    end
     local function DummyProto2() 
         print("Hello2")
     end
@@ -387,10 +387,10 @@ debug.getproto(DummyFunction, 2)() -- Output: Hello2
 
 ```luau
 local function DummyFunction()
-	local function DummyProto()
-		return "hi"
-	end
-	return DummyProto
+    local function DummyProto()
+       return "hi"
+    end
+    return DummyProto
 end
 
 local RealProto = DummyFunction()
