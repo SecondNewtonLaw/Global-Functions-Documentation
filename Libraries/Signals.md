@@ -9,7 +9,7 @@ Functions that allow interaction with RBXScriptSignals and RBXScriptConnections.
 > [!NOTE]
 > Passing a C-Signal into **getconnections** should return `Function` and `Thread` as nil, due to them not being accessible.
 
-Returns the connections of a specific signal.
+Returns the connections of the specified signal.
 
 ```luau
 function getconnections(signal: RBXScriptSignal): {Connection} | nil
@@ -20,7 +20,7 @@ function getconnections(signal: RBXScriptSignal): {Connection} | nil
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | `Enabled` | boolean | Whether the connection can receive events. |
-| `ForeignState` | boolean | Whether the function was connected by a foreign Luau state (i.e. CoreScripts). |
+| `ForeignState` | boolean | Whether the function was connected by a foreign Lua state (i.e. CoreScripts, Actors). |
 | `LuaConnection` | boolean | Whether the connection was created in Luau code. |
 | `Function` | function? | The function bound to this connection. Nil when `ForeignState` is true, or `LuaConnection` is false. |
 | `Thread` | thread? | The thread that created the connection. Nil when `ForeignState` is true, or `LuaConnection` is false. |
@@ -76,31 +76,6 @@ end)
 
 firesignal(part.ChildAdded) -- Output: nil
 firesignal(part.ChildAdded, workspace) -- Output: Instance
-```
-
----
-
-## restoresignal
-
-Restores a signal's original behavior after it has been hooked.
-
-```luau
-function restoresignal(signal: RBXScriptSignal)
-```
-
-### Parameters
-
-- `signal` - The signal to be restored.
-
-### Example
-
-```luau
-local hook = hooksignal(workspace.Part.Touched, function(info, ...)
-    print("Touched signal from part")
-    return true
-end)
-
-restoresignal(part.Touched) -- the signals original behavior is now restored via restoresignal
 ```
 
 ---
