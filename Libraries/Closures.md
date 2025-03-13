@@ -24,13 +24,13 @@ function newcclosure<A..., R...>(function_to_wrap: (A...) -> R...): (A...) -> R.
 ### Example
 
 ```luau
-local OriginalFunction = function(...)
+local DummyFunction = function(...)
     return ...
 end
 
-print(iscclosure(OriginalFunction)) -- Output: false
+print(iscclosure(DummyFunction)) -- Output: false
 
-local WrappedFunction = newcclosure(OriginalFunction, "sUNC")
+local WrappedFunction = newcclosure(DummyFunction, "sUNC")
 
 print(iscclosure(WrappedFunction)) -- Output: true
 
@@ -39,13 +39,13 @@ print(FunctionResults) -- Output: Hello
 ```
 
 ```luau
-local FunctionThatYields = newcclosure(function()
+local DummyYieldingFunction = newcclosure(function()
     print("Before")
     task.wait(1.5)
     print("After")
 end)
 
-FunctionThatYields()
+DummyYieldingFunction()
 -- Output:
 -- Before
 -- yield for 1.5 seconds
@@ -69,22 +69,21 @@ function iscclosure(func: (...any) -> (...any): boolean
 ### Example
 
 ```luau
-local function ExecutorLuaClosure()
-    print("This is an Executor Lua Closure")
+local function DummyLuaFunction()
+    print("This is an executor Lua closure")
 end
 
-local ExecutorCClosure = newcclosure(function()
+local DummyCFunction = newcclosure(function()
     print("This is an Executor C Closure")
 end)
 
-local StandardCClosure = print
-local GlobalExecutorClosure = filtergc
+local DummyStandardCFunction = print
+local DummyGlobalCFunction = getgc
 
-print(iscclosure(ExecutorCClosure)) -- Output: true
-print(iscclosure(GlobalExecutorClosure)) -- Output: true
-print(iscclosure(StandardCClosure)) -- Output: true
-
-print(iscclosure(ExecutorLuaClosure)) -- Output: false
+print(iscclosure(DummyCFunction)) -- Output: true
+print(iscclosure(DummyGlobalCFunction)) -- Output: true
+print(iscclosure(DummyStandardCFunction)) -- Output: true
+print(iscclosure(DummyLuaFunction)) -- Output: false
 ```
 
 ---
@@ -104,20 +103,19 @@ function islclosure(func: (...any) -> (...any): boolean
 ### Example
 
 ```luau
-local function ExecutorLuaClosure()
-    print("This is an Exeucotr Lua Closure")
+local function DummyLuaFunction()
+    print("This is an executor Lua closure")
 end
 
-local ExecutorCClosure = newcclosure(function()
-    print("This is an Executor C Closure")
+local DummyCFunction = newcclosure(function()
+    print("This is an executor C closure")
 end)
 
-local StandardCClosure = print
+local DummyStandardCFunction = print
 
-print(islclosure(ExecutorLuaClosure)) -- Output: true
-
-print(islclosure(StandardCClosure)) -- Output: false
-print(islclosure(ExecutorCClosure)) -- Output: false
+print(islclosure(DummyLuaFunction)) -- Output: true
+print(islclosure(DummyStandardCFunction)) -- Output: false
+print(islclosure(DummyCFunction)) -- Output: false
 ```
 
 ---
@@ -137,22 +135,21 @@ function isexecutorclosure(func: (...any) -> (...any): boolean
 ### Example
 
 ```luau
-local function ExecutorLuaClosure()
-    print("This is an Executor Lua Closure")
+local function DummyLuaFunction()
+    print("This is an executor Lua closure")
 end
 
-local ExecutorCClosure = newcclosure(function()
-    print("This is an Executor C Closure")
+local DummyCFunction = newcclosure(function()
+    print("This is an executor C closure")
 end)
 
-local StandardCClosure = print
-local GlobalExecutorClosure = filtergc
+local DummyStandardCFunction = print
+local DummyGlobalCFunction = getgc
 
-print(isexecutorclosure(ExecutorLuaClosure)) -- Output: true
-print(isexecutorclosure(ExecutorCClosure)) -- Output: true
-print(isexecutorclosure(GlobalExecutorClosure)) -- Output: true
-
-print(isexecutorclosure(StandardCClosure)) -- Output: false
+print(isexecutorclosure(DummyLuaFunction)) -- Output: true
+print(isexecutorclosure(DummyCFunction)) -- Output: true
+print(isexecutorclosure(DummyGlobalCFunction)) -- Output: true
+print(isexecutorclosure(DummyStandardCFunction)) -- Output: false
 ```
 
 ---
@@ -176,16 +173,16 @@ function clonefunction<A..., R...>(function_to_clone: (A...) -> R...): (A...) ->
 ### Example
 
 ```luau
-local function Old()
+local function DummyFunction()
     print("Hello")
 end
 
-local Clone = clonefunction(Old)
+local ClonedFunction = clonefunction(DummyFunction)
 
-print(debug.info(Clone, "l")) -- Output: 1
-print(debug.info(Clone, "n")) -- Output: old
-print(Clone == Old) -- Output: false
-print(getfenv(Clone) == getfenv(Old)) -- Output: true
+print(debug.info(ClonedFunction, "l")) -- Output: 1
+print(debug.info(ClonedFunction, "n")) -- Output: ClonedFunction
+print(ClonedFunction == DummyFunction) -- Output: false
+print(getfenv(ClonedFunction) == getfenv(DummyFunction)) -- Output: true
 ```
 
 ---
@@ -212,19 +209,19 @@ function hookfunction<A1..., R1..., A2..., R2...>(function_to_hook: (A1...) -> R
 
 ```luau
 local function DummyFunction()
-    print("I am NOT hooked!")
+    print("I am not hooked!")
 end
 
 local function DummyHook()
     print("I am hooked!")
 end
 
-DummyFunction() -- Output: I am NOT hooked!
+DummyFunction() -- Output: I am not hooked!
 
 local OldFunction = hookfunction(DummyFunction, DummyHook)
 
 DummyFunction() -- Output: I am hooked!
-OldFunction() -- Output: I am NOT hooked!
+OldFunction() -- Output: I am not hooked!
 ```
 
 ---
