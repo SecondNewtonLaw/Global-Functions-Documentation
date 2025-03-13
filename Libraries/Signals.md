@@ -80,30 +80,6 @@ firesignal(part.ChildAdded, workspace) -- Output: Instance
 
 ---
 
-## hooksignal
-
-> [!NOTE]
-> hooksignal cannot intercept `C-connections` or `ForeignState` connections.
-
-Intercepts signal calls, invoking a callback for each Lua connection with an info table and arguments. The original connection runs if the callback returns true.
-
-```luau
-function hooksignal(signal: RBXScriptSignal, callback: (...any) -> (...any))
-```
-
-### Parameters
-
-- `signal` - The signal to be hooked.
-- `callback` - The new callback triggered by the hook
-
-### Examples
-
-```luau
-TODO
-```
-
----
-
 ## restoresignal
 
 Restores a signal's original behavior after it has been hooked.
