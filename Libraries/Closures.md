@@ -30,7 +30,7 @@ end
 
 print(iscclosure(DummyFunction)) -- Output: false
 
-local WrappedFunction = newcclosure(DummyFunction, "sUNC")
+local WrappedFunction = newcclosure(DummyFunction)
 
 print(iscclosure(WrappedFunction)) -- Output: true
 
