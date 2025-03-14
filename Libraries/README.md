@@ -1,15 +1,1 @@
-# Libraries 📂
 
-- [Closures](./Closures.md)
-- [Cryptography](./Crypt.md)
-- [Debug](./Debug.md)
-- [Drawing](./Drawing.md)
-- [Environment](./Environment.md)
-- [Filesystem](./Filesystem.md)
-- [Instances](./Instances.md)
-- [Miscellaneous](./Misc.md)
-- [Network](./Network.md)
-- [Reflection](./Reflection.md)
-- [Scripts](./Scripts.md)
-- [Signals](./Signals.md)
-- [WebSocket](./WebSocket.md)
