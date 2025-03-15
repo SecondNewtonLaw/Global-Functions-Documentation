@@ -62,6 +62,38 @@ print(gethiddenproperty(part, "DataCost")) -- Output: 100, true
 
 ---
 
+## setscriptable
+
+Sets a hidden property scriptable, which means you will be able to index the hidden properties as if they weren't hidden.
+
+> [!WARNING]
+> This function exposes detection vectors, as game scripts can check whether they can also index those properties.
+
+> [!NOTE]
+> This function is limited, meaning you won't be able to use it on all the hidden properties; use `gethiddenproperty` for those instead.
+
+```luau
+function setscriptable(object: Instance, property: string, state: boolean): boolean
+```
+
+### Parameters
+
+- `object` - The instance's property to set scriptable.
+- `property` - The wanted property to set scriptable.
+- `state` - Whether to turn it scriptable (true) or non-scriptable (false). 
+
+### Example
+
+```luau
+local a = Instance.new("Part")
+setscriptable(a, "BottomParamA", true)
+print(a.BottomParamA) -- Output: -0.5
+setscriptable(a, "BottomParamA", false)
+print(a.BottomParamA) -- Throws an error
+```
+
+---
+
 ## checkcaller
 
 Determines whether the function was called from the executor's thread or not.
