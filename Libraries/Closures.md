@@ -160,7 +160,7 @@ Creates and returns a new function that has the same behaviour as the passed fun
 > [!NOTE]
 > The cloned function must have the same environment as the original.
 > 
-> Any sort of modification to the original shouldn't affect the clone. Meaning that stuff like hooking the original will not affect the clone.
+> Any sort of modification to the original shouldn't affect the clone. Meaning that stuff like hooking the original will leave the clone unaffected.
 
 ```luau
 function clonefunction<A..., R...>(function_to_clone: (A...) -> R...): (A...) -> R...
@@ -189,7 +189,7 @@ print(getfenv(ClonedFunction) == getfenv(DummyFunction)) -- Output: true
 
 ## hookfunction
 
-Hooks a function with another wanted function, and returns the original unhooked function.
+Hooks a function with another wanted function, returning the original unhooked function.
 
 > [!Note]
 > The hook shouldn't have more upvalues than the function you want to hook.
