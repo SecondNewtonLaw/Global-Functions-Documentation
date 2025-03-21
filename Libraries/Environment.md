@@ -44,7 +44,7 @@ Returns a table with all Lua values that aren't dead (meaning they are reference
 By default, it excludes tables; you can use `includeTables` to also get tables.
 
 ```luau
-function getgc(include_tables: boolean?): { { any } | (...any) -> (...any) }
+function getgc(include_tables: boolean?): { { any } | (...any) -> (...any) | userdata }
 ```
 
 ### Parameter
