@@ -23,7 +23,10 @@ print(test) -- Should print "hello world" in current script and all future execu
 
 ## getrenv
 
-Returns the environment table that all game scripts use. Can be used to access functions that game scripts use.
+Returns a table containing the Roblox environment.
+
+> [!NOTE]
+> Any changes to this environment shouldn't affect the executor; however it should affect game scripts.
 
 ```luau
 function getrenv(): { any }
@@ -32,14 +35,16 @@ function getrenv(): { any }
 ### Example
 
 ```luau
-getrenv().game = nil -- Now no game script can access game
+getrenv().game = nil -- game scripts won't be able to access game
+getrenv().warn = "Hello"
+print(type(warn)) -- Output: function
 ```
 
 ---
 
 ## getgc
 
-Returns a table with all Lua values that aren't dead (meaning they are referenced by active scripts).
+Returns a table with all collectible values that aren't dead (meaning they are referenced by active scripts).
 
 By default, it excludes tables; you can use `includeTables` to also get tables.
 
