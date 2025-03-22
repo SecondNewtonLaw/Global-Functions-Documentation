@@ -32,14 +32,12 @@ print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws an error
 ## getscripthash
 
 > [!NOTE]
-> This is an implementation detail; as a regular scripter, you may ignore this!
-> 
-> Please hash the compressed and encrypted bytecode; do not decrypt and decompress the bytecode and then hash it!
+> Hash the compressed and encrypted bytecode, don't decrypt and decompress it.
 > 
 > This function should throw an **error** if the script has no bytecode.
 > We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
 
-Returns a `SHA384` hash represented in hex of the module/script's bytecode. This function should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
+Returns a `SHA384` hash represented in hex of the module/script's bytecode.
 
 ```luau
 function getscripthash(script: Script | LocalScript | ModuleScript): string
@@ -47,7 +45,7 @@ function getscripthash(script: Script | LocalScript | ModuleScript): string
 
 ### Parameter
 
-- `script` - The `Script`, `LocalScript` or `ModuleScript` the function should obtain a hash of.
+- `script` - The script instance to get the hash of.
 
 ### Example
 
@@ -62,15 +60,7 @@ print(getscripthash(Instance.new("LocalScript"))) -- Throws an error
 
 ## getscriptclosure
 
-> [!NOTE]
-> This is an implementation detail; as a regular scripter, you may ignore this!
-> 
-> This function should throw an **error** if the script has no bytecode.
-> We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
-
-This function creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get; it's mostly used to retrieve constants.
-
-This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
+Creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get, as it's usually used to retrieve constants.
 
 ```luau
 function getscriptclosure(script: Script | LocalScript | ModuleScript): (...any) -> (...any)
@@ -78,7 +68,7 @@ function getscriptclosure(script: Script | LocalScript | ModuleScript): (...any)
 
 ### Parameter
 
-- `script` - The `Script`, `LocalScript` or `ModuleScript` the function should create a closure out of.
+- `script` - The script instance to get its closure.
 
 ### Example
 
@@ -93,15 +83,7 @@ print(getscriptclosure(Instance.new("LocalScript"))) -- Throws an error
 
 ## getsenv
 
-> [!NOTE]
-> This is an implementation detail; as a regular scripter, you may ignore this!
->
-> To implement this function, you should be finding the script's Lua state and returning its L->gt table; any other approach will result in our tests failing.
->
-> The reason it should be implemented this way is because game devs can set their `script` global to `nil` and break other approaches.
-
-Gives you the globals table of a running module/script (meaning all variables not defined as local in the script).
-This should work with `LocalScript`, `ModuleScript`, and `Script` instances that have RunContext set to Client.
+Returns the L->gt table of the script's Lua state. This function should allow getting the environment even if game devs set the `script` global to `nil`.
 
 ```luau
 function getsenv(script: Script | LocalScript | ModuleScript): { [any]: any }
@@ -114,8 +96,8 @@ function getsenv(script: Script | LocalScript | ModuleScript): { [any]: any }
 ### Example
 
 ```luau
-local scriptEnv = getsenv(game.Players.LocalPlayer.Character.Animate)
-print(scriptEnv.onSwimming) -- Output: function 0x...
+local ScriptEnv = getsenv(game.Players.LocalPlayer.Character.Animate)
+print(ScriptEnv.onSwimming) -- Output: function 0x...
 
 print(getsenv(Instance.new("LocalScript"))) -- Throws an error
 ```
@@ -124,7 +106,7 @@ print(getsenv(Instance.new("LocalScript"))) -- Throws an error
 
 ## getscripts
 
-Returns all the scripts in the game. CoreScripts should be filtered by default.
+Returns all the scripts in the game, CoreScripts should be filtered by default.
 
 ```luau
 function getscripts(): { Script | LocalScript | ModuleScript }
@@ -146,7 +128,7 @@ end
 
 ## getrunningscripts
 
-Returns all the running scripts in the caller's global state. CoreScripts should be filtered by default.
+Returns all the running scripts in the caller's global state, CoreScripts should be filtered by default.
 
 ```luau
 function getrunningscripts(): { LocalScript | ModuleScript | Script }
@@ -171,7 +153,7 @@ end
 
 ## getloadedmodules
 
-Returns all the loaded modules in the caller's global state. CoreScripts should be filtered by default.
+Returns all the loaded modules in the caller's global state, CoreScripts should be filtered by default.
 
 ```luau
 function getloadedmodules(): { ModuleScript }
@@ -198,13 +180,7 @@ end
 
 ## getcallingscript
 
-> [!NOTE]
-> This is an implementation detail; as a regular scripter, you may ignore this!
-> 
-> Do not make this function simply grab the script global from the current thread, this is easily breakable if the game devs set their script global to other or nil,
-> instead use the instance from the Lua State userdata.
-
-Returns the script associated with the current thread. This function is useful for determining which script is currently executing the Luau code.
+Returns the script that's running the current Luau code. This shouldn't just look for the `script` global, as game devs can set it to `nil` and break this approach.
 
 ```luau
 function getcallingscript(): LocalScript | ModuleScript | Script
@@ -231,7 +207,7 @@ print(getcallingscript().Name)
 
 ## getthreadidentity
 
-Returns the executor's current identity
+Returns the caller's thread identity.
 
 ```luau
 function getthreadidentity(): number
@@ -250,7 +226,7 @@ print(getthreadidentity()) -- Output: 7
 
 ## setthreadidentity
 
-Sets the executor's identity and capabilities matching that identity
+Sets the caller's identity, and capabilities matching that identity.
 
 ```luau
 function setthreadidentity(input: number): ()
@@ -258,7 +234,7 @@ function setthreadidentity(input: number): ()
 
 ### Parameter
 
-- `input` - The wanted identity to set to
+- `input` - The wanted identity to set.
 
 ### Examples
 
