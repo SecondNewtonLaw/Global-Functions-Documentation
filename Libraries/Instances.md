@@ -222,16 +222,14 @@ fireproximityprompt(DummyProximityPrompt) -- Output: Triggered
 > [!NOTE]
 > This is an implementation detail; as a regular scripter, you may ignore this!
 > 
-> It's not recommended to implement this function in luau. Doing so will expose you to easy detections.
+> It's not recommended to implement this function in luau. Doing so will expose you to easy detections. Additionally, when firing the touch interests, the function should yield, in order to allow the next one to fire with no problems.
 > 
-> Also this function should yield when you are calling the function that fires the touch interests.
-> 
-> Additionaly, this function should handle both numbers and booleans for the toggle (1 being true, 0 being false as in UNC)
+> Both numbers and booleans should be supported for the toggle (1 being true, 0 being false)
 
 Triggers a `Touched` event on a `BasePart` with the other wanted part.
 
 ```luau
-function firetouchinterest(part: BasePart, part2: BasePart, toggle: boolean): ()
+function firetouchinterest(part: BasePart, part2: BasePart, toggle: boolean | number): ()
 ```
 
 ### Parameters
