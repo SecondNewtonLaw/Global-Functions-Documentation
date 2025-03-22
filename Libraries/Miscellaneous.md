@@ -71,8 +71,8 @@ local Response = request({
 
 local RetrievedFingerprint
 
-local ig = game:GetService("HttpService"):JSONDecode(Response.Body)
-for i, v in pairs(ig["headers"]) do
+local Decoded = game:GetService("HttpService"):JSONDecode(Response.Body)
+for i, v in pairs(Decoded["headers"]) do
     if i:match("Fingerprint") then RetrievedFingerprint = i break end
 end
 
