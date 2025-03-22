@@ -13,13 +13,13 @@ Returns the hidden, non-scriptable properties value no matter its type, such as 
 
 
 ```luau
-gethiddenproperty(instance: Instance, propertyName: string): (any, boolean)
+gethiddenproperty(instance: Instance, property_name: string): (any, boolean)
 ```
 
 ### Parameters
 
 - `instance` - The instance that contains the property.
-- `propertyName` - The name of the property to be read.
+- `property_name` - The name of the property to be read.
 
 ### Example
 
@@ -42,14 +42,14 @@ Sets the hidden, non-scriptable property's value no matter its type, such as `Bi
 Avoids detections and errors that can happen by just using `setscriptable` to set the property
 
 ```luau
-sethiddenproperty(instance: Instance, propertyName: string, propertyValue: any): boolean
+sethiddenproperty(instance: instance, property_name: string, property_value: any): boolean
 ```
 
 ### Parameters
 
 - `instance` - The instance that contains the property.
-- `propertyName` - The name of the property to be assigned.
-- `propertyValue` - The value to which the property should be set.
+- `property_name` - The name of the property to be assigned.
+- `property_value` - The value to which the property should be set.
 
 ### Example
 
