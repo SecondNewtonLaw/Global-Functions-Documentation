@@ -15,8 +15,8 @@ function identifyexecutor(): (string, string)
 ### Example
 
 ```luau
-local execName, execVersion = identifyexecutor()
-print(execName, execVersion) -- Output: "YourName 0.0.1"
+local ExecName, ExecVersion = identifyexecutor()
+print(ExecName, ExecVersion) -- Output: "YourName 0.0.1"
 ```
 ---
 
@@ -64,31 +64,31 @@ The executor provides the following headers for identification on a web server:
 
 ### Examples
 ```luau
-local response = request({
+local Response = request({
 	Url = "http://httpbin.org/get",
 	Method = "GET",
 })
 
-local retrievedFingerprint
+local RetrievedFingerprint
 
-local ig = game:GetService("HttpService"):JSONDecode(response.Body)
+local ig = game:GetService("HttpService"):JSONDecode(Response.Body)
 for i, v in pairs(ig["headers"]) do
-    if i:match("Fingerprint") then retrievedFingerprint = i break end
+    if i:match("Fingerprint") then RetrievedFingerprint = i break end
 end
 
-print(response.StatusCode) -- Output: 200
-print(response.Success) -- Output: true
-print(retrievedFingerprint) -- Output: Prefix-Fingerprint (prefix being the exec's name)
+print(Response.StatusCode) -- Output: 200
+print(Response.Success) -- Output: true
+print(RetrievedFingerprint) -- Output: Prefix-Fingerprint (prefix being the exec's name)
 ```
 
 ```luau
-local response = request({
+local Response = request({
 	Url = "http://httpbin.org/post",
 	Method = "POST",
 	Body = "Example"
 })
 
-print(response.StatusMessage) -- Output: 200
-print(response.StatusCode) -- Output: true
-print(game:GetService("HttpService"):JSONDecode(response.Body).data) -- Output: Example
+print(Response.StatusMessage) -- Output: 200
+print(Response.StatusCode) -- Output: true
+print(game:GetService("HttpService"):JSONDecode(Response.Body).data) -- Output: Example
 ```
