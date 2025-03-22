@@ -16,7 +16,7 @@ function getgenv(): { any }
 
 ```luau
 getgenv().test = "hello world"
-print(test) -- Should print "hello world" in current script and all future executed scripts
+print(test) -- Output: hello world
 ```
 
 ---
@@ -117,8 +117,8 @@ function filtergc(filter_type: "function" | "table", filter_options: FunctionFil
 
 ### Parameters
 
-- `filter_type` - specifies the type of Lua value to search for.
-- `filter_options` - criteria used to filter the search results based on the specified type.
+- `filter_type` - Specifies the type of Lua value to search for.
+- `filter_options` - Criteria used to filter the search results based on the specified type.
 - `return_one?` - A boolean that returns only the first match when true; otherwise, all matches are returned.
 
 > [!NOTE]
