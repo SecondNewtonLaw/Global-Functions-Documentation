@@ -42,7 +42,7 @@ Sets the hidden, non-scriptable property's value no matter its type, such as `Bi
 Avoids detections and errors that can happen by just using `setscriptable` to set the property
 
 ```luau
-sethiddenproperty(instance: instance, property_name: string, property_value: any): boolean
+sethiddenproperty(instance: Instance, property_name: string, property_value: any): boolean
 ```
 
 ### Parameters
