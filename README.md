@@ -1,23 +1,24 @@
 # sUNC Introduction
 
-If you're interested in senS' (Owner's) monologue, you can view it [here](./README-condensed.md).
+## What is "sUNC"?
 
-## What is sUNC? 
+**sUNC** stands for **senS' Unified Naming Convention**. It's a tool designed to check if an executor can properly run essential global functions, following the existing [Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard/tree/main).  
+Unlike the original UNC, which is now outdated and prone to spoofing, sUNC ensures that functions actually work as intended, by testing them as if they were to be used in a real scenario.     
+However, we are not, in any way calling UNC "bad", we are simply saying people shouldn't be using UNC to deeply test their environment, as that is not its purpose.
 
-**sUNC** stands for **senS' Unified Naming Convention**. It's a testing tool designed to validate an executor's ability to implement necessary global functions under the already existing [Unified Naming Convention](https://github.com/unified-naming-convention/NamingStandard/tree/main). Unlike the original UNC, which is now deprecated and prone to spoofing, sUNC rigorously evaluates function implementations to ensure full functionality and authenticity.
+## How would I know what fails?
 
-### Key Features
+We are not gatekeeping function tests, despite the script being obfuscated.  
+You are welcome to ask the owner (@sens6222 on Discord) if you are struggling with passing certain tests. We keep it this way for now, due to  executors already faking their environments to suit the [original UNC](https://github.com/unified-naming-convention/NamingStandard/tree/main).
 
-- sUNC has a focus on **validation**: Tests are designed to verify that functions operate correctly, by running the functions under many tests to confirm the results.
-- sUNC enforces **transparency** and **accountability**: The script exposes fake, or poorly implemented functions to protect users from misleading claims and help developers improve their environment.
-- sUNC is constantly being updated with test improvements, ensuring it remains as good as gold for testing executor validity.
-- sUNC is obfuscated. This might seem like a bad thing, but the intention is to prevent spoofing, and we are not going to gatekeep function tests, you are open to ask the owner (@sens6222 on Discord) or the secondary developer (@vvultt on Discord) if you are struggling with the passing the tests. Many executors already fake their environments to suit the [Original UNC](https://github.com/unified-naming-convention/NamingStandard/tree/main) since it is open source.
+Note that it's also possible to see the detailed reason of a function's failure at the top of the `Developer Console` in game.
+
+## Will sUNC be discontinued?
+
+Not in the near future, we hope. However, if sUNC would be discontinued, we will open source the project after 1-2 months.
 
 -----
 
 # Credits
 
 - [Original UNC Documentation](https://github.com/unified-naming-convention/NamingStandard/tree/main)
-
-## Secret Synapse Z monopoly in mind
-sUNC will specially not add special functions which are only found in synapse z to keep the monopoly active.
