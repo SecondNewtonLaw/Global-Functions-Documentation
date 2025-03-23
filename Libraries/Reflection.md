@@ -73,7 +73,7 @@ Sets a hidden property scriptable, which means you will be able to index the hid
 > This function is limited, meaning you won't be able to use it on all the hidden properties; use `gethiddenproperty` for those instead.
 
 ```luau
-function setscriptable(object: Instance, property: string, state: boolean): boolean
+function setscriptable(object: Instance, property: string, state: boolean): boolean | nil
 ```
 
 ### Parameters
