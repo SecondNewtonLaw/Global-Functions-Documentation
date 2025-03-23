@@ -13,7 +13,7 @@ Returns the hidden, non-scriptable properties value no matter its type, such as 
 
 
 ```luau
-gethiddenproperty(instance: Instance, property_name: string): (any, boolean)
+function gethiddenproperty(instance: Instance, property_name: string): (any, boolean)
 ```
 
 ### Parameters
@@ -42,7 +42,7 @@ Sets the hidden, non-scriptable property's value no matter its type, such as `Bi
 Avoids detections and errors that can happen by just using `setscriptable` to set the property
 
 ```luau
-sethiddenproperty(instance: Instance, property_name: string, property_value: any): boolean
+function sethiddenproperty(instance: Instance, property_name: string, property_value: any): boolean
 ```
 
 ### Parameters
