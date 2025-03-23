@@ -85,7 +85,7 @@ firesignal(part.ChildAdded, workspace) -- Output: Instance
 > [!NOTE]
 > For an accurate result from the example, test the function in [our game](https://www.roblox.com/games/122008870888915/boibiobioboiio).
 > 
-> Also note that some signals might have different namings. For all the current replicable singals, visit [this](https://rubis.numelon.com/view/?scrap=AIOzG1Di7NSLADKE)
+> Also note that some signals might have different namings. For all the current replicable signals, visit [this](https://rubis.numelon.com/view/?scrap=AIOzG1Di7NSLADKE)
 
 If possible, replicates the signal to the server with the provided arguments. The arguments must also match accordingly to the signal itself. To know a signal's arguments, visit [this](https://robloxapi.github.io/ref/).
 
