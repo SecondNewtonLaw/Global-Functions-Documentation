@@ -93,7 +93,7 @@ print(iscclosure(DummyLuaFunction)) -- Output: false
 Checks if a given function is a L closure.
 
 ```luau
-function islclosure(func: (...any) -> (...any): boolean
+function islclosure(func: (...any) -> (...any)): boolean
 ```
 
 ### Parameter
@@ -125,7 +125,7 @@ print(islclosure(DummyCFunction)) -- Output: false
 Checks if a given function is the executor's closure.
 
 ```luau
-function isexecutorclosure(func: (...any) -> (...any): boolean
+function isexecutorclosure(func: (...any) -> (...any)): boolean
 ```
 
 ### Parameter
