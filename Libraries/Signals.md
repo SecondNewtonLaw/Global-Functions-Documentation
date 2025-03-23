@@ -7,7 +7,7 @@ Functions that allow interaction with RBXScriptSignals and RBXScriptConnections.
 ## getconnections
 
 > [!NOTE]
-> Passing a C-Signal into **getconnections** should return `Function` and `Thread` as nil, due to them not being accessible.
+> Passing a C-Signal or a foreign signal into **getconnections** should return `Function` and `Thread` as nil into their connections, due to them not being accessible.
 
 Returns the connections of the specified signal.
 
