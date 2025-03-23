@@ -7,8 +7,8 @@ The **Script** library provides functions that access to script environments and
 ## getscriptbytecode
 
 > [!NOTE]
-> This function should throw an **error** if the script has no bytecode.
-> We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
+> This function should return `nil` if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to check for `nil`, rather than each executor having its own output.
 
 ```luau
 function getscriptbytecode(script: Script | LocalScript | ModuleScript): string
@@ -34,8 +34,8 @@ print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws an error
 > [!NOTE]
 > Hash the compressed and encrypted bytecode, don't decrypt and decompress it.
 > 
-> This function should throw an **error** if the script has no bytecode.
-> We encourage this behavior, as it's easier for people to pcall, rather than each executor having its own output.
+> This function should return `nil` if the script has no bytecode.
+> We encourage this behavior, as it's easier for people to check for `nil`, rather than each executor having its own output.
 
 Returns a `SHA384` hash represented in hex of the module/script's bytecode.
 
