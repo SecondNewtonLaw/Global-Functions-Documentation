@@ -183,7 +183,7 @@ end
 Returns the script that's running the current Luau code. This shouldn't just look for the `script` global, as game devs can set it to `nil` and break this approach.
 
 ```luau
-function getcallingscript(): LocalScript | ModuleScript | Script
+function getcallingscript(): LocalScript | ModuleScript | Script | nil
 ```
 
 ### Example
