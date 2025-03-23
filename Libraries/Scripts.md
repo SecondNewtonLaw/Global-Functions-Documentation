@@ -11,7 +11,7 @@ The **Script** library provides functions that access to script environments and
 > We encourage this behavior, as it's easier for people to check for `nil`, rather than each executor having its own output.
 
 ```luau
-function getscriptbytecode(script: Script | LocalScript | ModuleScript): string
+function getscriptbytecode(script: Script | LocalScript | ModuleScript): string | nil
 ```
 
 ### Parameter
@@ -24,7 +24,7 @@ function getscriptbytecode(script: Script | LocalScript | ModuleScript): string
 local AnimateScriptBytecode = getscriptbytecode(game.Players.LocalPlayer.Character.Animate)
 print(AnimateScriptBytecode) -- Returns a string with the bytecode.
 
-print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws an error
+print(getscriptbytecode(Instance.new("LocalScript"))) -- Output: nil
 ```
 
 ---
@@ -40,7 +40,7 @@ print(getscriptbytecode(Instance.new("LocalScript"))) -- Throws an error
 Returns a `SHA384` hash represented in hex of the module/script's bytecode.
 
 ```luau
-function getscripthash(script: Script | LocalScript | ModuleScript): string
+function getscripthash(script: Script | LocalScript | ModuleScript): string | nil
 ```
 
 ### Parameter
@@ -53,7 +53,7 @@ function getscripthash(script: Script | LocalScript | ModuleScript): string
 local ScriptHash = getscripthash(game.Players.LocalPlayer.Character.Animate)
 print(ScriptHash) -- Should return a non-changing SHA384 hash in hex representation
 
-print(getscripthash(Instance.new("LocalScript"))) -- Throws an error
+print(getscripthash(Instance.new("LocalScript"))) -- Output: nil
 ```
 
 ---
@@ -63,7 +63,7 @@ print(getscripthash(Instance.new("LocalScript"))) -- Throws an error
 Creates a new closure (function) from the module/script's bytecode. The game does not use the function you will get, as it's usually used to retrieve constants.
 
 ```luau
-function getscriptclosure(script: Script | LocalScript | ModuleScript): (...any) -> (...any)
+function getscriptclosure(script: Script | LocalScript | ModuleScript): (...any) -> (...any) | nil
 ```
 
 ### Parameter
@@ -76,7 +76,7 @@ function getscriptclosure(script: Script | LocalScript | ModuleScript): (...any)
 local AnimateScript = game.Players.LocalPlayer.Character.Animate
 print(getscriptclosure(AnimateScript)) -- Output: function 0x...
 
-print(getscriptclosure(Instance.new("LocalScript"))) -- Throws an error
+print(getscriptclosure(Instance.new("LocalScript"))) -- Output: nil
 ```
 
 ---
